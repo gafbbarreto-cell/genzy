@@ -160,7 +160,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
           <legend class="legend">Liga</legend>
           <div class="seg">
             <label><input type="radio" name="liga" value="A"><span>Liga A</span></label>
-            <label><input type="radio" name="liga" value="B"><span>Liga B</span></label>
+            <label><input type="radio" name="liga" value="B"><span>Liga B (Marley)</span></label>
           </div>
           <div class="err" id="e-liga"></div>
         </fieldset>
@@ -277,12 +277,13 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbxGHdKuAdWWvXccx6Tq_NV
         joga2027:v.joga2027, liga:(v.joga2027 === 'Sim' ? v.liga : ''), camiseta:v.camiseta, voluntario:v.voluntario, email:v.email, whatsapp:v.whatsapp });
       await fetch(ENDPOINT, { method:'POST', mode:'no-cors', body });
       lastData = v;
+      const ligaNome = 'Liga ' + v.liga + (v.liga === 'B' ? ' (Marley)' : '');
       const quem = v.apelido || v.nome.split(' ')[0];
       const vol = v.voluntario === 'Sim';
       if (v.joga2027 === 'Sim'){
         $('okTitle').textContent = 'Inscrição confirmada, ' + quem + '.';
-        $('okText').textContent = 'Você está na GenZY 2027. O comitê vai confirmar as chaves da Liga ' + v.liga + ' e enviar o calendário pelo WhatsApp.' + (vol ? ' Obrigado também por topar ser voluntário.' : '');
-        $('okLiga').textContent = 'Liga ' + v.liga;
+        $('okText').textContent = 'Você está na GenZY 2027. O comitê vai confirmar as chaves da ' + ligaNome + ' e enviar o calendário pelo WhatsApp.' + (vol ? ' Obrigado também por topar ser voluntário.' : '');
+        $('okLiga').textContent = ligaNome;
       } else {
         $('okTitle').textContent = 'Resposta registrada, ' + quem + '.';
         $('okText').textContent = 'Que pena que você não vai jogar em 2027. ' + (vol ? 'Obrigado por topar ser voluntário: vamos contar com você nos eventos da GenZY. ' : 'Você continua convidado para os eventos da GenZY. ') + 'Se mudar de ideia, preencha de novo com o mesmo e-mail.';
