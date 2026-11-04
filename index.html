@@ -203,7 +203,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
     </section>
 
     <section class="success" id="ok" aria-live="polite">
-      <div class="bar"><h2 id="okTitle">Inscrição confirmada.</h2></div>
+      <div class="bar"><h2 id="okTitle">Interesse registrado.</h2></div>
       <div class="body">
         <p id="okText" style="margin-top:0"></p>
         <p class="pills"><span class="pill" id="okLiga">Liga A</span> <span class="pill" id="okVol" hidden>Voluntário <span class="brand">GEN ZY</span> 2027</span></p>
@@ -281,8 +281,8 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbxGHdKuAdWWvXccx6Tq_NV
       const quem = v.apelido || v.nome.split(' ')[0];
       const vol = v.voluntario === 'Sim';
       if (v.joga2027 === 'Sim'){
-        $('okTitle').textContent = 'Inscrição confirmada, ' + quem + '.';
-        $('okText').textContent = 'Você está na GEN ZY 2027. O comitê vai confirmar as chaves da ' + ligaNome + ' e enviar o calendário pelo WhatsApp.' + (vol ? ' Obrigado também por topar ser voluntário.' : '');
+        $('okTitle').textContent = 'Interesse registrado, ' + quem + '.';
+        $('okText').textContent = 'Vamos usar as respostas para montar o formato e o calendário da GEN ZY 2027. Antes do início, você recebe um pedido de confirmação final.' + (vol ? ' Obrigado também por topar ser voluntário.' : '');
         $('okLiga').textContent = ligaNome;
       } else {
         $('okTitle').textContent = 'Resposta registrada, ' + quem + '.';
