@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>GEN ZY 2027 · Inscrição</title>
-<meta name="description" content="Inscrição de atletas da GEN ZY 2027, liga de tênis entre amigos do Clube de Campo.">
-<meta property="og:title" content="GEN ZY 2027 · Inscrição">
-<meta property="og:description" content="Garanta sua vaga na temporada 2027 da GEN ZY.">
+<title>GenZY 2027 · Inscrição</title>
+<meta name="description" content="Inscrição de atletas da GenZY 2027, liga de tênis entre amigos do Clube de Campo.">
+<meta property="og:title" content="GenZY 2027 · Inscrição">
+<meta property="og:description" content="Garanta sua vaga na temporada 2027 da GenZY.">
 <meta name="theme-color" content="#FFDD57">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23FFDD57' stroke-width='6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
 <style>
-/* Identidade GEN ZY 2026: branco, preto e amarelo; títulos condensados pesados; faixa amarela no topo; marcadores amarelos e pílulas pretas */
+/* Identidade GenZY 2026: branco, preto e amarelo; títulos condensados pesados; faixa amarela no topo; marcadores amarelos e pílulas pretas */
 :root{
   --yellow:#FFDD57; --yellow-deep:#E8C23A; --ink:#111111; --paper:#FFFFFF; --mist:#F7F7F5;
   --line:#E6E5E0; --muted:#5E5D58; --err:#B3261E; --ok:#1E7A46;
@@ -22,6 +22,8 @@
   color-scheme:light;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
 .topbar{height:10px;background:var(--yellow)}
@@ -29,9 +31,10 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body)
 .eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:13px;letter-spacing:.22em;text-transform:uppercase}
 .eyebrow::before{content:"";width:5px;height:18px;background:var(--yellow)}
 header .wrap{padding-block:36px 40px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
-h1{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,15vw,128px);line-height:1;margin:18px 0 16px;text-transform:uppercase;letter-spacing:.005em}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,15vw,128px);line-height:1;margin:18px 0 16px;letter-spacing:.005em}
 h1 .l1{display:block}
 h1 em{display:inline-block;font-style:normal;color:var(--ink);background:var(--yellow);padding:.04em .1em 0;margin-top:.08em;line-height:1}
+.brand{text-transform:none}
 .lede{margin:0;max-width:42ch;font-size:18px;color:var(--muted)}
 .logo{width:150px;text-align:center}
 .logo svg{display:block;width:100%;height:auto}
@@ -102,12 +105,12 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
   <div class="wrap">
     <div>
       <div class="eyebrow">Clube de Campo de São Paulo · Temporada 2027</div>
-      <h1><span class="l1">GEN ZY</span><em>2027</em></h1>
+      <h1><span class="l1">GenZY</span><em>2027</em></h1>
       <p class="lede">Inscrição dos atletas para a próxima temporada GenZY.</p>
     </div>
     <div class="logo" aria-hidden="true">
       <svg viewBox="0 0 120 64"><path d="M14 62 A46 46 0 0 1 106 62" fill="none" stroke="#FFDD57" stroke-width="7" stroke-linecap="round"/><path d="M34 22 Q60 54 86 22" fill="none" stroke="#FFDD57" stroke-width="6" stroke-linecap="round"/></svg>
-      <div class="word">GEN ZY</div>
+      <div class="word">GenZY</div>
       <div class="sub">2027</div>
     </div>
   </div>
@@ -116,8 +119,8 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
 <section class="steps" aria-label="Como funciona">
   <div class="wrap">
     <ol>
-      <li><span class="num">01</span><div><b>Inscrição</b><span>Preencha o formulário abaixo</span></div></li>
-      <li><span class="num">02</span><div><b>Calendário 2027</b><span>Aguarde o calendário 2027</span></div></li>
+      <li><span class="num">01</span><div><b>Inscrição</b><span>Preencha o formulário abaixo.</span></div></li>
+      <li><span class="num">02</span><div><b>Calendário 2027</b><span>Aguarde o calendário 2027.</span></div></li>
     </ol>
   </div>
 </section>
@@ -153,7 +156,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
           </div>
           <div class="err" id="e-joga2027"></div>
         </fieldset>
-        <fieldset class="field">
+        <fieldset class="field" id="ligaBox" hidden>
           <legend class="legend">Liga</legend>
           <div class="seg">
             <label><input type="radio" name="liga" value="A"><span>Liga A</span></label>
@@ -174,7 +177,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
           <div class="err" id="e-camiseta"></div>
         </fieldset>
         <fieldset class="field">
-          <legend class="legend">Quer ser voluntário GenZY 2027?</legend>
+          <legend class="legend">Quer ser voluntário <span class="brand">GenZY</span> 2027?</legend>
           <div class="seg">
             <label><input type="radio" name="voluntario" value="Sim"><span>Sim</span></label>
             <label><input type="radio" name="voluntario" value="Não"><span>Não</span></label>
@@ -200,17 +203,17 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
     </section>
 
     <section class="success" id="ok" aria-live="polite">
-      <div class="bar"><h2 id="okTitle">Inscrição recebida</h2></div>
+      <div class="bar"><h2 id="okTitle">Inscrição confirmada.</h2></div>
       <div class="body">
-        <p id="okText" style="margin-top:0">Você está na lista da GEN ZY 2027. O comitê vai confirmar as chaves e mandar o calendário no seu WhatsApp.</p>
-        <p><span class="pill" id="okLiga">Liga A</span></p>
+        <p id="okText" style="margin-top:0"></p>
+        <p class="pills"><span class="pill" id="okLiga">Liga A</span> <span class="pill" id="okVol" hidden>Voluntário <span class="brand">GenZY</span> 2027</span></p>
         <button class="linkbtn" id="again" type="button">Corrigir algum dado</button>
       </div>
     </section>
   </div>
 </main>
 
-<footer><div class="wrap"><span>GEN ZY Academy. A BetMarley company. All rights reserved.</span></div></footer>
+<footer><div class="wrap"><span>GenZY Academy. A BetMarley company. All rights reserved.</span></div></footer>
 
 <script>
 // URL do Web App do Google Apps Script que grava na planilha
@@ -241,7 +244,7 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbxGHdKuAdWWvXccx6Tq_NV
     if (!v.apelido) e.apelido = 'Qual é o seu apelido na quadra?';
     if (!v.favorito) e.favorito = 'Diga quem é seu atleta favorito.';
     if (!v.joga2027) e.joga2027 = 'Responda se vai jogar em 2027.';
-    if (!v.liga) e.liga = 'Escolha Liga A ou Liga B.';
+    if (v.joga2027 === 'Sim' && !v.liga) e.liga = 'Escolha Liga A ou Liga B.';
     if (!v.camiseta) e.camiseta = 'Escolha o tamanho da camiseta.';
     if (!v.voluntario) e.voluntario = 'Responda se quer ser voluntário.';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)) e.email = 'Confira o e-mail, ex.: voce@email.com.';
@@ -271,17 +274,35 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbxGHdKuAdWWvXccx6Tq_NV
     btn.disabled = true; setStatus('Enviando…');
     try{
       const body = new URLSearchParams({ nome:v.nome, apelido:v.apelido, favorito:v.favorito,
-        joga2027:v.joga2027, liga:v.liga, camiseta:v.camiseta, voluntario:v.voluntario, email:v.email, whatsapp:v.whatsapp });
+        joga2027:v.joga2027, liga:(v.joga2027 === 'Sim' ? v.liga : ''), camiseta:v.camiseta, voluntario:v.voluntario, email:v.email, whatsapp:v.whatsapp });
       await fetch(ENDPOINT, { method:'POST', mode:'no-cors', body });
       lastData = v;
-      $('okTitle').textContent = 'Inscrição recebida, ' + (v.apelido || v.nome.split(' ')[0]);
-      $('okLiga').textContent = 'Liga ' + v.liga + (v.joga2027 === 'Sim' ? ' · joga em 2027' : ' · fora em 2027');
+      const quem = v.apelido || v.nome.split(' ')[0];
+      const vol = v.voluntario === 'Sim';
+      if (v.joga2027 === 'Sim'){
+        $('okTitle').textContent = 'Inscrição confirmada, ' + quem + '.';
+        $('okText').textContent = 'Você está na GenZY 2027. O comitê vai confirmar as chaves da Liga ' + v.liga + ' e enviar o calendário pelo WhatsApp.' + (vol ? ' Obrigado também por topar ser voluntário.' : '');
+        $('okLiga').textContent = 'Liga ' + v.liga;
+      } else {
+        $('okTitle').textContent = 'Resposta registrada, ' + quem + '.';
+        $('okText').textContent = 'Que pena que você não vai jogar em 2027. ' + (vol ? 'Obrigado por topar ser voluntário: vamos contar com você nos eventos da GenZY. ' : 'Você continua convidado para os eventos da GenZY. ') + 'Se mudar de ideia, preencha de novo com o mesmo e-mail.';
+        $('okLiga').textContent = 'Fora das quadras em 2027';
+      }
+      $('okVol').hidden = !vol;
       $('formBox').hidden = true; $('ok').classList.add('on'); setStatus('');
       $('ok').scrollIntoView({behavior:'smooth', block:'start'});
     }catch(err){
       setStatus('Não deu para enviar. Confira sua internet e tente de novo.', true);
     }finally{ btn.disabled = false; }
   });
+
+  const ligaBox = $('ligaBox');
+  f.querySelectorAll('input[name=joga2027]').forEach(el => el.addEventListener('change', () => {
+    const joga = f.querySelector('input[name=joga2027]:checked');
+    const sim = !!joga && joga.value === 'Sim';
+    ligaBox.hidden = !sim;
+    if (!sim){ f.querySelectorAll('input[name=liga]').forEach(x => { x.checked = false; }); $('e-liga').textContent = ''; }
+  }));
 
   $('again').addEventListener('click', () => {
     $('ok').classList.remove('on'); $('formBox').hidden = false;
