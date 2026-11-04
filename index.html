@@ -222,7 +222,15 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbxGHdKuAdWWvXccx6Tq_NV
 (function(){
   const $ = id => document.getElementById(id);
   const f = $('f'), btn = $('submit'), st = $('status');
-  let lastData = null;
+  let lastData = null, sending = false;
+
+  // Proteções contra envios falsos ou repetidos
+  const LOADED_AT = Date.now();
+  const MIN_FILL_MS = 4000;      // humano leva mais que 4 s para preencher
+  const COOLDOWN_MS = 60000;     // no máximo 1 envio por minuto neste navegador
+  const LKEY = 'genzy2027-envio';
+  function lastSend(){ try { return JSON.parse(localStorage.getItem(LKEY) || 'null'); } catch(e){ return null; } }
+  function rememberSend(v){ try { localStorage.setItem(LKEY, JSON.stringify({ at: Date.now(), email: v.email })); } catch(e){} }
 
   const wa = $('whatsapp');
   wa.addEventListener('input', () => {
@@ -269,13 +277,23 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbxGHdKuAdWWvXccx6Tq_NV
       setStatus('Faltam alguns campos.', true);
       return;
     }
-    if (v.site) return; // robô
+    if (v.site) return; // robô (campo invisível preenchido)
+    if (sending) return; // clique duplo
+    if (Date.now() - LOADED_AT < MIN_FILL_MS){ setStatus('Confira os dados e envie de novo em instantes.', true); return; }
+    const prev = lastSend();
+    if (prev && Date.now() - prev.at < COOLDOWN_MS){
+      const s = Math.ceil((COOLDOWN_MS - (Date.now() - prev.at)) / 1000);
+      setStatus('Sua inscrição acabou de ser enviada. Para corrigir algo, aguarde ' + s + ' s e envie de novo.', true);
+      return;
+    }
     if (!ENDPOINT.startsWith('https://')){ setStatus('O formulário ainda não está conectado à planilha.', true); return; }
-    btn.disabled = true; setStatus('Enviando…');
+    sending = true; btn.disabled = true; setStatus('Enviando…');
     try{
       const body = new URLSearchParams({ nome:v.nome, apelido:v.apelido, favorito:v.favorito,
-        joga2027:v.joga2027, liga:(v.joga2027 === 'Sim' ? v.liga : ''), camiseta:v.camiseta, voluntario:v.voluntario, email:v.email, whatsapp:v.whatsapp });
+        joga2027:v.joga2027, liga:(v.joga2027 === 'Sim' ? v.liga : ''), camiseta:v.camiseta, voluntario:v.voluntario, email:v.email, whatsapp:v.whatsapp,
+        tipo:(prev && prev.email === v.email ? 'atualizacao' : 'nova') });
       await fetch(ENDPOINT, { method:'POST', mode:'no-cors', body });
+      rememberSend(v);
       lastData = v;
       const ligaNome = 'Liga ' + v.liga + (v.liga === 'B' ? ' (Marley)' : '');
       const quem = v.apelido || v.nome.split(' ')[0];
@@ -294,7 +312,7 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbxGHdKuAdWWvXccx6Tq_NV
       $('ok').scrollIntoView({behavior:'smooth', block:'start'});
     }catch(err){
       setStatus('Não deu para enviar. Confira sua internet e tente de novo.', true);
-    }finally{ btn.disabled = false; }
+    }finally{ sending = false; btn.disabled = false; }
   });
 
   const ligaBox = $('ligaBox');
