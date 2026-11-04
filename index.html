@@ -29,21 +29,22 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body)
 .eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:13px;letter-spacing:.22em;text-transform:uppercase}
 .eyebrow::before{content:"";width:5px;height:18px;background:var(--yellow)}
 header .wrap{padding-block:36px 40px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
-h1{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,15vw,128px);line-height:.92;margin:18px 0 14px;text-transform:uppercase;letter-spacing:.005em}
-h1 em{font-style:normal;color:var(--ink);background:var(--yellow);padding:0 .08em}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,15vw,128px);line-height:1;margin:18px 0 16px;text-transform:uppercase;letter-spacing:.005em}
+h1 .l1{display:block}
+h1 em{display:inline-block;font-style:normal;color:var(--ink);background:var(--yellow);padding:.04em .1em 0;margin-top:.08em;line-height:1}
 .lede{margin:0;max-width:42ch;font-size:18px;color:var(--muted)}
 .logo{width:150px;text-align:center}
 .logo svg{display:block;width:100%;height:auto}
 .logo .word{font-family:var(--f-display);font-size:42px;line-height:1;margin-top:-6px;white-space:nowrap}
 .logo .sub{font-family:var(--f-body);font-weight:700;letter-spacing:.32em;color:var(--yellow-deep);font-size:13px;margin-top:4px;padding-left:.32em}
 .steps{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--mist)}
-.steps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr)}
+.steps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr)}
 .steps li{display:flex;gap:12px;align-items:center;padding:16px 0;min-width:0}
 .num{flex:none;display:grid;place-items:center;width:46px;height:40px;border-radius:6px;background:var(--yellow);font-family:var(--f-display);font-size:22px}
 .steps b{display:block;font-family:var(--f-display);font-weight:400;text-transform:uppercase;font-size:17px;letter-spacing:.02em;line-height:1.1}
 .steps span{font-size:13px;color:var(--muted)}
 main .wrap{padding-block:40px 64px}
-h2{font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1;text-transform:uppercase;margin:10px 0 6px}
+h2{font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1;text-transform:uppercase;margin:10px 0 26px}
 .sub{color:var(--muted);margin:0 0 28px}
 form{display:grid;grid-template-columns:1fr 1fr;gap:22px 18px}
 .full{grid-column:1/-1}
@@ -56,6 +57,7 @@ input[aria-invalid=true]{border-color:var(--err)}
 .err{color:var(--err);font-size:13px}
 fieldset{border:0;margin:0;padding:0;min-width:0}
 .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:7px}
+.seg.six{grid-template-columns:repeat(6,1fr);gap:6px}
 .seg label{position:relative;cursor:pointer;font-family:var(--f-body);text-transform:none;letter-spacing:0;font-size:16px;font-weight:700}
 .seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
 .seg span{display:flex;align-items:center;justify-content:center;min-height:50px;border:2px solid var(--line);border-radius:6px;transition:background .15s,border-color .15s}
@@ -99,9 +101,9 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
 <header>
   <div class="wrap">
     <div>
-      <div class="eyebrow">Clube de Campo · Temporada 2027</div>
-      <h1>GEN ZY<br><em>2027</em></h1>
-      <p class="lede">Inscrição de atletas para a próxima temporada da liga. Leva dois minutos.</p>
+      <div class="eyebrow">Clube de Campo de São Paulo · Temporada 2027</div>
+      <h1><span class="l1">GEN ZY</span><em>2027</em></h1>
+      <p class="lede">Inscrição dos atletas para a próxima temporada GenZY.</p>
     </div>
     <div class="logo" aria-hidden="true">
       <svg viewBox="0 0 120 64"><path d="M14 62 A46 46 0 0 1 106 62" fill="none" stroke="#FFDD57" stroke-width="7" stroke-linecap="round"/><path d="M34 22 Q60 54 86 22" fill="none" stroke="#FFDD57" stroke-width="6" stroke-linecap="round"/></svg>
@@ -115,8 +117,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
   <div class="wrap">
     <ol>
       <li><span class="num">01</span><div><b>Inscrição</b><span>Preencha o formulário abaixo</span></div></li>
-      <li><span class="num">02</span><div><b>Ligas A e B</b><span>O comitê confirma as chaves</span></div></li>
-      <li><span class="num">03</span><div><b>Temporada 2027</b><span>Calendário enviado no WhatsApp</span></div></li>
+      <li><span class="num">02</span><div><b>Calendário 2027</b><span>Aguarde o calendário 2027</span></div></li>
     </ol>
   </div>
 </section>
@@ -126,7 +127,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
     <section id="formBox" aria-labelledby="t-form">
       <div class="eyebrow">Ficha do atleta</div>
       <h2 id="t-form">Faça sua inscrição</h2>
-      <p class="sub">Todos os campos são obrigatórios. Se você se inscrever de novo com o mesmo e-mail, atualizamos seus dados.</p>
+      
 
       <form id="f" novalidate>
         <div class="field full">
@@ -140,30 +141,45 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
           <div class="err" id="e-apelido"></div>
         </div>
         <div class="field">
-          <label for="idade">Idade</label>
-          <input id="idade" name="idade" type="number" inputmode="numeric" min="5" max="99" placeholder="Ex.: 34">
-          <div class="err" id="e-idade"></div>
-        </div>
-        <div class="field full">
           <label for="favorito">Atleta favorito</label>
           <input id="favorito" name="favorito" type="text" maxlength="60" placeholder="Ex.: Guga, Federer, Alcaraz">
           <div class="err" id="e-favorito"></div>
         </div>
         <fieldset class="field">
+          <legend class="legend">Vai jogar em 2027?</legend>
+          <div class="seg">
+            <label><input type="radio" name="joga2027" value="Sim"><span>Sim</span></label>
+            <label><input type="radio" name="joga2027" value="Não"><span>Não</span></label>
+          </div>
+          <div class="err" id="e-joga2027"></div>
+        </fieldset>
+        <fieldset class="field">
           <legend class="legend">Liga</legend>
           <div class="seg">
-            <label><input type="radio" name="liga" value="A" id="ligaA"><span>Liga A</span></label>
-            <label><input type="radio" name="liga" value="B" id="ligaB"><span>Liga B</span></label>
+            <label><input type="radio" name="liga" value="A"><span>Liga A</span></label>
+            <label><input type="radio" name="liga" value="B"><span>Liga B</span></label>
           </div>
           <div class="err" id="e-liga"></div>
         </fieldset>
         <fieldset class="field">
-          <legend class="legend">Vai jogar em 2027?</legend>
-          <div class="seg">
-            <label><input type="radio" name="joga2027" value="Sim" id="jogaSim"><span>Sim</span></label>
-            <label><input type="radio" name="joga2027" value="Não" id="jogaNao"><span>Não</span></label>
+          <legend class="legend">Tamanho da camiseta</legend>
+          <div class="seg six">
+            <label><input type="radio" name="camiseta" value="PP"><span>PP</span></label>
+            <label><input type="radio" name="camiseta" value="P"><span>P</span></label>
+            <label><input type="radio" name="camiseta" value="M"><span>M</span></label>
+            <label><input type="radio" name="camiseta" value="G"><span>G</span></label>
+            <label><input type="radio" name="camiseta" value="GG"><span>GG</span></label>
+            <label><input type="radio" name="camiseta" value="XG"><span>XG</span></label>
           </div>
-          <div class="err" id="e-joga2027"></div>
+          <div class="err" id="e-camiseta"></div>
+        </fieldset>
+        <fieldset class="field">
+          <legend class="legend">Quer ser voluntário GenZY 2027?</legend>
+          <div class="seg">
+            <label><input type="radio" name="voluntario" value="Sim"><span>Sim</span></label>
+            <label><input type="radio" name="voluntario" value="Não"><span>Não</span></label>
+          </div>
+          <div class="err" id="e-voluntario"></div>
         </fieldset>
         <div class="field">
           <label for="email">E-mail</label>
@@ -194,7 +210,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
   </div>
 </main>
 
-<footer><div class="wrap"><span>GEN ZY · Liga de tênis entre amigos do Clube de Campo</span><span>Temporada 2027</span></div></footer>
+<footer><div class="wrap"><span>GEN ZY Academy. A BetMarley company. All rights reserved.</span></div></footer>
 
 <script>
 // URL do Web App do Google Apps Script que grava na planilha
@@ -216,22 +232,22 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbxGHdKuAdWWvXccx6Tq_NV
 
   function read(){
     const fd = new FormData(f), g = k => (fd.get(k)||'').toString().trim();
-    return { nome:g('nome'), apelido:g('apelido'), idade:g('idade'), favorito:g('favorito'),
+    return { nome:g('nome'), apelido:g('apelido'), favorito:g('favorito'), camiseta:g('camiseta'), voluntario:g('voluntario'),
              liga:g('liga'), joga2027:g('joga2027'), email:g('email').toLowerCase(), whatsapp:g('whatsapp'), site:g('site') };
   }
   function validate(v){
     const e = {};
     if (v.nome.length < 3) e.nome = 'Escreva seu nome completo.';
     if (!v.apelido) e.apelido = 'Qual é o seu apelido na quadra?';
-    const n = Number(v.idade);
-    if (!v.idade || !Number.isInteger(n) || n < 5 || n > 99) e.idade = 'Informe a idade em anos (5 a 99).';
     if (!v.favorito) e.favorito = 'Diga quem é seu atleta favorito.';
-    if (!v.liga) e.liga = 'Escolha Liga A ou Liga B.';
     if (!v.joga2027) e.joga2027 = 'Responda se vai jogar em 2027.';
+    if (!v.liga) e.liga = 'Escolha Liga A ou Liga B.';
+    if (!v.camiseta) e.camiseta = 'Escolha o tamanho da camiseta.';
+    if (!v.voluntario) e.voluntario = 'Responda se quer ser voluntário.';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)) e.email = 'Confira o e-mail, ex.: voce@email.com.';
     const dg = v.whatsapp.replace(/\D/g,'');
     if (dg.length < 10 || dg.length > 11) e.whatsapp = 'Use DDD + número, ex.: (11) 98765-4321.';
-    ['nome','apelido','idade','favorito','liga','joga2027','email','whatsapp'].forEach(k => {
+    ['nome','apelido','favorito','joga2027','liga','camiseta','voluntario','email','whatsapp'].forEach(k => {
       $('e-'+k).textContent = e[k] || '';
       const el = $(k);
       if (el) el.setAttribute('aria-invalid', e[k] ? 'true' : 'false');
@@ -254,8 +270,8 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbxGHdKuAdWWvXccx6Tq_NV
     if (!ENDPOINT.startsWith('https://')){ setStatus('O formulário ainda não está conectado à planilha.', true); return; }
     btn.disabled = true; setStatus('Enviando…');
     try{
-      const body = new URLSearchParams({ nome:v.nome, apelido:v.apelido, idade:v.idade, favorito:v.favorito,
-        liga:v.liga, joga2027:v.joga2027, email:v.email, whatsapp:v.whatsapp });
+      const body = new URLSearchParams({ nome:v.nome, apelido:v.apelido, favorito:v.favorito,
+        joga2027:v.joga2027, liga:v.liga, camiseta:v.camiseta, voluntario:v.voluntario, email:v.email, whatsapp:v.whatsapp });
       await fetch(ENDPOINT, { method:'POST', mode:'no-cors', body });
       lastData = v;
       $('okTitle').textContent = 'Inscrição recebida, ' + (v.apelido || v.nome.split(' ')[0]);
