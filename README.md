@@ -3,7 +3,7 @@
 Site oficial da GEN ZY 2027, liga de tênis entre amigos do Clube de Campo de São Paulo.
 
 - **Calendário:** Liga A (17 atletas, turno único, 8 rodadas) e Liga B (Marley) (6 atletas, turno e returno, 5 rodadas), de 01/12/2026 a 15/10/2027. Cada atleta tem 2 jogos por rodada.
-- **Classificação:** calculada no navegador a partir dos resultados lançados (vitórias, vitórias por WO, derrotas e saldo de games).
+- **Classificação:** calculada no navegador a partir dos resultados lançados (3 pontos por vitória, inclusive por WO; ordem: pontos, confronto direto, saldo de games; WO conta como 6-3 6-3).
 - **Lançar resultado:** os próprios atletas enviam o placar; o site grava na planilha e confirma relendo.
 - **Ficha de inscrição:** fora do menu, abre pelo botão do rodapé.
 
