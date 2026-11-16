@@ -1,8 +1,9 @@
-# GEN ZY 2027
+# GEN ZY League
 
-Site oficial da GEN ZY 2027, liga de tênis entre amigos do Clube de Campo de São Paulo.
+Site oficial da GEN ZY League (temporada 2027), liga de tênis entre amigos do Clube de Campo de São Paulo.
 
 - **Calendário:** Liga A (17 atletas, turno único, 8 rodadas) e Liga B (Marley) (6 atletas, turno e returno, 5 rodadas), de 01/01/2027 a 15/10/2027. Cada atleta tem 2 jogos por rodada.
+- **Sigilo:** só a próxima rodada aparece antes de começar; as seguintes ficam ocultas na página até a rodada anterior iniciar (os confrontos continuam no código-fonte).
 - **Classificação:** calculada no navegador a partir dos resultados lançados (3 pontos por vitória, inclusive por WO; ordem: pontos, confronto direto, saldo de games; WO conta como 6-3 6-3).
 - **Lançar resultado:** os próprios atletas enviam o placar; o site grava na planilha e confirma relendo.
 - **Ficha de inscrição:** fora do menu, abre pelo botão do rodapé.

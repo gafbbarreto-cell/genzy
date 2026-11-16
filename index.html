@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>GEN ZY 2027 · Site oficial</title>
+<title>GEN ZY League · Site oficial</title>
 <meta name="description" content="Site oficial da GEN ZY 2027, liga de tênis entre amigos do Clube de Campo de São Paulo: calendário, classificação e resultados.">
-<meta property="og:title" content="GEN ZY 2027 · Site oficial">
+<meta property="og:title" content="GEN ZY League · Site oficial">
 <meta property="og:description" content="Calendário, classificação e resultados da temporada 2027 da GEN ZY.">
 <meta name="theme-color" content="#FFDD57">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23FFDD57' stroke-width='6'/%3E%3C/svg%3E">
@@ -31,7 +31,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body)
 .eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:13px;letter-spacing:.22em;text-transform:uppercase}
 .eyebrow::before{content:"";width:5px;height:18px;background:var(--yellow)}
 header .wrap{padding-block:28px 26px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
-h1{font-family:var(--f-display);font-weight:400;font-size:clamp(52px,11vw,92px);line-height:1;margin:14px 0 12px;letter-spacing:.005em}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(46px,10vw,88px);line-height:1.02;margin:14px 0 12px;letter-spacing:.005em;text-transform:uppercase}
 h1 em{display:inline-block;font-style:normal;color:var(--ink);background:var(--yellow);padding:.04em .1em 0;line-height:1}
 .brand{text-transform:none}
 .lede{margin:0;max-width:46ch;font-size:17px;color:var(--muted)}
@@ -85,6 +85,13 @@ select:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px var(--yel
 .score{flex:none;font-size:13px;font-weight:700;white-space:nowrap;background:var(--ink);color:var(--yellow);border-radius:6px;padding:3px 8px}
 .score.todo{background:none;color:var(--muted);font-weight:500;padding:3px 0}
 .empty{padding:16px;color:var(--muted)}
+.locked{position:relative;overflow:hidden}
+.locked .games{filter:blur(5px);opacity:.5}
+.locked .vs{display:flex;gap:10px;width:100%}
+.locked .bar{display:block;height:14px;border-radius:4px;background:var(--ink)}
+.veil{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;background:rgba(255,255,255,.5)}
+.veil b{font-family:var(--f-display);font-weight:400;font-size:20px;letter-spacing:.08em;text-transform:uppercase;line-height:1.2}
+.veil span{font-size:13px;font-weight:700;color:var(--muted)}
 
 /* Classificação */
 .tablebox{overflow-x:auto;border:2px solid var(--ink);border-radius:10px}
@@ -179,8 +186,8 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
 <header>
   <div class="wrap">
     <div>
-      <div class="eyebrow">Clube de Campo de São Paulo · Temporada 2027</div>
-      <h1>GEN ZY <em>2027</em></h1>
+      <div class="eyebrow">CCSP · Temporada 2027</div>
+      <h1>GEN ZY <em>League</em></h1>
       <p class="lede">Site Oficial: Calendário, Classificação e Resultados.</p>
     </div>
     <div class="logo" aria-hidden="true">
@@ -206,7 +213,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
     <section id="v-calendario" aria-labelledby="t-cal">
       <div class="eyebrow">01 de janeiro a 15 de outubro de 2027</div>
       <h2 id="t-cal">Calendário</h2>
-      <p class="sub">Pontos corridos, todos contra todos. Em cada rodada, cada atleta tem 2 jogos para disputar.</p>
+      <p class="sub">Pontos corridos, todos contra todos. Cada atleta tem 2 jogos por rodada.</p>
       <div class="controls">
         <div class="switch" role="group" aria-label="Liga">
           <button type="button" data-liga="A" aria-pressed="true">Liga A</button>
@@ -256,7 +263,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
       <div id="resBox">
         <div class="eyebrow">Direto da quadra</div>
         <h2 id="t-res">Lançar resultado</h2>
-        <p class="sub">Qualquer atleta lança o resultado. A classificação é atualizada na hora.</p>
+        <p class="sub">Qualquer atleta lança o resultado. A classificação é atualizada na hora. Resultados fraudulentos serão investigados e os responsáveis precisarão defender 5 smashes do Filu.</p>
         <form id="rf" novalidate>
           <div class="field full">
             <span class="legend">Liga</span>
@@ -505,6 +512,11 @@ function preencherAtletas(){
 $('calAtleta').addEventListener('change', e => { atleta = +e.target.value; mem.set('atleta.' + liga, atleta < 0 ? '' : String(atleta)); $('rQuem').value = String(atleta); renderCalendario(); atualizarJogos(); });
 
 // ---------- Calendário ----------
+// Só a próxima rodada fica visível antes de começar; as seguintes ficam sob sigilo até a anterior iniciar
+function rodadaAberta(L, ri){
+  const prox = TEMPORADA[L].rounds.findIndex(r => hojeISO() < r.ini);
+  return prox < 0 || ri <= prox;
+}
 function linhaJogo(j){
   const r = RES[j.id], n1 = esc(apelido(j.liga, j.a)), n2 = esc(apelido(j.liga, j.b));
   let vs, sc;
@@ -519,15 +531,24 @@ function linhaJogo(j){
 }
 function renderCalendario(){
   const T = TEMPORADA[liga], hoje = hojeISO(), nP = T.players.length;
-  const total = JOGOS.filter(j => j.liga === liga).length;
-  $('calFacts').innerHTML = ['' + nP + ' atletas', T.rounds.length + ' rodadas', total + ' jogos', liga === 'B' ? 'Turno e returno' : 'Turno único', '2 jogos por atleta em cada rodada'].map(t => '<span class="fact">' + t + '</span>').join('');
+  $('calFacts').innerHTML = ['' + nP + ' atletas', T.rounds.length + ' rodadas', liga === 'B' ? 'Turno e returno' : 'Turno único', '2 jogos por atleta em cada rodada'].map(t => '<span class="fact">' + t + '</span>').join('');
   const nota = notaCarga(); $('calNote').textContent = nota[0]; $('calNote').className = 'loadnote' + (nota[1] ? ' bad' : '');
   $('calRounds').innerHTML = T.rounds.map((r, ri) => {
     const todos = JOGOS.filter(j => j.liga === liga && j.rodada === ri+1);
     const lista = atleta < 0 ? todos : todos.filter(j => j.a === atleta || j.b === atleta);
     const feitos = todos.filter(j => RES[j.id]).length;
-    const st = hoje < r.ini ? 'Em breve' : (hoje > r.fim ? 'Encerrada' : 'Em andamento');
+    const sigilo = !rodadaAberta(liga, ri);
+    const st = hoje > r.fim ? 'Encerrada' : (hoje >= r.ini ? 'Em andamento' : (sigilo ? 'Sigilo' : 'Em breve'));
     const now = st === 'Em andamento';
+    if (sigilo){
+      // Confrontos não são desenhados na página até a rodada anterior começar
+      const larg = [[38,30],[26,42],[44,24],[30,36]];
+      return '<article class="round"><header><h3>Rodada ' + (ri+1) + '</h3><span class="dates">' + fmtDia(r.ini) + ' a ' + fmtDia(r.fim) + '</span>' +
+        '<span class="meta"><span class="pill">Sigilo</span></span></header>' +
+        '<div class="locked"><ul class="games" aria-hidden="true">' + larg.map(w => '<li><span class="vs"><span class="bar" style="width:' + w[0] + '%"></span><span class="bar" style="width:' + w[1] + '%"></span></span></li>').join('') + '</ul>' +
+        '<div class="veil"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>' +
+        '<b>Confrontos sob sigilo</b><span>Revelação em ' + fmtDia(T.rounds[ri-1].ini) + '</span></div></div></article>';
+    }
     return '<article class="round' + (now ? ' now' : '') + '"><header><h3>Rodada ' + (ri+1) + '</h3><span class="dates">' + fmtDia(r.ini) + ' a ' + fmtDia(r.fim) + '</span>' +
       '<span class="meta"><span>' + feitos + '/' + todos.length + ' jogos lançados</span><span class="pill' + (now ? '' : ' soft') + '">' + st + '</span></span></header>' +
       (lista.length ? '<ul class="games">' + lista.map(linhaJogo).join('') + '</ul>' : '<div class="empty">Sem jogos nesta rodada.</div>') + '</article>';
@@ -562,8 +583,7 @@ function classificacao(L){
 }
 function renderClassificacao(){
   const nota = notaCarga();
-  const algum = JOGOS.some(j => j.liga === liga && RES[j.id]);
-  $('clsNote').textContent = nota[0] || (algum ? '' : 'Nenhum resultado lançado ainda nesta liga.');
+  $('clsNote').textContent = nota[0];
   $('clsNote').className = 'loadnote' + (nota[1] ? ' bad' : '');
   $('clsBody').innerHTML = classificacao(liga).map((t, k) =>
     '<tr><td class="pos"><span>' + (k+1) + '</span></td><td class="l who"><b>' + esc(t.ap) + '</b><small>' + esc(t.nome) + '</small></td><td class="pts">' + t.pts + '</td><td>' + t.j + '</td><td>' + t.v + '</td><td>' + t.vwo + '</td><td>' + t.d + '</td><td class="sg">' + (t.sg > 0 ? '+' : '') + t.sg + '</td></tr>').join('');
@@ -576,7 +596,7 @@ function jogoSel(){ return JOGO[$('rJogo').value] || null; }
 function atualizarJogos(){
   const q = +$('rQuem').value, sel = $('rJogo'), antes = sel.value;
   if (!(q >= 0)){ sel.innerHTML = '<option value="">Escolha seu apelido primeiro</option>'; sel.disabled = true; mostrarCampos(); return; }
-  const meus = JOGOS.filter(j => j.liga === liga && (j.a === q || j.b === q));
+  const meus = JOGOS.filter(j => j.liga === liga && (j.a === q || j.b === q) && rodadaAberta(liga, j.rodada - 1));
   sel.innerHTML = '<option value="">Escolha o jogo</option>' + meus.map(j => {
     const adv = apelido(liga, j.a === q ? j.b : j.a), r = TEMPORADA[liga].rounds[j.rodada-1];
     return '<option value="' + j.id + '">Rodada ' + j.rodada + ' · contra ' + esc(adv) + ' · até ' + fmtDia(r.fim) + (RES[j.id] ? ' · já lançado' : '') + '</option>';
