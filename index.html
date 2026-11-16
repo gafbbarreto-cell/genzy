@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>GEN ZY 2027 · Inscrição</title>
-<meta name="description" content="Inscrição de atletas da GEN ZY 2027, liga de tênis entre amigos do Clube de Campo.">
-<meta property="og:title" content="GEN ZY 2027 · Inscrição">
-<meta property="og:description" content="Garanta sua vaga na temporada 2027 da GEN ZY.">
+<title>GEN ZY 2027 · Site oficial</title>
+<meta name="description" content="Site oficial da GEN ZY 2027, liga de tênis entre amigos do Clube de Campo de São Paulo: calendário, classificação e resultados.">
+<meta property="og:title" content="GEN ZY 2027 · Site oficial">
+<meta property="og:description" content="Calendário, classificação e resultados da temporada 2027 da GEN ZY.">
 <meta name="theme-color" content="#FFDD57">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23FFDD57' stroke-width='6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
 <style>
-/* Identidade GEN ZY 2026: branco, preto e amarelo; títulos condensados pesados; faixa amarela no topo; marcadores amarelos e pílulas pretas */
+/* Identidade GEN ZY: branco, preto e amarelo; títulos condensados pesados; faixa amarela no topo; marcadores amarelos e pílulas pretas */
 :root{
   --yellow:#FFDD57; --yellow-deep:#E8C23A; --ink:#111111; --paper:#FFFFFF; --mist:#F7F7F5;
   --line:#E6E5E0; --muted:#5E5D58; --err:#B3261E; --ok:#1E7A46;
@@ -27,28 +27,83 @@
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
 .topbar{height:10px;background:var(--yellow)}
-.wrap{max-width:760px;margin:0 auto;padding-left:max(18px, env(safe-area-inset-left,0px));padding-right:max(18px, env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(18px, env(safe-area-inset-left,0px));padding-right:max(18px, env(safe-area-inset-right,0px))}
 .eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:13px;letter-spacing:.22em;text-transform:uppercase}
 .eyebrow::before{content:"";width:5px;height:18px;background:var(--yellow)}
-header .wrap{padding-block:36px 40px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
-h1{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,15vw,128px);line-height:1;margin:18px 0 16px;letter-spacing:.005em}
-h1 .l1{display:block}
-h1 em{display:inline-block;font-style:normal;color:var(--ink);background:var(--yellow);padding:.04em .1em 0;margin-top:.08em;line-height:1}
+header .wrap{padding-block:28px 26px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(52px,11vw,92px);line-height:1;margin:14px 0 12px;letter-spacing:.005em}
+h1 em{display:inline-block;font-style:normal;color:var(--ink);background:var(--yellow);padding:.04em .1em 0;line-height:1}
 .brand{text-transform:none}
-.lede{margin:0;max-width:42ch;font-size:18px;color:var(--muted)}
-.logo{width:150px;text-align:center}
+.lede{margin:0;max-width:46ch;font-size:17px;color:var(--muted)}
+.logo{width:130px;text-align:center}
 .logo svg{display:block;width:100%;height:auto}
-.logo .word{font-family:var(--f-display);font-size:42px;line-height:1;margin-top:-6px;white-space:nowrap}
-.logo .sub{font-family:var(--f-body);font-weight:700;letter-spacing:.32em;color:var(--yellow-deep);font-size:13px;margin-top:4px;padding-left:.32em}
-.steps{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--mist)}
-.steps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr)}
-.steps li{display:flex;gap:12px;align-items:center;padding:16px 0;min-width:0}
-.num{flex:none;display:grid;place-items:center;width:46px;height:40px;border-radius:6px;background:var(--yellow);font-family:var(--f-display);font-size:22px}
-.steps b{display:block;font-family:var(--f-display);font-weight:400;text-transform:uppercase;font-size:17px;letter-spacing:.02em;line-height:1.1}
-.steps span{font-size:13px;color:var(--muted)}
-main .wrap{padding-block:40px 64px}
-h2{font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1;text-transform:uppercase;margin:10px 0 26px}
-.sub{color:var(--muted);margin:0 0 28px}
+.logo .word{font-family:var(--f-display);font-size:36px;line-height:1;margin-top:-6px;white-space:nowrap}
+.logo .sub{font-family:var(--f-body);font-weight:700;letter-spacing:.32em;color:var(--muted);font-size:12px;margin:4px 0 0;padding-left:.32em}
+
+/* Navegação */
+nav.tabs{position:sticky;top:0;z-index:5;background:var(--ink)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto}
+nav.tabs button{flex:none;background:none;border:0;color:var(--paper);font-family:var(--f-display);font-size:17px;letter-spacing:.08em;text-transform:uppercase;padding:14px 16px 12px;border-bottom:4px solid transparent;min-height:48px}
+nav.tabs button:hover{color:var(--yellow)}
+nav.tabs button[aria-current=page]{color:var(--yellow);border-bottom-color:var(--yellow)}
+nav.tabs button:focus-visible{outline:3px solid var(--yellow);outline-offset:-3px}
+
+main .wrap{padding-block:34px 64px}
+h2{font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1;text-transform:uppercase;margin:10px 0 18px}
+.sub{color:var(--muted);margin:0 0 22px;max-width:62ch}
+
+/* Controles */
+.controls{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:end;margin:0 0 22px}
+.switch{display:inline-grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink);border-radius:8px;overflow:hidden}
+.switch button{background:var(--paper);border:0;font-family:var(--f-display);font-size:17px;letter-spacing:.06em;text-transform:uppercase;padding:11px 18px 9px;min-height:46px;color:var(--ink)}
+.switch button[aria-pressed=true]{background:var(--ink);color:var(--yellow)}
+.switch button:focus-visible{outline:3px solid var(--yellow);outline-offset:-3px}
+.pick{display:flex;flex-direction:column;gap:6px;min-width:220px;flex:1}
+select{font:inherit;color:var(--ink);background:var(--paper);border:2px solid var(--line);border-radius:6px;padding:11px 12px;width:100%;min-height:46px}
+select:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px var(--yellow)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+.fact{background:var(--mist);border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:14px;font-weight:700}
+
+/* Rodadas */
+.round{border:2px solid var(--line);border-radius:10px;margin:0 0 18px;overflow:hidden}
+.round.now{border-color:var(--ink)}
+.round > header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:14px 16px;background:var(--mist);border-bottom:1px solid var(--line)}
+.round.now > header{background:var(--yellow);border-bottom-color:var(--ink)}
+.round h3{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1;text-transform:uppercase;margin:0}
+.round .dates{font-weight:700;font-size:15px}
+.round .meta{margin-left:auto;display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted);font-weight:700}
+.round.now .meta{color:var(--ink)}
+.pill{display:inline-block;background:var(--ink);color:var(--paper);font-family:var(--f-display);letter-spacing:.12em;font-size:13px;padding:5px 12px;border-radius:999px;text-transform:uppercase}
+.pill.soft{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.games{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr}
+.games li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);min-width:0}
+.games li:nth-child(odd){border-right:1px solid var(--line)}
+.vs{min-width:0;font-size:15px;line-height:1.3}
+.vs b{font-weight:700}
+.vs .x{color:var(--muted);padding:0 .3em}
+.vs .lost{color:var(--muted);font-weight:500}
+.score{flex:none;font-size:13px;font-weight:700;white-space:nowrap;background:var(--ink);color:var(--yellow);border-radius:6px;padding:3px 8px}
+.score.todo{background:none;color:var(--muted);font-weight:500;padding:3px 0}
+.empty{padding:16px;color:var(--muted)}
+
+/* Classificação */
+.tablebox{overflow-x:auto;border:2px solid var(--ink);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th,td{padding:10px 12px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
+thead th{background:var(--ink);color:var(--paper);font-family:var(--f-display);font-weight:400;font-size:14px;letter-spacing:.1em;text-transform:uppercase;border-bottom:0}
+th.l,td.l{text-align:left}
+abbr{text-decoration:none}
+tbody tr:last-child td{border-bottom:0}
+td.pos{font-family:var(--f-display);font-size:18px;width:46px}
+tbody tr:first-child td.pos span{background:var(--yellow);border-radius:6px;padding:2px 9px}
+td.who b{display:block;font-weight:700}
+td.who small{display:block;color:var(--muted);font-size:12px}
+td.sg{font-weight:700}
+.legend2{font-size:13px;color:var(--muted);margin:14px 0 0;max-width:70ch}
+.loadnote{font-size:13px;color:var(--muted);margin:0 0 14px;min-height:1.5em}
+.loadnote.bad{color:var(--err);font-weight:700}
+
+/* Formulários */
 form{display:grid;grid-template-columns:1fr 1fr;gap:22px 18px}
 .full{grid-column:1/-1}
 .field{display:flex;flex-direction:column;gap:7px;min-width:0}
@@ -63,7 +118,7 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
 .seg.six{grid-template-columns:repeat(6,1fr);gap:6px}
 .seg label{position:relative;cursor:pointer;font-family:var(--f-body);text-transform:none;letter-spacing:0;font-size:16px;font-weight:700}
 .seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
-.seg span{display:flex;align-items:center;justify-content:center;min-height:50px;border:2px solid var(--line);border-radius:6px;transition:background .15s,border-color .15s}
+.seg span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:50px;padding:4px 8px;border:2px solid var(--line);border-radius:6px;transition:background .15s,border-color .15s}
 .seg label:hover span{border-color:#cfcdc6}
 .seg input:checked+span{background:var(--ink);border-color:var(--ink);color:var(--yellow)}
 .seg input:focus-visible+span{box-shadow:0 0 0 3px var(--yellow);border-color:var(--ink)}
@@ -81,19 +136,36 @@ button{font:inherit;cursor:pointer}
 .success .bar{background:var(--yellow);padding:18px 22px}
 .success .bar h2{margin:0}
 .success .body{padding:18px 22px 22px}
-.pill{display:inline-block;background:var(--ink);color:var(--paper);font-family:var(--f-display);letter-spacing:.12em;font-size:13px;padding:5px 12px;border-radius:999px;text-transform:uppercase}
 .linkbtn{background:none;border:0;padding:0;font-weight:700;text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
-footer{border-top:1px solid var(--line)}
-footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* Placar */
+.scoregrid{display:grid;grid-template-columns:minmax(0,1fr) repeat(3,72px);gap:8px;align-items:center;margin-top:7px}
+.scoregrid .h{font-family:var(--f-display);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center}
+.scoregrid .p{font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.scoregrid input{text-align:center;padding:12px 4px;font-weight:700;font-size:18px}
+.hint{font-size:13px;color:var(--muted);margin:0}
+.notice{border:2px solid var(--ink);border-radius:8px;padding:12px 14px;background:var(--mist);font-size:14px}
+.preview{font-weight:700}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:space-between;align-items:center}
+.ghost{background:none;border:1px solid var(--line);border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;color:var(--muted);min-height:44px}
+.ghost:hover{border-color:var(--ink);color:var(--ink)}
+.ghost:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+
 @media (max-width:640px){
-  header .wrap{grid-template-columns:1fr}
-  .logo{order:-1;width:110px}
-  .logo .word{font-size:32px}
-  .steps ol{grid-template-columns:1fr}
-  .steps li{padding:10px 0}
-  .steps li+li{border-top:1px solid var(--line)}
+  header .wrap{grid-template-columns:1fr auto;align-items:start}
+  .logo{width:84px}
+  .logo .word{font-size:24px}
+  .logo .sub{font-size:9px}
+  h2{font-size:34px}
   form{grid-template-columns:1fr}
+  .games{grid-template-columns:1fr}
+  .games li:nth-child(odd){border-right:0}
+  .round .meta{margin-left:0;width:100%}
+  .scoregrid{grid-template-columns:minmax(0,1fr) repeat(3,58px);gap:6px}
+  nav.tabs button{font-size:15px;padding-inline:12px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -105,122 +177,510 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
   <div class="wrap">
     <div>
       <div class="eyebrow">Clube de Campo de São Paulo · Temporada 2027</div>
-      <h1><span class="l1">GEN ZY</span><em>2027</em></h1>
-      <p class="lede">Inscrição dos atletas para a próxima temporada GEN ZY.</p>
+      <h1>GEN ZY <em>2027</em></h1>
+      <p class="lede">Site oficial da liga: calendário, classificação e resultados da temporada.</p>
     </div>
     <div class="logo" aria-hidden="true">
       <svg viewBox="0 0 120 64"><path d="M14 62 A46 46 0 0 1 106 62" fill="none" stroke="#FFDD57" stroke-width="7" stroke-linecap="round"/><path d="M34 22 Q60 54 86 22" fill="none" stroke="#FFDD57" stroke-width="6" stroke-linecap="round"/></svg>
       <div class="word">GEN ZY</div>
-      <div class="sub">2027</div>
+      <div class="sub">ACADEMY</div>
     </div>
   </div>
 </header>
 
-<section class="steps" aria-label="Como funciona">
+<nav class="tabs" aria-label="Seções do site">
   <div class="wrap">
-    <ol>
-      <li><span class="num">01</span><div><b>Inscrição</b><span>Preencha o formulário abaixo.</span></div></li>
-      <li><span class="num">02</span><div><b>Calendário 2027</b><span>Aguarde o calendário 2027.</span></div></li>
-    </ol>
+    <button type="button" data-view="calendario">Calendário</button>
+    <button type="button" data-view="classificacao">Classificação</button>
+    <button type="button" data-view="resultado">Lançar resultado</button>
   </div>
-</section>
+</nav>
 
 <main>
   <div class="wrap">
-    <section id="formBox" aria-labelledby="t-form">
-      <div class="eyebrow">Ficha do atleta</div>
-      <h2 id="t-form">Faça sua inscrição</h2>
-      
 
-      <form id="f" novalidate>
-        <div class="field full">
-          <label for="nome">Nome completo</label>
-          <input id="nome" name="nome" type="text" autocomplete="name" maxlength="80" placeholder="Ex.: Gabriel Barreto">
-          <div class="err" id="e-nome"></div>
+    <!-- CALENDÁRIO -->
+    <section id="v-calendario" aria-labelledby="t-cal">
+      <div class="eyebrow">01 de dezembro de 2026 a 15 de outubro de 2027</div>
+      <h2 id="t-cal">Calendário</h2>
+      <p class="sub">Pontos corridos, todos contra todos. Em cada rodada, cada atleta tem 2 jogos para marcar e disputar dentro do período.</p>
+      <div class="controls">
+        <div class="switch" role="group" aria-label="Liga">
+          <button type="button" data-liga="A" aria-pressed="true">Liga A</button>
+          <button type="button" data-liga="B" aria-pressed="false">Liga B (Marley)</button>
         </div>
-        <div class="field">
-          <label for="apelido">Apelido tenístico</label>
-          <input id="apelido" name="apelido" type="text" maxlength="40" placeholder="Ex.: Saque-Canhão">
-          <div class="err" id="e-apelido"></div>
+        <div class="pick">
+          <label for="calAtleta">Ver jogos de</label>
+          <select id="calAtleta"></select>
         </div>
-        <div class="field">
-          <label for="favorito">Atleta favorito</label>
-          <input id="favorito" name="favorito" type="text" maxlength="60" placeholder="Ex.: Guga, Federer, Alcaraz">
-          <div class="err" id="e-favorito"></div>
-        </div>
-        <fieldset class="field">
-          <legend class="legend">Vai jogar em 2027?</legend>
-          <div class="seg">
-            <label><input type="radio" name="joga2027" value="Sim"><span>Sim</span></label>
-            <label><input type="radio" name="joga2027" value="Não"><span>Não</span></label>
-          </div>
-          <div class="err" id="e-joga2027"></div>
-        </fieldset>
-        <fieldset class="field" id="ligaBox" hidden>
-          <legend class="legend">Liga</legend>
-          <div class="seg">
-            <label><input type="radio" name="liga" value="A"><span>Liga A</span></label>
-            <label><input type="radio" name="liga" value="B"><span>Liga B (Marley)</span></label>
-          </div>
-          <div class="err" id="e-liga"></div>
-        </fieldset>
-        <fieldset class="field">
-          <legend class="legend">Tamanho da camiseta</legend>
-          <div class="seg six">
-            <label><input type="radio" name="camiseta" value="PP"><span>PP</span></label>
-            <label><input type="radio" name="camiseta" value="P"><span>P</span></label>
-            <label><input type="radio" name="camiseta" value="M"><span>M</span></label>
-            <label><input type="radio" name="camiseta" value="G"><span>G</span></label>
-            <label><input type="radio" name="camiseta" value="GG"><span>GG</span></label>
-            <label><input type="radio" name="camiseta" value="XG"><span>XG</span></label>
-          </div>
-          <div class="err" id="e-camiseta"></div>
-        </fieldset>
-        <fieldset class="field">
-          <legend class="legend">Quer ser voluntário <span class="brand">GEN ZY</span> 2027?</legend>
-          <div class="seg">
-            <label><input type="radio" name="voluntario" value="Sim"><span>Sim</span></label>
-            <label><input type="radio" name="voluntario" value="Não"><span>Não</span></label>
-          </div>
-          <div class="err" id="e-voluntario"></div>
-        </fieldset>
-        <div class="field">
-          <label for="email">E-mail</label>
-          <input id="email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="voce@email.com">
-          <div class="err" id="e-email"></div>
-        </div>
-        <div class="field">
-          <label for="whatsapp">WhatsApp</label>
-          <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" maxlength="16" placeholder="(11) 98765-4321">
-          <div class="err" id="e-whatsapp"></div>
-        </div>
-        <div class="hp" aria-hidden="true"><label for="site">Não preencha</label><input id="site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
-        <div class="actions full">
-          <button class="primary" id="submit" type="submit">Enviar inscrição</button>
-          <span class="status" id="status" role="status" aria-live="polite"></span>
-        </div>
-      </form>
-    </section>
-
-    <section class="success" id="ok" aria-live="polite">
-      <div class="bar"><h2 id="okTitle">Interesse registrado.</h2></div>
-      <div class="body">
-        <p id="okText" style="margin-top:0"></p>
-        <p class="pills"><span class="pill" id="okLiga">Liga A</span> <span class="pill" id="okVol" hidden>Voluntário <span class="brand">GEN ZY</span> 2027</span></p>
-        <button class="linkbtn" id="again" type="button">Corrigir algum dado</button>
       </div>
+      <div class="facts" id="calFacts"></div>
+      <p class="loadnote" id="calNote" role="status" aria-live="polite"></p>
+      <div id="calRounds"></div>
     </section>
+
+    <!-- CLASSIFICAÇÃO -->
+    <section id="v-classificacao" aria-labelledby="t-cls" hidden>
+      <div class="eyebrow">Tabela da temporada</div>
+      <h2 id="t-cls">Classificação</h2>
+      <div class="controls">
+        <div class="switch" role="group" aria-label="Liga">
+          <button type="button" data-liga="A" aria-pressed="true">Liga A</button>
+          <button type="button" data-liga="B" aria-pressed="false">Liga B (Marley)</button>
+        </div>
+      </div>
+      <p class="loadnote" id="clsNote" role="status" aria-live="polite"></p>
+      <div class="tablebox">
+        <table>
+          <thead><tr>
+            <th scope="col">#</th><th scope="col" class="l">Atleta</th>
+            <th scope="col"><abbr title="Jogos">J</abbr></th>
+            <th scope="col"><abbr title="Vitórias normais">V</abbr></th>
+            <th scope="col"><abbr title="Vitórias por WO">V (WO)</abbr></th>
+            <th scope="col"><abbr title="Derrotas">D</abbr></th>
+            <th scope="col"><abbr title="Saldo de games">SG</abbr></th>
+          </tr></thead>
+          <tbody id="clsBody"></tbody>
+        </table>
+      </div>
+      <p class="legend2">J: jogos · V: vitórias normais · V (WO): vitórias por WO · D: derrotas · SG: saldo de games. Ordem: total de vitórias, depois saldo de games, depois vitórias normais. Super tie-break no 3º set conta como 1 game; WO não altera o saldo.</p>
+    </section>
+
+    <!-- LANÇAR RESULTADO -->
+    <section id="v-resultado" aria-labelledby="t-res" hidden>
+      <div id="resBox">
+        <div class="eyebrow">Direto da quadra</div>
+        <h2 id="t-res">Lançar resultado</h2>
+        <p class="sub">Qualquer um dos dois atletas lança o resultado do jogo. A classificação é atualizada na hora.</p>
+        <form id="rf" novalidate>
+          <div class="field full">
+            <span class="legend">Liga</span>
+            <div class="switch" role="group" aria-label="Liga" style="max-width:420px">
+              <button type="button" data-liga="A" aria-pressed="true">Liga A</button>
+              <button type="button" data-liga="B" aria-pressed="false">Liga B (Marley)</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="rQuem">Quem é você</label>
+            <select id="rQuem"></select>
+            <div class="err" id="e-rQuem"></div>
+          </div>
+          <div class="field">
+            <label for="rJogo">Qual jogo</label>
+            <select id="rJogo" disabled></select>
+            <div class="err" id="e-rJogo"></div>
+          </div>
+          <div class="notice full" id="rJa" hidden></div>
+          <fieldset class="field full" id="rTipoBox" hidden>
+            <legend class="legend">Como terminou</legend>
+            <div class="seg">
+              <label><input type="radio" name="rTipo" value="normal" checked><span>Jogo disputado</span></label>
+              <label><input type="radio" name="rTipo" value="wo"><span>WO</span></label>
+            </div>
+          </fieldset>
+          <div class="field full" id="rPlacarBox" hidden>
+            <span class="legend">Placar em games</span>
+            <div class="scoregrid" id="rGrid">
+              <span></span><span class="h">Set 1</span><span class="h">Set 2</span><span class="h">3º set</span>
+              <span class="p" id="rP1"></span>
+              <input type="number" inputmode="numeric" min="0" max="7" id="s1a" aria-label="Set 1, primeiro atleta">
+              <input type="number" inputmode="numeric" min="0" max="7" id="s2a" aria-label="Set 2, primeiro atleta">
+              <input type="number" inputmode="numeric" min="0" max="99" id="s3a" aria-label="Terceiro set, primeiro atleta">
+              <span class="p" id="rP2"></span>
+              <input type="number" inputmode="numeric" min="0" max="7" id="s1b" aria-label="Set 1, segundo atleta">
+              <input type="number" inputmode="numeric" min="0" max="7" id="s2b" aria-label="Set 2, segundo atleta">
+              <input type="number" inputmode="numeric" min="0" max="99" id="s3b" aria-label="Terceiro set, segundo atleta">
+            </div>
+            <p class="hint">3º set só se houver empate em sets. Super tie-break: lance os pontos (ex.: 10 e 7).</p>
+            <div class="err" id="e-placar"></div>
+            <div class="preview" id="rPrev" aria-live="polite"></div>
+          </div>
+          <fieldset class="field full" id="rWoBox" hidden>
+            <legend class="legend">Quem venceu por WO</legend>
+            <div class="seg">
+              <label><input type="radio" name="rWo" value="1"><span id="rW1"></span></label>
+              <label><input type="radio" name="rWo" value="2"><span id="rW2"></span></label>
+            </div>
+            <div class="err" id="e-wo"></div>
+          </fieldset>
+          <div class="actions full">
+            <button class="primary" id="rSubmit" type="submit">Enviar resultado</button>
+            <span class="status" id="rStatus" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+      </div>
+      <section class="success" id="rOk" aria-live="polite">
+        <div class="bar"><h2>Resultado registrado.</h2></div>
+        <div class="body">
+          <p id="rOkText" style="margin-top:0"></p>
+          <p class="pills"><button class="linkbtn" id="rOutro" type="button">Lançar outro resultado</button> <button class="linkbtn" id="rVerCls" type="button">Ver classificação</button></p>
+        </div>
+      </section>
+    </section>
+
+    <!-- INSCRIÇÃO (fora do menu; abre pelo botão do rodapé) -->
+    <section id="v-inscricao" hidden>
+      <section id="formBox" aria-labelledby="t-form">
+        <div class="eyebrow">Ficha do atleta</div>
+        <h2 id="t-form">Ficha de inscrição</h2>
+        <p class="sub">As inscrições da temporada 2027 estão encerradas. Use a ficha para corrigir seus dados (mesmo e-mail) ou registrar interesse.</p>
+
+        <form id="f" novalidate>
+          <div class="field full">
+            <label for="nome">Nome completo</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" maxlength="80" placeholder="Ex.: Gabriel Barreto">
+            <div class="err" id="e-nome"></div>
+          </div>
+          <div class="field">
+            <label for="apelido">Apelido tenístico</label>
+            <input id="apelido" name="apelido" type="text" maxlength="40" placeholder="Ex.: Saque-Canhão">
+            <div class="err" id="e-apelido"></div>
+          </div>
+          <div class="field">
+            <label for="favorito">Atleta favorito</label>
+            <input id="favorito" name="favorito" type="text" maxlength="60" placeholder="Ex.: Guga, Federer, Alcaraz">
+            <div class="err" id="e-favorito"></div>
+          </div>
+          <fieldset class="field">
+            <legend class="legend">Vai jogar em 2027?</legend>
+            <div class="seg">
+              <label><input type="radio" name="joga2027" value="Sim"><span>Sim</span></label>
+              <label><input type="radio" name="joga2027" value="Não"><span>Não</span></label>
+            </div>
+            <div class="err" id="e-joga2027"></div>
+          </fieldset>
+          <fieldset class="field" id="ligaBox" hidden>
+            <legend class="legend">Liga</legend>
+            <div class="seg">
+              <label><input type="radio" name="liga" value="A"><span>Liga A</span></label>
+              <label><input type="radio" name="liga" value="B"><span>Liga B (Marley)</span></label>
+            </div>
+            <div class="err" id="e-liga"></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend class="legend">Tamanho da camiseta</legend>
+            <div class="seg six">
+              <label><input type="radio" name="camiseta" value="PP"><span>PP</span></label>
+              <label><input type="radio" name="camiseta" value="P"><span>P</span></label>
+              <label><input type="radio" name="camiseta" value="M"><span>M</span></label>
+              <label><input type="radio" name="camiseta" value="G"><span>G</span></label>
+              <label><input type="radio" name="camiseta" value="GG"><span>GG</span></label>
+              <label><input type="radio" name="camiseta" value="XG"><span>XG</span></label>
+            </div>
+            <div class="err" id="e-camiseta"></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend class="legend">Quer ser voluntário <span class="brand">GEN ZY</span> 2027?</legend>
+            <div class="seg">
+              <label><input type="radio" name="voluntario" value="Sim"><span>Sim</span></label>
+              <label><input type="radio" name="voluntario" value="Não"><span>Não</span></label>
+            </div>
+            <div class="err" id="e-voluntario"></div>
+          </fieldset>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="voce@email.com">
+            <div class="err" id="e-email"></div>
+          </div>
+          <div class="field">
+            <label for="whatsapp">WhatsApp</label>
+            <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" maxlength="16" placeholder="(11) 98765-4321">
+            <div class="err" id="e-whatsapp"></div>
+          </div>
+          <div class="hp" aria-hidden="true"><label for="site">Não preencha</label><input id="site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
+          <div class="actions full">
+            <button class="primary" id="submit" type="submit">Enviar inscrição</button>
+            <span class="status" id="status" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+      </section>
+
+      <section class="success" id="ok" aria-live="polite">
+        <div class="bar"><h2 id="okTitle">Interesse registrado.</h2></div>
+        <div class="body">
+          <p id="okText" style="margin-top:0"></p>
+          <p class="pills"><span class="pill" id="okLiga">Liga A</span> <span class="pill" id="okVol" hidden>Voluntário <span class="brand">GEN ZY</span> 2027</span></p>
+          <button class="linkbtn" id="again" type="button">Corrigir algum dado</button>
+        </div>
+      </section>
+    </section>
+
   </div>
 </main>
 
-<footer><div class="wrap"><span>GEN ZY Academy. A BetMarley company. All rights reserved.</span></div></footer>
+<footer><div class="wrap"><span>GEN ZY Academy. A BetMarley company. All rights reserved.</span><button class="ghost" type="button" id="btnInscricao">Ficha de inscrição</button></div></footer>
 
 <script>
-// URL do Web App do Google Apps Script que grava na planilha
+// URL do Web App do Google Apps Script (grava inscrições e resultados na planilha)
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbxGHdKuAdWWvXccx6Tq_NVINdPlbg7N2wLx-niTcJ0ThilhTTR6oHvZUovOkiq9VMNvZw/exec";
 
+// Calendário oficial 2027. players: [apelido, nome]; games: pares de índices em players.
+// Os ids dos jogos (ex.: A-R3-07) saem da posição nesta lista: não reordenar depois que houver resultados lançados.
+const TEMPORADA = {"A":{"players":[["Gawrinka","Gabriel Barreto"],["Lufederer","Luiz Fernando Almeida"],["Filu","Felipe Orra"],["Sami","Sami Orra"],["Marco Cobolli","Marco Cappanari"],["Jannick","Nicholas Gaal"],["Pablito Alcaraz","João Paulo Almeida"],["Casper Du","Eduardo Gomez"],["Almeidvedev","Rafael Almeida"],["Bob Shelton","Roberto Cambur"],["Coach Carter","Steven Carter"],["John Wick da Guarapiranga","Nilo Duarte"],["Be Minaur","Bernardo Lopes"],["Bere","Marcelo Bere Rangel de Freitas"],["Ribakinha","Cecilia Kleinert"],["Fedal","Felipe Portella Lopes"],["Fogninhos","Marcos Leite"]],"rounds":[{"ini":"2026-12-01","fim":"2027-01-15","games":[[3,8],[8,15],[11,15],[4,11],[4,13],[7,13],[7,16],[9,16],[9,14],[12,14],[1,12],[1,2],[0,2],[0,6],[6,10],[5,10],[3,5]]},{"ini":"2027-01-16","fim":"2027-02-24","games":[[3,9],[9,12],[7,12],[2,7],[2,4],[4,6],[6,15],[5,15],[5,8],[8,10],[10,11],[0,11],[0,13],[1,13],[1,16],[14,16],[3,14]]},{"ini":"2027-02-25","fim":"2027-04-05","games":[[3,13],[11,13],[11,16],[8,16],[8,14],[14,15],[1,15],[1,4],[0,4],[0,7],[7,10],[9,10],[5,9],[5,12],[6,12],[2,6],[2,3]]},{"ini":"2027-04-06","fim":"2027-05-15","games":[[3,15],[4,15],[4,8],[7,8],[7,11],[9,11],[9,13],[12,13],[12,16],[2,16],[2,14],[6,14],[1,6],[1,5],[0,5],[0,10],[3,10]]},{"ini":"2027-05-16","fim":"2027-06-24","games":[[3,7],[7,9],[4,9],[4,12],[12,15],[2,15],[2,8],[6,8],[6,11],[5,11],[5,13],[10,13],[10,16],[0,16],[0,14],[1,14],[1,3]]},{"ini":"2027-06-25","fim":"2027-08-03","games":[[3,16],[13,16],[13,14],[11,14],[1,11],[1,8],[0,8],[0,15],[10,15],[4,10],[4,5],[5,7],[6,7],[6,9],[2,9],[2,12],[3,12]]},{"ini":"2027-08-04","fim":"2027-09-09","games":[[3,11],[8,11],[8,13],[13,15],[15,16],[4,16],[4,14],[7,14],[1,7],[1,9],[0,9],[0,12],[10,12],[2,10],[2,5],[5,6],[3,6]]},{"ini":"2027-09-10","fim":"2027-10-15","games":[[3,4],[4,7],[7,15],[9,15],[8,9],[8,12],[11,12],[2,11],[2,13],[6,13],[6,16],[5,16],[5,14],[10,14],[1,10],[0,1],[0,3]]}]},"B":{"players":[["Andy Marley","Raffael Giugni"],["Malu","Maria Luiza Giugni"],["Sabaliuka","Livia Barreto"],["Bibiga","Isabella Almeida"],["Barretini","Felipe Lebovits Barreto"],["Jasmine Paulinha","Paula Pimentel"]],"rounds":[{"ini":"2026-12-01","fim":"2027-02-07","games":[[1,2],[3,4],[0,5],[1,3],[2,5],[0,4]]},{"ini":"2027-02-08","fim":"2027-04-10","games":[[1,5],[0,3],[2,4],[0,1],[4,5],[2,3]]},{"ini":"2027-04-11","fim":"2027-06-12","games":[[1,4],[0,2],[3,5],[1,2],[3,4],[0,5]]},{"ini":"2027-06-13","fim":"2027-08-14","games":[[1,3],[2,5],[0,4],[1,5],[0,3],[2,4]]},{"ini":"2027-08-15","fim":"2027-10-15","games":[[0,1],[4,5],[2,3],[1,4],[0,2],[3,5]]}]}};
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const LIGA_NOME = { A:'Liga A', B:'Liga B (Marley)' };
+const MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+const fmtDia = iso => iso.slice(8,10) + '/' + MESES[+iso.slice(5,7)-1];
+const hojeISO = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); };
+
+// Lista plana de jogos com id estável
+const JOGOS = [], JOGO = {};
+Object.keys(TEMPORADA).forEach(L => TEMPORADA[L].rounds.forEach((r, ri) => r.games.forEach((g, gi) => {
+  const j = { id: L + '-R' + (ri+1) + '-' + String(gi+1).padStart(2,'0'), liga:L, rodada:ri+1, a:g[0], b:g[1] };
+  JOGOS.push(j); JOGO[j.id] = j;
+})));
+const apelido = (L, i) => TEMPORADA[L].players[i][0];
+
+// ---------- Resultados ----------
+let RES = {};            // id -> { tipo:'normal'|'wo', venc:1|2, sets:[[a,b],...], placar, por }
+let resEstado = 'carregando'; // carregando | ok | erro
+
+function parsePlacar(txt){
+  return String(txt || '').trim().split(/\s+/).filter(Boolean).map(s => s.split('-').map(n => parseInt(n,10))).filter(s => s.length === 2 && s.every(n => Number.isFinite(n)));
+}
+// Games do jogo: sets 1 e 2 somam os games; 3º set em super tie-break (10+ pontos) vale 1 game para o vencedor
+function gamesDe(sets){
+  let a = 0, b = 0;
+  sets.forEach((s, i) => {
+    if (i === 2 && Math.max(s[0], s[1]) >= 10) { if (s[0] > s[1]) a++; else b++; }
+    else { a += s[0]; b += s[1]; }
+  });
+  return [a, b];
+}
+function normaliza(r){
+  const j = JOGO[r.id]; if (!j) return null;
+  const tipo = r.tipo === 'wo' ? 'wo' : 'normal';
+  const sets = tipo === 'wo' ? [] : parsePlacar(r.placar);
+  let venc = 0;
+  if (r.vencedor === apelido(j.liga, j.a)) venc = 1; else if (r.vencedor === apelido(j.liga, j.b)) venc = 2;
+  if (!venc) return null;
+  if (tipo === 'normal' && sets.length < 2) return null;
+  return { tipo, venc, sets, placar: sets.map(s => s[0] + '-' + s[1]).join(' '), por: r.por || '' };
+}
+async function carregarResultados(){
+  try{
+    const resp = await fetch(ENDPOINT + '?acao=resultados&t=' + Date.now());
+    const data = await resp.json();
+    const novo = {};
+    (data.resultados || []).forEach(r => { const n = normaliza(r); if (n) novo[r.id] = n; });
+    RES = novo; resEstado = 'ok';
+  }catch(err){ resEstado = 'erro'; }
+  renderTudo();
+  return resEstado === 'ok';
+}
+function notaCarga(){
+  if (resEstado === 'carregando') return ['Carregando resultados…', false];
+  if (resEstado === 'erro') return ['Não deu para carregar os resultados agora. O calendário abaixo continua valendo.', true];
+  return ['', false];
+}
+
+// ---------- Estado de tela ----------
+const mem = { get(k){ try{ return localStorage.getItem('genzy.' + k); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem('genzy.' + k, v); }catch(e){} } };
+let liga = mem.get('liga') === 'B' ? 'B' : 'A';
+let atleta = mem.get('atleta.' + liga); atleta = atleta === null || atleta === '' ? -1 : +atleta;
+
+function setLiga(L){
+  liga = L; mem.set('liga', L);
+  const a = mem.get('atleta.' + L); atleta = a === null || a === '' ? -1 : +a;
+  document.querySelectorAll('.switch button').forEach(b => b.setAttribute('aria-pressed', b.dataset.liga === L ? 'true' : 'false'));
+  preencherAtletas(); renderTudo(); resetResultado();
+}
+document.querySelectorAll('.switch button').forEach(b => b.addEventListener('click', () => setLiga(b.dataset.liga)));
+
+function opcoesAtletas(primeira){
+  const ps = TEMPORADA[liga].players.map((p, i) => [p[0], i]).sort((x, y) => x[0].localeCompare(y[0], 'pt-BR'));
+  return '<option value="-1">' + primeira + '</option>' + ps.map(p => '<option value="' + p[1] + '">' + esc(p[0]) + '</option>').join('');
+}
+function preencherAtletas(){
+  $('calAtleta').innerHTML = opcoesAtletas('Todos os atletas'); $('calAtleta').value = String(atleta);
+  $('rQuem').innerHTML = opcoesAtletas('Escolha seu apelido'); $('rQuem').value = String(atleta);
+}
+$('calAtleta').addEventListener('change', e => { atleta = +e.target.value; mem.set('atleta.' + liga, atleta < 0 ? '' : String(atleta)); $('rQuem').value = String(atleta); renderCalendario(); atualizarJogos(); });
+
+// ---------- Calendário ----------
+function linhaJogo(j){
+  const r = RES[j.id], n1 = esc(apelido(j.liga, j.a)), n2 = esc(apelido(j.liga, j.b));
+  let vs, sc;
+  if (r){
+    vs = '<span class="' + (r.venc === 1 ? '' : 'lost') + '"><b>' + n1 + '</b></span><span class="x">×</span><span class="' + (r.venc === 2 ? '' : 'lost') + '"><b>' + n2 + '</b></span>';
+    sc = '<span class="score">' + (r.tipo === 'wo' ? 'WO' : esc(r.placar)) + '</span>';
+  } else {
+    vs = '<b>' + n1 + '</b><span class="x">×</span><b>' + n2 + '</b>';
+    sc = '<span class="score todo">A jogar</span>';
+  }
+  return '<li><span class="vs">' + vs + '</span>' + sc + '</li>';
+}
+function renderCalendario(){
+  const T = TEMPORADA[liga], hoje = hojeISO(), nP = T.players.length;
+  const total = JOGOS.filter(j => j.liga === liga).length;
+  $('calFacts').innerHTML = ['' + nP + ' atletas', T.rounds.length + ' rodadas', total + ' jogos', liga === 'B' ? 'Turno e returno' : 'Turno único', '2 jogos por atleta em cada rodada'].map(t => '<span class="fact">' + t + '</span>').join('');
+  const nota = notaCarga(); $('calNote').textContent = nota[0]; $('calNote').className = 'loadnote' + (nota[1] ? ' bad' : '');
+  $('calRounds').innerHTML = T.rounds.map((r, ri) => {
+    const todos = JOGOS.filter(j => j.liga === liga && j.rodada === ri+1);
+    const lista = atleta < 0 ? todos : todos.filter(j => j.a === atleta || j.b === atleta);
+    const feitos = todos.filter(j => RES[j.id]).length;
+    const st = hoje < r.ini ? 'Em breve' : (hoje > r.fim ? 'Encerrada' : 'Em andamento');
+    const now = st === 'Em andamento';
+    return '<article class="round' + (now ? ' now' : '') + '"><header><h3>Rodada ' + (ri+1) + '</h3><span class="dates">' + fmtDia(r.ini) + ' a ' + fmtDia(r.fim) + '</span>' +
+      '<span class="meta"><span>' + feitos + '/' + todos.length + ' jogos lançados</span><span class="pill' + (now ? '' : ' soft') + '">' + st + '</span></span></header>' +
+      (lista.length ? '<ul class="games">' + lista.map(linhaJogo).join('') + '</ul>' : '<div class="empty">Sem jogos nesta rodada.</div>') + '</article>';
+  }).join('');
+}
+
+// ---------- Classificação ----------
+function classificacao(L){
+  const tab = TEMPORADA[L].players.map((p, i) => ({ i, ap:p[0], nome:p[1], j:0, v:0, vwo:0, d:0, gp:0, gc:0 }));
+  JOGOS.filter(j => j.liga === L).forEach(j => {
+    const r = RES[j.id]; if (!r) return;
+    const w = tab[r.venc === 1 ? j.a : j.b], l = tab[r.venc === 1 ? j.b : j.a];
+    w.j++; l.j++; l.d++;
+    if (r.tipo === 'wo') w.vwo++; else {
+      w.v++;
+      const g = gamesDe(r.sets), A = tab[j.a], B = tab[j.b];
+      A.gp += g[0]; A.gc += g[1]; B.gp += g[1]; B.gc += g[0];
+    }
+  });
+  tab.forEach(t => { t.sg = t.gp - t.gc; t.vt = t.v + t.vwo; });
+  return tab.sort((x, y) => y.vt - x.vt || y.sg - x.sg || y.v - x.v || y.gp - x.gp || x.d - y.d || x.ap.localeCompare(y.ap, 'pt-BR'));
+}
+function renderClassificacao(){
+  const nota = notaCarga();
+  const algum = JOGOS.some(j => j.liga === liga && RES[j.id]);
+  $('clsNote').textContent = nota[0] || (algum ? '' : 'Nenhum resultado lançado ainda nesta liga.');
+  $('clsNote').className = 'loadnote' + (nota[1] ? ' bad' : '');
+  $('clsBody').innerHTML = classificacao(liga).map((t, k) =>
+    '<tr><td class="pos"><span>' + (k+1) + '</span></td><td class="l who"><b>' + esc(t.ap) + '</b><small>' + esc(t.nome) + '</small></td><td>' + t.j + '</td><td>' + t.v + '</td><td>' + t.vwo + '</td><td>' + t.d + '</td><td class="sg">' + (t.sg > 0 ? '+' : '') + t.sg + '</td></tr>').join('');
+}
+function renderTudo(){ renderCalendario(); renderClassificacao(); atualizarJogos(); }
+
+// ---------- Lançar resultado ----------
+const rf = $('rf');
+function jogoSel(){ return JOGO[$('rJogo').value] || null; }
+function atualizarJogos(){
+  const q = +$('rQuem').value, sel = $('rJogo'), antes = sel.value;
+  if (!(q >= 0)){ sel.innerHTML = '<option value="">Escolha seu apelido primeiro</option>'; sel.disabled = true; mostrarCampos(); return; }
+  const meus = JOGOS.filter(j => j.liga === liga && (j.a === q || j.b === q));
+  sel.innerHTML = '<option value="">Escolha o jogo</option>' + meus.map(j => {
+    const adv = apelido(liga, j.a === q ? j.b : j.a), r = TEMPORADA[liga].rounds[j.rodada-1];
+    return '<option value="' + j.id + '">Rodada ' + j.rodada + ' · contra ' + esc(adv) + ' · até ' + fmtDia(r.fim) + (RES[j.id] ? ' · já lançado' : '') + '</option>';
+  }).join('');
+  sel.disabled = false;
+  if (meus.some(j => j.id === antes)) sel.value = antes;
+  mostrarCampos();
+}
+function mostrarCampos(){
+  const j = jogoSel(), tipo = (rf.querySelector('input[name=rTipo]:checked') || {}).value;
+  $('rTipoBox').hidden = !j; $('rPlacarBox').hidden = !j || tipo !== 'normal'; $('rWoBox').hidden = !j || tipo !== 'wo';
+  const ja = j && RES[j.id];
+  $('rJa').hidden = !ja;
+  if (ja) $('rJa').textContent = 'Este jogo já tem resultado lançado (' + (ja.tipo === 'wo' ? 'WO' : ja.placar) + ', vitória de ' + apelido(j.liga, ja.venc === 1 ? j.a : j.b) + '). Se enviar de novo, o novo resultado substitui o anterior.';
+  if (j){
+    const n1 = apelido(j.liga, j.a), n2 = apelido(j.liga, j.b);
+    $('rP1').textContent = n1; $('rP2').textContent = n2; $('rW1').textContent = n1; $('rW2').textContent = n2;
+  }
+  previa();
+}
+function lerPlacar(){
+  const v = id => { const x = $(id).value.trim(); return x === '' ? null : parseInt(x, 10); };
+  const s = [[v('s1a'), v('s1b')], [v('s2a'), v('s2b')], [v('s3a'), v('s3b')]];
+  const cheio = p => p[0] !== null && p[1] !== null, vazio = p => p[0] === null && p[1] === null;
+  if (!cheio(s[0]) || !cheio(s[1])) return { erro:'Preencha os games do set 1 e do set 2.' };
+  if (!vazio(s[2]) && !cheio(s[2])) return { erro:'Preencha os dois lados do 3º set.' };
+  const sets = vazio(s[2]) ? [s[0], s[1]] : s;
+  for (let i = 0; i < sets.length; i++){
+    const p = sets[i];
+    if (p.some(n => !Number.isFinite(n) || n < 0)) return { erro:'Use apenas números no placar.' };
+    if (p[0] === p[1]) return { erro:'Cada set precisa de um vencedor.' };
+    if (i < 2 && Math.max(p[0], p[1]) > 7) return { erro:'Um set vai no máximo a 7 games.' };
+  }
+  const w = sets.map(p => p[0] > p[1] ? 1 : 2);
+  if (w[0] === w[1] && sets.length === 3) return { erro:'Quem ganhou os dois primeiros sets já venceu: deixe o 3º set em branco.' };
+  if (w[0] !== w[1] && sets.length === 2) return { erro:'Empate em sets: preencha o 3º set (ou o super tie-break).' };
+  return { sets, venc: sets.length === 3 ? w[2] : w[0] };
+}
+function previa(){
+  const j = jogoSel(), tipo = (rf.querySelector('input[name=rTipo]:checked') || {}).value;
+  if (!j || tipo !== 'normal'){ $('rPrev').textContent = ''; return; }
+  const p = lerPlacar();
+  $('rPrev').textContent = p.erro ? '' : 'Vitória de ' + apelido(j.liga, p.venc === 1 ? j.a : j.b) + ' · ' + p.sets.map(s => s[0] + '-' + s[1]).join(' ');
+}
+function resetResultado(){
+  ['s1a','s1b','s2a','s2b','s3a','s3b'].forEach(id => { $(id).value = ''; });
+  rf.querySelectorAll('input[name=rWo]').forEach(x => { x.checked = false; });
+  rf.querySelector('input[name=rTipo][value=normal]').checked = true;
+  ['e-rQuem','e-rJogo','e-placar','e-wo'].forEach(id => { $(id).textContent = ''; });
+  $('rStatus').textContent = ''; $('rStatus').className = 'status';
+  $('rJogo').value = ''; mostrarCampos();
+}
+$('rQuem').addEventListener('change', e => { atleta = +e.target.value; mem.set('atleta.' + liga, atleta < 0 ? '' : String(atleta)); $('calAtleta').value = String(atleta); renderCalendario(); atualizarJogos(); });
+$('rJogo').addEventListener('change', mostrarCampos);
+rf.querySelectorAll('input[name=rTipo]').forEach(x => x.addEventListener('change', mostrarCampos));
+$('rGrid').addEventListener('input', () => { $('e-placar').textContent = ''; previa(); });
+
+const pausa = ms => new Promise(r => setTimeout(r, ms));
+rf.addEventListener('submit', async ev => {
+  ev.preventDefault();
+  const st = $('rStatus'), btn = $('rSubmit');
+  const say = (m, bad) => { st.textContent = m; st.className = 'status' + (bad ? ' bad' : ''); };
+  ['e-rQuem','e-rJogo','e-placar','e-wo'].forEach(id => { $(id).textContent = ''; });
+  const q = +$('rQuem').value, j = jogoSel();
+  if (!(q >= 0)){ $('e-rQuem').textContent = 'Escolha seu apelido.'; $('rQuem').focus(); return; }
+  if (!j){ $('e-rJogo').textContent = 'Escolha o jogo.'; $('rJogo').focus(); return; }
+  const tipo = rf.querySelector('input[name=rTipo]:checked').value;
+  let venc, placar = '';
+  if (tipo === 'normal'){
+    const p = lerPlacar();
+    if (p.erro){ $('e-placar').textContent = p.erro; say('Confira o placar.', true); return; }
+    venc = p.venc; placar = p.sets.map(s => s[0] + '-' + s[1]).join(' ');
+  } else {
+    const w = rf.querySelector('input[name=rWo]:checked');
+    if (!w){ $('e-wo').textContent = 'Marque quem venceu por WO.'; return; }
+    venc = +w.value;
+  }
+  const n1 = apelido(j.liga, j.a), n2 = apelido(j.liga, j.b), vencedor = venc === 1 ? n1 : n2;
+  btn.disabled = true; say('Enviando…');
+  try{
+    const body = new URLSearchParams({ acao:'resultado', id:j.id, liga:j.liga, rodada:String(j.rodada), j1:n1, j2:n2, tipo, vencedor, placar, por:apelido(liga, q) });
+    await fetch(ENDPOINT, { method:'POST', mode:'no-cors', body });
+    // O envio não devolve resposta legível: confirma relendo a planilha
+    let ok = false;
+    for (let t = 0; t < 4 && !ok; t++){
+      await pausa(t === 0 ? 900 : 1500);
+      await carregarResultados();
+      const r = RES[j.id];
+      ok = !!r && r.tipo === tipo && r.venc === venc && r.placar === placar;
+    }
+    if (!ok){ say('Enviei, mas não consegui confirmar a gravação. Atualize a página em instantes e confira no calendário antes de reenviar.', true); return; }
+    $('rOkText').textContent = n1 + ' × ' + n2 + ' (Rodada ' + j.rodada + ', ' + LIGA_NOME[j.liga] + '): vitória de ' + vencedor + (tipo === 'wo' ? ' por WO.' : ', ' + placar + '.');
+    $('resBox').hidden = true; $('rOk').classList.add('on'); say('');
+    $('rOk').scrollIntoView({ behavior:'smooth', block:'start' });
+  }catch(err){
+    say('Não deu para enviar. Confira sua internet e tente de novo.', true);
+  }finally{ btn.disabled = false; }
+});
+$('rOutro').addEventListener('click', () => { $('rOk').classList.remove('on'); $('resBox').hidden = false; resetResultado(); });
+$('rVerCls').addEventListener('click', () => { $('rOk').classList.remove('on'); $('resBox').hidden = false; resetResultado(); ir('classificacao'); });
+
+// ---------- Navegação ----------
+const VIEWS = ['calendario','classificacao','resultado','inscricao'];
+function ir(v, semHash){
+  if (VIEWS.indexOf(v) < 0) v = 'calendario';
+  VIEWS.forEach(x => { $('v-' + x).hidden = x !== v; });
+  document.querySelectorAll('nav.tabs button').forEach(b => { if (b.dataset.view === v) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
+  if (!semHash){ try{ history.replaceState(null, '', '#' + v); }catch(e){} window.scrollTo(0, 0); }
+}
+document.querySelectorAll('nav.tabs button').forEach(b => b.addEventListener('click', () => ir(b.dataset.view)));
+$('btnInscricao').addEventListener('click', () => ir('inscricao'));
+window.addEventListener('hashchange', () => ir(location.hash.slice(1), true));
+
+setLiga(liga);
+ir(location.hash.slice(1), true);
+carregarResultados();
+
+// ---------- Ficha de inscrição (inalterada) ----------
 (function(){
-  const $ = id => document.getElementById(id);
   const f = $('f'), btn = $('submit'), st = $('status');
   let lastData = null, sending = false;
 
@@ -300,7 +760,7 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbxGHdKuAdWWvXccx6Tq_NV
       const vol = v.voluntario === 'Sim';
       if (v.joga2027 === 'Sim'){
         $('okTitle').textContent = 'Interesse registrado, ' + quem + '.';
-        $('okText').textContent = 'Vamos usar as respostas para montar o formato e o calendário da GEN ZY 2027. Antes do início, você recebe um pedido de confirmação final.' + (vol ? ' Obrigado também por topar ser voluntário.' : '');
+        $('okText').textContent = 'Recebemos seus dados. Como as inscrições de 2027 já foram encerradas, a organização confirma com você se houver ajuste no elenco.' + (vol ? ' Obrigado também por topar ser voluntário.' : '');
         $('okLiga').textContent = ligaNome;
       } else {
         $('okTitle').textContent = 'Resposta registrada, ' + quem + '.';
