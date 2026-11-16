@@ -51,6 +51,8 @@ nav.tabs button:focus-visible{outline:3px solid var(--yellow);outline-offset:-3p
 main .wrap{padding-block:34px 64px}
 h2{font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1;text-transform:uppercase;margin:10px 0 18px}
 .sub{color:var(--muted);margin:0 0 22px;max-width:62ch}
+.sub:has(+ .warn){margin-bottom:10px}
+.warn{display:inline-block;margin:0 0 24px;padding:6px 12px;background:var(--yellow);border-radius:6px;font-weight:700;font-size:14px;line-height:1.35}
 
 /* Controles */
 .controls{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:end;margin:0 0 22px}
@@ -87,11 +89,11 @@ select:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px var(--yel
 .empty{padding:16px;color:var(--muted)}
 .locked{position:relative;overflow:hidden}
 .locked .games{filter:blur(5px);opacity:.5}
+.locked .games li{padding-block:16px}
 .locked .vs{display:flex;gap:10px;width:100%}
 .locked .bar{display:block;height:14px;border-radius:4px;background:var(--ink)}
-.veil{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;background:rgba(255,255,255,.5)}
-.veil b{font-family:var(--f-display);font-weight:400;font-size:20px;letter-spacing:.08em;text-transform:uppercase;line-height:1.2}
-.veil span{font-size:13px;font-weight:700;color:var(--muted)}
+.veil{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;background:rgba(255,255,255,.5)}
+.veil b{font-family:var(--f-display);font-weight:400;font-size:17px;letter-spacing:.08em;text-transform:uppercase;line-height:1;padding-top:2px}
 
 /* Classificação */
 .tablebox{overflow-x:auto;border:2px solid var(--ink);border-radius:10px}
@@ -217,7 +219,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
       <div class="controls">
         <div class="switch" role="group" aria-label="Liga">
           <button type="button" data-liga="A" aria-pressed="true">Liga A</button>
-          <button type="button" data-liga="B" aria-pressed="false">Liga B (Marley)</button>
+          <button type="button" data-liga="B" aria-pressed="false">Liga B</button>
         </div>
         <div class="pick">
           <label for="calAtleta">Ver jogos de</label>
@@ -236,7 +238,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
       <div class="controls">
         <div class="switch" role="group" aria-label="Liga">
           <button type="button" data-liga="A" aria-pressed="true">Liga A</button>
-          <button type="button" data-liga="B" aria-pressed="false">Liga B (Marley)</button>
+          <button type="button" data-liga="B" aria-pressed="false">Liga B</button>
         </div>
       </div>
       <p class="loadnote" id="clsNote" role="status" aria-live="polite"></p>
@@ -263,13 +265,14 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
       <div id="resBox">
         <div class="eyebrow">Direto da quadra</div>
         <h2 id="t-res">Lançar resultado</h2>
-        <p class="sub">Qualquer atleta lança o resultado. A classificação é atualizada na hora. Resultados fraudulentos serão investigados e os responsáveis precisarão defender 5 smashes do Filu.</p>
+        <p class="sub">Qualquer atleta lança o resultado. A classificação é atualizada na hora.</p>
+        <p class="warn">Resultados fraudulentos serão investigados e os responsáveis precisarão defender 5 smashes do Filu.</p>
         <form id="rf" novalidate>
           <div class="field full">
             <span class="legend">Liga</span>
             <div class="switch" role="group" aria-label="Liga" style="max-width:420px">
               <button type="button" data-liga="A" aria-pressed="true">Liga A</button>
-              <button type="button" data-liga="B" aria-pressed="false">Liga B (Marley)</button>
+              <button type="button" data-liga="B" aria-pressed="false">Liga B</button>
             </div>
           </div>
           <div class="field">
@@ -365,7 +368,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
             <legend class="legend">Liga</legend>
             <div class="seg">
               <label><input type="radio" name="liga" value="A"><span>Liga A</span></label>
-              <label><input type="radio" name="liga" value="B"><span>Liga B (Marley)</span></label>
+              <label><input type="radio" name="liga" value="B"><span>Liga B</span></label>
             </div>
             <div class="err" id="e-liga"></div>
           </fieldset>
@@ -432,7 +435,7 @@ const TEMPORADA = {"A":{"players":[["Gawrinka","Gabriel Barreto"],["Lufederer","
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const LIGA_NOME = { A:'Liga A', B:'Liga B (Marley)' };
+const LIGA_NOME = { A:'Liga A', B:'Liga B' };
 const MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
 const fmtDia = iso => iso.slice(8,10) + '/' + MESES[+iso.slice(5,7)-1];
 const hojeISO = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); };
@@ -542,12 +545,12 @@ function renderCalendario(){
     const now = st === 'Em andamento';
     if (sigilo){
       // Confrontos não são desenhados na página até a rodada anterior começar
-      const larg = [[38,30],[26,42],[44,24],[30,36]];
+      const larg = [[38,30],[26,42]];
       return '<article class="round"><header><h3>Rodada ' + (ri+1) + '</h3><span class="dates">' + fmtDia(r.ini) + ' a ' + fmtDia(r.fim) + '</span>' +
         '<span class="meta"><span class="pill">Sigilo</span></span></header>' +
         '<div class="locked"><ul class="games" aria-hidden="true">' + larg.map(w => '<li><span class="vs"><span class="bar" style="width:' + w[0] + '%"></span><span class="bar" style="width:' + w[1] + '%"></span></span></li>').join('') + '</ul>' +
-        '<div class="veil"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>' +
-        '<b>Confrontos sob sigilo</b><span>Revelação em ' + fmtDia(T.rounds[ri-1].ini) + '</span></div></div></article>';
+        '<div class="veil"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>' +
+        '<b>Revelação em ' + fmtDia(T.rounds[ri-1].ini) + '</b></div></div></article>';
     }
     return '<article class="round' + (now ? ' now' : '') + '"><header><h3>Rodada ' + (ri+1) + '</h3><span class="dates">' + fmtDia(r.ini) + ' a ' + fmtDia(r.fim) + '</span>' +
       '<span class="meta"><span>' + feitos + '/' + todos.length + ' jogos lançados</span><span class="pill' + (now ? '' : ' soft') + '">' + st + '</span></span></header>' +
@@ -790,7 +793,7 @@ carregarResultados();
       await fetch(ENDPOINT, { method:'POST', mode:'no-cors', body });
       rememberSend(v);
       lastData = v;
-      const ligaNome = 'Liga ' + v.liga + (v.liga === 'B' ? ' (Marley)' : '');
+      const ligaNome = 'Liga ' + v.liga;
       const quem = v.apelido || v.nome.split(' ')[0];
       const vol = v.voluntario === 'Sim';
       if (v.joga2027 === 'Sim'){
