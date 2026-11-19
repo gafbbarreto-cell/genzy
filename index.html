@@ -166,6 +166,85 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
 .ghost:hover{border-color:var(--ink);color:var(--ink)}
 .ghost:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 
+/* Histórico */
+.hsw{display:inline-grid;grid-auto-flow:column;border:2px solid var(--ink);border-radius:8px;overflow:hidden}
+.hsw button{background:var(--paper);border:0;font-family:var(--f-display);font-size:17px;letter-spacing:.06em;text-transform:uppercase;padding:11px 18px 9px;min-height:46px;color:var(--ink)}
+.hsw button[aria-pressed=true]{background:var(--ink);color:var(--yellow)}
+.hsw button:focus-visible{outline:3px solid var(--yellow);outline-offset:-3px}
+h3.hh{font-family:var(--f-display);font-weight:400;font-size:28px;line-height:1;text-transform:uppercase;margin:34px 0 14px;display:flex;align-items:center;gap:14px}
+h3.hh::after{content:"";flex:1;height:2px;background:var(--line)}
+.podium{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:12px;align-items:end}
+.pod{border:2px solid var(--ink);border-radius:10px;padding:16px 16px 14px;text-align:center;background:var(--paper)}
+.pod.p1{background:var(--yellow);padding-block:26px 20px}
+.pod .pos{display:inline-block;font-family:var(--f-display);font-size:18px;background:var(--ink);color:var(--yellow);border-radius:6px;padding:3px 10px 1px}
+.pod b{display:block;font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.05;text-transform:uppercase;margin:12px 0 6px}
+.pod.p1 b{font-size:32px}
+.pod span{display:block;font-size:14px;font-weight:700}
+.pod small{display:block;font-size:13px;color:var(--muted)}
+.pod.p1 small{color:var(--ink)}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.hl{background:var(--mist);border:1px solid var(--line);border-radius:10px;padding:16px}
+.hl .k{font-family:var(--f-display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hl .v{font-family:var(--f-display);font-size:38px;line-height:1.05;margin-top:6px}
+.hl .w{font-weight:700;font-size:15px}
+.dia{color:var(--muted);font-size:12px;margin-left:4px}
+.cups{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.cup{border:2px solid var(--ink);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.cup header{background:var(--ink);color:var(--yellow);font-family:var(--f-display);font-size:20px;letter-spacing:.08em;text-transform:uppercase;padding:10px 14px 8px}
+.cup.main header{background:var(--yellow);color:var(--ink);border-bottom:2px solid var(--ink)}
+.cup .c{padding:14px;flex:1}
+.cup .c b{display:block;font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.1;text-transform:uppercase}
+.cup .c small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.cup .c .tbd{color:var(--muted);font-family:var(--f-body);font-size:15px;font-weight:700;text-transform:none}
+.groups{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grp{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.grp header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--mist);border-bottom:1px solid var(--line)}
+.grp header b{font-family:var(--f-display);font-weight:400;font-size:20px;text-transform:uppercase}
+.grp ol{list-style:none;margin:0;padding:6px 14px 10px}
+.grp li{display:flex;gap:10px;align-items:center;padding:5px 0;font-weight:700}
+.grp li span{flex:none;display:inline-grid;place-items:center;width:34px;height:26px;border-radius:5px;background:var(--yellow);font-family:var(--f-display);font-size:14px;font-weight:400}
+.grp.d2 li span{background:var(--ink);color:var(--yellow)}
+.fmt{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fmt div{border:1px solid var(--line);border-radius:10px;padding:14px}
+.fmt b{display:block;font-family:var(--f-display);font-weight:400;font-size:22px;text-transform:uppercase}
+.fmt small{display:block;color:var(--muted);font-size:14px}
+table.htab{min-width:0}
+.mt{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.mt li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.mt li:last-child{border-bottom:0}
+.mt .tg{flex:none;font-family:var(--f-display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;width:86px}
+.mt .vs{flex:1}
+.mt small{display:block;color:var(--muted);font-size:12px}
+.gtabs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gt{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.gt header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--mist);border-bottom:1px solid var(--line)}
+.gt header b{font-family:var(--f-display);font-weight:400;font-size:20px;text-transform:uppercase}
+.gt table{min-width:0;font-size:14px;table-layout:auto}
+.gt th,.gt td{padding:7px 8px}
+.gt thead th{background:var(--paper);color:var(--muted);font-size:12px;border-bottom:1px solid var(--line)}
+.gt tr.q td{background:#FFF6CF}
+.gt td.l{font-weight:700}
+.cup .c .vice{margin-top:8px;font-size:13px;color:var(--ink)}
+.soon{border:2px solid var(--ink);border-radius:12px;overflow:hidden;margin:0 0 8px}
+.soon .bar{background:var(--yellow);padding:22px 22px 18px;border-bottom:2px solid var(--ink)}
+.soon .bar small{display:block;font-family:var(--f-display);font-size:14px;letter-spacing:.2em;text-transform:uppercase}
+.soon .bar b{display:block;font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1.05;text-transform:uppercase;margin-top:6px}
+.soon p{margin:0;padding:14px 22px;color:var(--muted)}
+.fan-podium .pod span{font-size:14px}
+
+@media (max-width:640px){
+  .podium{grid-template-columns:1fr}
+  .pod.p1{order:-1}
+  .hl-grid,.fmt{grid-template-columns:1fr 1fr}
+  .cups{grid-template-columns:1fr 1fr}
+  .groups{grid-template-columns:1fr}
+  table.htab col.c-n{width:46px}
+  .gtabs{grid-template-columns:1fr}
+  .mt .tg{width:64px}
+  .soon .bar b{font-size:32px}
+  table.htab th,table.htab td{padding:9px 6px}
+}
+
 @media (max-width:640px){
   header .wrap{grid-template-columns:1fr auto;align-items:start}
   .logo{width:84px}
@@ -205,6 +284,8 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
     <button type="button" data-view="calendario">Calendário</button>
     <button type="button" data-view="classificacao">Classificação</button>
     <button type="button" data-view="resultado">Lançar resultado</button>
+    <button type="button" data-view="historico">Histórico</button>
+    <button type="button" data-view="fantasy">Fantasy</button>
   </div>
 </nav>
 
@@ -331,6 +412,32 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
           <p class="pills"><button class="linkbtn" id="rOutro" type="button">Lançar outro resultado</button> <button class="linkbtn" id="rVerCls" type="button">Ver classificação</button></p>
         </div>
       </section>
+    </section>
+
+    <!-- HISTÓRICO -->
+    <section id="v-historico" aria-labelledby="t-his" hidden>
+      <div class="eyebrow">Temporada 2026</div>
+      <h2 id="t-his">Histórico</h2>
+      <p class="sub">Como foi a primeira temporada da GEN ZY: a League de pontos corridos e o Finals de fim de ano.</p>
+      <div class="controls">
+        <div class="hsw" role="group" aria-label="Competição" id="hComp">
+          <button type="button" data-h="league" aria-pressed="true">League</button>
+          <button type="button" data-h="finals" aria-pressed="false">Finals</button>
+        </div>
+        <div class="hsw" role="group" aria-label="Liga" id="hLiga">
+          <button type="button" data-l="A" aria-pressed="true">Liga A</button>
+          <button type="button" data-l="B" aria-pressed="false">Liga B</button>
+        </div>
+      </div>
+      <div id="hBody"></div>
+    </section>
+
+    <!-- FANTASY -->
+    <section id="v-fantasy" aria-labelledby="t-fan" hidden>
+      <div class="eyebrow">GEN ZY Fantasy</div>
+      <h2 id="t-fan">Fantasy</h2>
+      <div class="soon"><div class="bar"><small>Fantasy 2027</small><b>Aguarde a próxima temporada</b></div><p>Os palpites voltam em breve. Enquanto isso, veja como foi 2026.</p></div>
+      <div id="fBody"></div>
     </section>
 
     <!-- INSCRIÇÃO (fora do menu; abre pelo botão do rodapé) -->
@@ -701,8 +808,92 @@ rf.addEventListener('submit', async ev => {
 $('rOutro').addEventListener('click', () => { $('rOk').classList.remove('on'); $('resBox').hidden = false; resetResultado(); });
 $('rVerCls').addEventListener('click', () => { $('rOk').classList.remove('on'); $('resBox').hidden = false; resetResultado(); ir('classificacao'); });
 
+// ---------- Histórico ----------
+// Fonte: cerimônia de encerramento GEN ZY 2026 (pontuação final em 21/10/2026).
+// Em 2026: vitória = 3 pontos, W.O. = 2 pontos. V = vitórias sem W.O. ◆ = posição definida por desempate.
+const HIST = {
+  league:{
+    A:{ info:['18 atletas','9 rodadas','17 jogos cada'], tabela:[
+      ['Marquinhos Leite',48,17,14,129],['Ga B.Barreto',45,17,15,92],['Marco Cappanari',37,17,11,71],['Lufe Almeida',30,17,8,35],
+      ['JP Almeida',28,17,8,15],['LF Loureiro',27,17,7,41,1],['JP Maciel',27,17,7,3,1],['Rafa Almeida',26,17,8,14],['Filu Orra',25,17,5,30],
+      ['B Lopes',21,17,5,-17,1],['Sami Orra',21,17,3,17,1],['Marcelo Bere',18,17,4,-14],['Steven Carter',17,17,3,-29],['Nick Gaal',10,17,2,-62,1],
+      ['Edu Gomez',10,17,2,-35,1],['Quinha Kleinert',5,17,1,-71],['Nilo Duarte',2,17,0,-116,1],['Rober Cambur',2,17,0,-103,1]],
+      destaques:[['Melhor saldo em quadra','+111','Marquinhos Leite'],['Mais games ganhos','171','Ga B.Barreto'],['Vitórias seguidas','17','Marquinhos Leite'],
+        ['Super tie-breaks vencidos','4','Rafa Almeida'],['Pneus aplicados (6x0)','6','Ga B.Barreto'],['Mais vitórias por W.O.','6','Sami Orra']]},
+    B:{ info:['6 atletas','5 rodadas','Turno e returno'], tabela:[
+      ['Liu B.Barreto',25,10,7,53],['Fe Barreto',20,10,6,42],['Paulinha Pimentel',18,10,4,16],['Bibi Almeida',8,10,2,-21],['Malu Giugni',5,10,1,-28],['Raffa Marley',0,10,0,-62]],
+      destaques:[['Melhor saldo em quadra','+40','Liu B.Barreto'],['Mais jogos em quadra','9 de 10','Fe Barreto'],['Super tie-breaks vencidos','3','Paulinha Pimentel']]}
+  },
+  finals:{
+    // [taça, divisão, campeão, vice, placar da final, principal?]; campeão null = final a jogar
+    tacas:[['Titanium',1,'Marquinhos Leite','Ga B.Barreto','6-2 6-3',true],['Ouro',1,'Marco Cappanari','Rafa Almeida','6-3 3-6 10-6'],
+      ['Prata',2,null,null,'Rober Cambur × Marcelo Bere',true],['Marley',2,'Bibi Almeida','Raffa Marley','6-3 7-6']],
+    // [taça, vencedor, perdedor, placar, observação]
+    semis:[['Titanium','Marquinhos','Filu','6-4 6-3'],['Titanium','Ga','Lufe','6-4 3-6 13-11'],['Ouro','Rafa','JP','6-4 6-4'],['Ouro','Marco','Sami','6-4 7-5'],
+      ['Prata','Rober','Nilo','7-5 3-6 10-6'],['Prata','Bere','Nick','1-6 6-2 13-11'],['Marley','Marley','Malu','3-5 4-2 11-9','sets de 4 games'],['Marley','Bibi','Paulinha','W.O.']],
+    // grupos: [nome, divisão, [[jogador, J, V, D, GP, GC], ...]] na ordem final
+    grupos:[['Saguí',1,[['Marquinhos',3,3,0,18,5],['Lufe',3,2,1,13,11],['JP',3,1,2,9,16],['Sami',3,0,3,10,18]]],
+      ['Esquilo',1,[['Ga',3,2,1,14,10],['Filu',3,2,1,17,17],['Marco',3,1,2,12,17],['Rafa',3,1,2,16,15]]],
+      ['Capivara',2,[['Rober',3,3,0,18,3],['Bere',3,2,1,14,7],['Marley',3,1,2,8,12],['Paulinha',3,0,3,0,18]]],
+      ['Quero-quero',2,[['Nick',3,3,0,18,5],['Nilo',3,2,1,16,13],['Bibi',3,1,2,11,16],['Malu',3,0,3,7,18]]]]
+  }
+};
+let hComp = 'league', hLiga = 'A';
+const sg = n => (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n);
+function renderHistorico(){
+  $('hLiga').hidden = hComp !== 'league';
+  document.querySelectorAll('#hComp button').forEach(b => b.setAttribute('aria-pressed', b.dataset.h === hComp ? 'true' : 'false'));
+  document.querySelectorAll('#hLiga button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === hLiga ? 'true' : 'false'));
+  let h = '';
+  if (hComp === 'league'){
+    const L = HIST.league[hLiga], t = L.tabela;
+    h += '<div class="facts">' + L.info.map(x => '<span class="fact">' + x + '</span>').join('') + '</div>';
+    h += '<h3 class="hh">Pódio</h3><div class="podium">' + [1,0,2].map(k => '<div class="pod p' + (k+1) + '"><span class="pos">' + (k+1) + 'º</span><b>' + esc(t[k][0]) + '</b><span>' + t[k][1] + ' pts</span><small>' + t[k][3] + ' vitórias · saldo ' + sg(t[k][4]) + '</small></div>').join('') + '</div>';
+    h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Atleta</th><th scope="col"><abbr title="Pontos">P</abbr></th><th scope="col"><abbr title="Jogos">J</abbr></th><th scope="col"><abbr title="Vitórias sem W.O.">V</abbr></th><th scope="col"><abbr title="Saldo de games">SG</abbr></th></tr></thead><tbody>' +
+      t.map((r, k) => '<tr><td class="pos"><span>' + (k+1) + '</span></td><td class="l who"><b>' + esc(r[0]) + (r[5] ? '<span class="dia" title="Posição definida por desempate">◆</span>' : '') + '</b></td><td class="pts">' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td><td class="sg">' + sg(r[4]) + '</td></tr>').join('') + '</tbody></table></div>';
+    h += '<p class="legend2">Pontuação final em 21/10/2026. Em 2026, vitória valia 3 pontos e W.O. 2 pontos. V: vitórias sem W.O. ◆ posição definida por desempate (confronto direto ou saldo de games).</p>';
+    h += '<h3 class="hh">Destaques</h3><div class="hl-grid">' + L.destaques.map(d => '<div class="hl"><div class="k">' + d[0] + '</div><div class="v">' + d[1] + '</div><div class="w">' + esc(d[2]) + '</div></div>').join('') + '</div>';
+  } else {
+    const F = HIST.finals;
+    h += '<div class="facts"><span class="fact">16 classificados</span><span class="fact">2 divisões</span><span class="fact">4 taças</span><span class="fact">31/out a 02/nov</span></div>';
+    h += '<h3 class="hh">Campeões</h3><div class="cups">' + F.tacas.map(c => '<div class="cup' + (c[5] ? ' main' : '') + '"><header>' + c[0] + '</header><div class="c">' +
+      (c[2] ? '<b>' + esc(c[2]) + '</b><small>Divisão ' + c[1] + '</small><div class="vice">Final: ' + esc(c[4]) + '<br>contra ' + esc(c[3]) + '</div>'
+            : '<b class="tbd">Final a jogar</b><small>Divisão ' + c[1] + '</small><div class="vice">' + esc(c[4]) + '</div>') + '</div></div>').join('') + '</div>';
+    h += '<h3 class="hh">Semifinais</h3><ul class="mt">' + F.semis.map(m => '<li><span class="tg">' + m[0] + '</span><span class="vs"><b>' + esc(m[1]) + '</b><span class="x">×</span><span class="lost">' + esc(m[2]) + '</span>' + (m[4] ? '<small>' + m[4] + '</small>' : '') + '</span><span class="score">' + m[3] + '</span></li>').join('') + '</ul>';
+    h += '<h3 class="hh">Fase de grupos</h3><div class="gtabs">' + F.grupos.map(g => '<div class="gt"><header><b>Grupo ' + g[0] + '</b><span class="pill soft">Divisão ' + g[1] + '</span></header><table><thead><tr><th>#</th><th class="l">Atleta</th><th>V</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr></thead><tbody>' +
+      g[2].map((r, k) => '<tr' + (k < 2 ? ' class="q"' : '') + '><td>' + (k+1) + 'º</td><td class="l">' + esc(r[0]) + '</td><td><b>' + r[2] + '</b></td><td>' + r[3] + '</td><td>' + r[4] + '</td><td>' + r[5] + '</td><td class="sg">' + sg(r[4]-r[5]) + '</td></tr>').join('') + '</tbody></table></div>').join('') + '</div>';
+    h += '<p class="legend2">Grupos no sábado (1 set no-ad), semifinais no domingo e finais na segunda (2 sets + super tie-break). Em destaque, os classificados para as semifinais de Titanium e Prata; 3º e 4º foram para Ouro e Marley. GP/GC: games pró e contra · SG: saldo.</p>';
+  }
+  $('hBody').innerHTML = h;
+}
+document.querySelectorAll('#hComp button').forEach(b => b.addEventListener('click', () => { hComp = b.dataset.h; renderHistorico(); }));
+document.querySelectorAll('#hLiga button').forEach(b => b.addEventListener('click', () => { hLiga = b.dataset.l; renderHistorico(); }));
+renderHistorico();
+
+// ---------- Fantasy ----------
+// Fonte: cerimônia de encerramento 2026. [posição, nome, acertos, % de acerto]
+const FAN = {
+  numeros:[['20','participantes'],['1.619','palpites'],['78%','de acerto médio']],
+  ranking:[[1,'Marquinhos Leite',88,86],[2,'Du Gomez',86,84],[2,'Marco Cappanari',86,84],[4,'Lufe Almeida',83,81],[5,'Rafa Almeida',82,80],
+    [6,'Raffa Marley',77,75],[6,'Filu Orra',77,75],[6,'Ga B.Barreto',77,75],[9,'B Lopes',76,78],[10,'JP Maciel',75,74],[11,'Malu Giugni',70,78],
+    [12,'Quinha Kleinert',67,81],[13,'Nilo Duarte',66,74],[14,'JP Almeida',60,87],[15,'Steven Carter',56,64],[16,'Rober Cambur',54,68],
+    [17,'LF Loureiro',36,73],[18,'Liu B.Barreto',22,76],[19,'Fe Barreto',12,86],[20,'Marcelo Bere',9,64]],
+  destaques:[['Cavalo preferido','207 votos','Marquinhos Leite · 100% viraram ponto'],['Cavalinho estratégico','83%','JP Maciel · dos votos nele viraram ponto'],
+    ['Torcedora mais fiel','1 de 16','Malu Giugni · única a apostar no JP Maciel contra o Rafa, e acertou']]
+};
+function renderFantasy(){
+  const R = FAN.ranking, pod = [R[1], R[0], R[2]];
+  let h = '<h3 class="hh">Fantasy 2026</h3><div class="hl-grid">' + FAN.numeros.map(n => '<div class="hl"><div class="v">' + n[0] + '</div><div class="w">' + n[1] + '</div></div>').join('') + '</div>';
+  h += '<h3 class="hh">Pódio</h3><div class="podium fan-podium">' + pod.map(r => '<div class="pod p' + (r[0] === 1 ? 1 : 2) + '"><span class="pos">' + r[0] + 'º</span><b>' + esc(r[1]) + '</b><span>' + r[2] + ' acertos</span><small>' + r[3] + '% de aproveitamento' + (r[0] === 2 ? ' · empate' : '') + '</small></div>').join('') + '</div>';
+  h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Participante</th><th scope="col">Acertos</th><th scope="col">%</th></tr></thead><tbody>' +
+    R.map(r => '<tr><td class="pos"><span>' + r[0] + '</span></td><td class="l who"><b>' + esc(r[1]) + '</b></td><td class="pts">' + r[2] + '</td><td>' + r[3] + '%</td></tr>').join('') + '</tbody></table></div>';
+  h += '<h3 class="hh">Destaques</h3><div class="hl-grid">' + FAN.destaques.map(d => '<div class="hl"><div class="k">' + d[0] + '</div><div class="v">' + d[1] + '</div><div class="w">' + esc(d[2]) + '</div></div>').join('') + '</div>';
+  $('fBody').innerHTML = h;
+}
+renderFantasy();
+
 // ---------- Navegação ----------
-const VIEWS = ['calendario','classificacao','resultado','inscricao'];
+const VIEWS = ['calendario','classificacao','resultado','historico','fantasy','inscricao'];
 function ir(v, semHash){
   if (VIEWS.indexOf(v) < 0) v = 'calendario';
   VIEWS.forEach(x => { $('v-' + x).hidden = x !== v; });
