@@ -447,7 +447,7 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
     <section id="v-historico" aria-labelledby="t-his" hidden>
       <div class="eyebrow">Temporada 2026</div>
       <h2 id="t-his">Histórico</h2>
-      <p class="sub">Como foi a primeira temporada da GEN ZY: a League de pontos corridos e o Finals de fim de ano.</p>
+      <p class="sub">Como foi a temporada 2026 da GEN ZY: a League de pontos corridos e o Finals de fim de ano.</p>
       <div class="controls">
         <div class="hsw" role="group" aria-label="Competição" id="hComp">
           <button type="button" data-h="league" aria-pressed="true">League</button>
@@ -856,24 +856,24 @@ $('rVerCls').addEventListener('click', () => { $('rOk').classList.remove('on'); 
 // Em 2026: vitória = 3 pontos, W.O. = 2 pontos. V = vitórias sem W.O. ◆ = posição definida por desempate.
 const HIST = {
   league:{
-    A:{ info:['18 atletas','9 rodadas','17 jogos cada'], tabela:[
-      ['Marquinhos Leite',48,17,14,129],['Ga B.Barreto',45,17,15,92],['Marco Cappanari',37,17,11,71],['Lufe Almeida',30,17,8,35],
+    A:{ info:['18 atletas','9 rodadas'], tabela:[
+      ['Marquinhos Leite',48,17,14,129],['Ga Barreto',45,17,15,92],['Marco Cappanari',37,17,11,71],['Lufe Almeida',30,17,8,35],
       ['JP Almeida',28,17,8,15],['LF Loureiro',27,17,7,41,1],['JP Maciel',27,17,7,3,1],['Rafa Almeida',26,17,8,14],['Filu Orra',25,17,5,30],
       ['B Lopes',21,17,5,-17,1],['Sami Orra',21,17,3,17,1],['Marcelo Bere',18,17,4,-14],['Steven Carter',17,17,3,-29],['Nick Gaal',10,17,2,-62,1],
       ['Edu Gomez',10,17,2,-35,1],['Quinha Kleinert',5,17,1,-71],['Nilo Duarte',2,17,0,-116,1],['Rober Cambur',2,17,0,-103,1]],
-      destaques:[['Melhor saldo em quadra','+111','Marquinhos Leite'],['Mais games ganhos','171','Ga B.Barreto'],['Vitórias seguidas','17','Marquinhos Leite'],
-        ['Super tie-breaks vencidos','4','Rafa Almeida'],['Pneus aplicados (6x0)','6','Ga B.Barreto'],['Mais vitórias por W.O.','6','Sami Orra']]},
+      destaques:[['Melhor saldo em quadra','+111','Marquinhos Leite'],['Mais games ganhos','171','Ga Barreto'],['Vitórias seguidas','17','Marquinhos Leite'],
+        ['Super tie-breaks vencidos','4','Rafa Almeida'],['Pneus aplicados (6x0)','6','Ga Barreto'],['Mais vitórias por W.O.','6','Sami Orra']]},
     B:{ info:['6 atletas','5 rodadas','Turno e returno'], tabela:[
       ['Liu B.Barreto',25,10,7,53],['Fe Barreto',20,10,6,42],['Paulinha Pimentel',18,10,4,16],['Bibi Almeida',8,10,2,-21],['Malu Giugni',5,10,1,-28],['Raffa Marley',0,10,0,-62]],
       destaques:[['Melhor saldo em quadra','+40','Liu B.Barreto'],['Mais jogos em quadra','9 de 10','Fe Barreto'],['Super tie-breaks vencidos','3','Paulinha Pimentel']]}
   },
   finals:{
     // [taça, divisão, campeão, vice, placar da final, principal?]; campeão null = final a jogar
-    tacas:[['Titanium',1,'Marquinhos Leite','Ga B.Barreto','6-2 6-3',true],['Ouro',1,'Marco Cappanari','Rafa Almeida','6-3 3-6 10-6'],
-      ['Prata',2,null,null,'Rober Cambur × Marcelo Bere',true],['Marley',2,'Bibi Almeida','Raffa Marley','6-3 7-6']],
+    tacas:[['Titanium',1,'Marquinhos Leite','Ga Barreto','6-2 / 6-3',true],['Ouro',1,'Marco Cappanari','Rafa Almeida','6-3 / 3-6 / 10-6'],
+      ['Prata',2,null,null,'Rober Cambur × Marcelo Bere',true,'28/nov'],['Marley',2,'Bibi Almeida','Raffa Marley','6-3 / 7-6']],
     // [taça, vencedor, perdedor, placar, observação]
-    semis:[['Titanium','Marquinhos','Filu','6-4 6-3'],['Titanium','Ga','Lufe','6-4 3-6 13-11'],['Ouro','Rafa','JP','6-4 6-4'],['Ouro','Marco','Sami','6-4 7-5'],
-      ['Prata','Rober','Nilo','7-5 3-6 10-6'],['Prata','Bere','Nick','1-6 6-2 13-11'],['Marley','Marley','Malu','3-5 4-2 11-9','sets de 4 games'],['Marley','Bibi','Paulinha','W.O.']],
+    semis:[['Titanium','Marquinhos Leite','Filu Orra','6-4 / 6-3'],['Titanium','Ga Barreto','Lufe Almeida','6-4 / 3-6 / 13-11'],['Ouro','Rafa Almeida','JP Maciel','6-4 / 6-4'],['Ouro','Marco Cappanari','Sami Orra','6-4 / 7-5'],
+      ['Prata','Rober Cambur','Nilo Duarte','7-5 / 3-6 / 10-6'],['Prata','Marcelo Bere','Nick Gaal','1-6 / 6-2 / 13-11'],['Marley','Raffa Marley','Malu Giugni','3-5 / 4-2 / 11-9','sets de 4 games'],['Marley','Bibi Almeida','Paulinha Pimentel','W.O.']],
     // grupos: [nome, divisão, [[jogador, J, V, D, GP, GC], ...]] na ordem final
     grupos:[['Saguí',1,[['Marquinhos',3,3,0,18,5],['Lufe',3,2,1,13,11],['JP',3,1,2,9,16],['Sami',3,0,3,10,18]]],
       ['Esquilo',1,[['Ga',3,2,1,14,10],['Filu',3,2,1,17,17],['Marco',3,1,2,12,17],['Rafa',3,1,2,16,15]]],
@@ -898,14 +898,14 @@ function renderHistorico(){
     h += '<h3 class="hh">Destaques</h3><div class="hl-grid">' + L.destaques.map(d => '<div class="hl"><div class="k">' + d[0] + '</div><div class="v">' + d[1] + '</div><div class="w">' + esc(d[2]) + '</div></div>').join('') + '</div>';
   } else {
     const F = HIST.finals;
-    h += '<div class="facts"><span class="fact">16 classificados</span><span class="fact">2 divisões</span><span class="fact">4 taças</span><span class="fact">31/out a 02/nov</span></div>';
+    h += '<div class="facts"><span class="fact">16 classificados</span><span class="fact">2 divisões</span><span class="fact">4 taças</span></div>';
     h += '<h3 class="hh">Campeões</h3><div class="cups">' + F.tacas.map(c => '<div class="cup' + (c[5] ? ' main' : '') + '"><header>' + c[0] + '</header><div class="c">' +
       (c[2] ? '<b>' + esc(c[2]) + '</b><small>Divisão ' + c[1] + '</small><div class="vice">Final: ' + esc(c[4]) + '<br>contra ' + esc(c[3]) + '</div>'
-            : '<b class="tbd">Final a jogar</b><small>Divisão ' + c[1] + '</small><div class="vice">' + esc(c[4]) + '</div>') + '</div></div>').join('') + '</div>';
+            : '<b class="tbd">' + (c[6] ? 'Final em ' + c[6] : 'Final a jogar') + '</b><small>Divisão ' + c[1] + '</small><div class="vice">' + esc(c[4]) + '</div>') + '</div></div>').join('') + '</div>';
     h += '<h3 class="hh">Semifinais</h3><ul class="mt">' + F.semis.map(m => '<li><span class="tg">' + m[0] + '</span><span class="vs"><b>' + esc(m[1]) + '</b><span class="x">×</span><span class="lost">' + esc(m[2]) + '</span>' + (m[4] ? '<small>' + m[4] + '</small>' : '') + '</span><span class="score">' + m[3] + '</span></li>').join('') + '</ul>';
-    h += '<h3 class="hh">Fase de grupos</h3><div class="gtabs">' + F.grupos.map(g => '<div class="gt"><header><b>Grupo ' + g[0] + '</b><span class="pill soft">Divisão ' + g[1] + '</span></header><table><thead><tr><th>#</th><th class="l">Atleta</th><th>V</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr></thead><tbody>' +
-      g[2].map((r, k) => '<tr' + (k < 2 ? ' class="q"' : '') + '><td>' + (k+1) + 'º</td><td class="l">' + esc(r[0]) + '</td><td><b>' + r[2] + '</b></td><td>' + r[3] + '</td><td>' + r[4] + '</td><td>' + r[5] + '</td><td class="sg">' + sg(r[4]-r[5]) + '</td></tr>').join('') + '</tbody></table></div>').join('') + '</div>';
-    h += '<p class="legend2">Grupos no sábado (1 set no-ad), semifinais no domingo e finais na segunda (2 sets + super tie-break). Em destaque, os classificados para as semifinais de Titanium e Prata; 3º e 4º foram para Ouro e Marley. GP/GC: games pró e contra · SG: saldo.</p>';
+    h += '<h3 class="hh">Fase de grupos</h3><div class="gtabs">' + F.grupos.map(g => '<div class="gt"><header><b>Grupo ' + g[0] + '</b><span class="pill soft">Divisão ' + g[1] + '</span></header><table><thead><tr><th>#</th><th class="l">Atleta</th><th>P</th><th>V</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr></thead><tbody>' +
+      g[2].map((r, k) => '<tr' + (k < 2 ? ' class="q"' : '') + '><td>' + (k+1) + 'º</td><td class="l">' + esc(r[0]) + '</td><td><b>' + (3 * r[2]) + '</b></td><td>' + r[2] + '</td><td>' + r[3] + '</td><td>' + r[4] + '</td><td>' + r[5] + '</td><td class="sg">' + sg(r[4]-r[5]) + '</td></tr>').join('') + '</tbody></table></div>').join('') + '</div>';
+    h += '<p class="legend2">Grupos no sábado (1 set no-ad), semifinais no domingo e finais na segunda (2 sets + super tie-break). Em destaque, os classificados para as semifinais de Titanium e Prata; 3º e 4º foram para Ouro e Marley. P: pontos (vitória = 3) · GP/GC: games pró e contra · SG: saldo.</p>';
   }
   $('hBody').innerHTML = h;
 }
@@ -918,7 +918,7 @@ renderHistorico();
 const FAN = {
   numeros:[['20','participantes'],['1.619','palpites'],['78%','de acerto médio']],
   ranking:[[1,'Marquinhos Leite',88,86],[2,'Du Gomez',86,84],[2,'Marco Cappanari',86,84],[4,'Lufe Almeida',83,81],[5,'Rafa Almeida',82,80],
-    [6,'Raffa Marley',77,75],[6,'Filu Orra',77,75],[6,'Ga B.Barreto',77,75],[9,'B Lopes',76,78],[10,'JP Maciel',75,74],[11,'Malu Giugni',70,78],
+    [6,'Raffa Marley',77,75],[6,'Filu Orra',77,75],[6,'Ga Barreto',77,75],[9,'B Lopes',76,78],[10,'JP Maciel',75,74],[11,'Malu Giugni',70,78],
     [12,'Quinha Kleinert',67,81],[13,'Nilo Duarte',66,74],[14,'JP Almeida',60,87],[15,'Steven Carter',56,64],[16,'Rober Cambur',54,68],
     [17,'LF Loureiro',36,73],[18,'Liu B.Barreto',22,76],[19,'Fe Barreto',12,86],[20,'Marcelo Bere',9,64]],
   destaques:[['Cavalo preferido','207 votos','Marquinhos Leite · 100% viraram ponto'],['Cavalinho estratégico','83%','JP Maciel · dos votos nele viraram ponto'],
@@ -940,7 +940,7 @@ renderFantasy();
 // Sem frase = perfil em construção.
 const PERFIL = {
   'Fogninhos':['Marquinhos Leite','Campeão da Liga com 14 vitórias e o melhor jogo de fundo: vem buscar a dobradinha.','Jogo de Fundo · 4,8','Campeão Titanium',['Campeão Liga A 2026','Campeão Titanium 2026','Campeão Fantasy 2026']],
-  'Gawrinka':['Ga B.Barreto','15 vitórias e o melhor atleticismo: beliscou o troféu da Liga, mas no Finals não deixa escapar.','Atleticismo · 4,8','Vice Titanium',['Vice Liga A 2026']],
+  'Gawrinka':['Ga Barreto','15 vitórias e o melhor atleticismo: beliscou o troféu da Liga, mas no Finals não deixa escapar.','Atleticismo · 4,8','Vice Titanium',['Vice Liga A 2026']],
   'Marco Cobolli':['Marco Cappanari','Terceiro na Liga, primeiro na rede: agora vem se provar no mata-mata.','Voleio e Smash · 4,9','Campeão Ouro',['Campeão Ouro 2026','3º Liga A 2026']],
   'Lufederer':['Lufe Almeida','Chega ao Finals para impor seu jogo pesado de fundo, o segundo melhor avaliado do grupo.',null,'Semifinal Titanium',[]],
   'JP7':['JP Maciel','Golfista e voleador nato, entra no Finals para incomodar os grandes.',null,'Semifinal Ouro',[]],
