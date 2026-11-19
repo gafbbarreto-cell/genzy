@@ -1026,6 +1026,9 @@ function renderAtletas(){
     const MED = ['🏆','🥈','🥉'], selos = []; // Campeão da Liga = troféu; 🥇 fica para a taça Ouro
     if (d.lg && d.lg.pos <= 3){ selos.push([MED[d.lg.pos-1], bd[0][0]]); bd[0][0] = MED[d.lg.pos-1] + ' ' + bd[0][0]; }
     if (P[3] && /^(Campe|Vice|Finalista)/.test(P[3])){ const tc = P[3].split(' ').pop(); selos.push([TACA_EMO[tc], P[3] + ' 2026']); }
+    // Selos especiais por atleta
+    const ESPECIAIS = { 'Ribakinha':[['🤰', 'Virou mãe durante a temporada 2026']] };
+    (ESPECIAIS[p[0]] || []).forEach(x => selos.push(x));
     // Cavalos preferidos e cavalinhos estratégicos do Fantasy 2026
     FAN.cavalos.forEach((c, k) => { if (c[0] === P[0]){ selos.push(['🐴', (k+1) + 'º cavalo preferido do Fantasy 2026']); bd.push(['🐴 ' + (k+1) + 'º cavalo preferido 2026', ' mid']); } });
     FAN.cavalinhos.forEach((c, k) => { if (c[0] === P[0]){ selos.push(['🐴', (k+1) + 'º cavalinho estratégico do Fantasy 2026']); bd.push(['🐴 ' + (k+1) + 'º cavalinho estratégico 2026', ' mid']); } });
