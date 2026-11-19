@@ -209,6 +209,12 @@ h3.hh::after{content:"";flex:1;height:2px;background:var(--line)}
 .fmt b{display:block;font-family:var(--f-display);font-weight:400;font-size:22px;text-transform:uppercase}
 .fmt small{display:block;color:var(--muted);font-size:14px}
 table.htab{min-width:0}
+table.htab col.c-w{width:96px}
+.podium.graded .pod.p2{padding-block:20px 16px}
+.podium.graded .pod.p2 b{font-size:29px}
+.podium.graded{grid-template-columns:1.15fr 1.06fr 1fr}
+.pod .med{display:block;font-size:30px;line-height:1;margin-bottom:8px}
+.pod.p1 .med{font-size:38px}
 .mt{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .mt li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
 .mt li:last-child{border-bottom:0}
@@ -267,7 +273,12 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
   .hl-grid,.fmt{grid-template-columns:1fr 1fr}
   .cups{grid-template-columns:1fr 1fr}
   .groups{grid-template-columns:1fr}
-  table.htab col.c-n{width:46px}
+  table.htab col.c-n{width:36px}
+  table.htab col.c-w{width:44px}
+  table.htab thead th{white-space:normal;font-size:11px;line-height:1.15;letter-spacing:.04em}
+  table.htab td{font-size:14px}
+  table.htab td.who b{font-size:14px}
+  .podium.graded{grid-template-columns:1fr}
   .gtabs{grid-template-columns:1fr}
   .mt .tg{width:88px}
   .soon .bar b{font-size:32px}
@@ -887,6 +898,8 @@ const HIST = {
 const TACA_EMO = { Titanium:'💎', Ouro:'🥇', Prata:'🥈', Marley:'🥉' };
 const comTaca = t => String(t).replace(/\b(Titanium|Ouro|Prata|Marley)\b(?!\s+(?:Almeida|Giugni))/g, (m, n) => TACA_EMO[n] + ' ' + n);
 let hComp = 'league', hLiga = 'A';
+// Vitórias totais em 2026: vitória em quadra = 3 pts, W.O. = 2 pts
+const vitTot = r => r[3] + (r[1] - 3 * r[3]) / 2;
 const sg = n => (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n);
 function renderHistorico(){
   $('hLiga').hidden = hComp !== 'league';
@@ -896,10 +909,9 @@ function renderHistorico(){
   if (hComp === 'league'){
     const L = HIST.league[hLiga], t = L.tabela;
     h += '<div class="facts">' + L.info.map(x => '<span class="fact">' + x + '</span>').join('') + '</div>';
-    h += '<h3 class="hh">Pódio</h3><div class="podium">' + [0,1,2].map(k => '<div class="pod p' + (k+1) + '"><span class="pos">' + (k+1) + 'º</span><b>' + esc(t[k][0]) + '</b><span>' + t[k][1] + ' pts</span><small>' + t[k][3] + ' vitórias · saldo ' + sg(t[k][4]) + '</small></div>').join('') + '</div>';
-    h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Atleta</th><th scope="col"><abbr title="Pontos">P</abbr></th><th scope="col"><abbr title="Jogos">J</abbr></th><th scope="col"><abbr title="Vitórias sem W.O.">V</abbr></th><th scope="col"><abbr title="Saldo de games">SG</abbr></th></tr></thead><tbody>' +
-      t.map((r, k) => '<tr><td class="pos"><span>' + (k+1) + '</span></td><td class="l who"><b>' + esc(r[0]) + '' + '</b></td><td class="pts">' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td><td class="sg">' + sg(r[4]) + '</td></tr>').join('') + '</tbody></table></div>';
-    h += '<p class="legend2">Pontuação final em 21/10/2026. Em 2026, vitória valia 3 pontos e W.O. 2 pontos. V: vitórias sem W.O.</p>';
+    h += '<h3 class="hh">Pódio</h3><div class="podium graded">' + [0,1,2].map(k => '<div class="pod p' + (k+1) + '"><span class="med" aria-hidden="true">' + ['🥇','🥈','🥉'][k] + '</span><span class="pos">' + (k+1) + 'º</span><b>' + esc(t[k][0]) + '</b><span>' + t[k][1] + ' pts</span><small>' + vitTot(t[k]) + ' vitórias · saldo ' + sg(t[k][4]) + '</small></div>').join('') + '</div>';
+    h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-w"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Atleta</th><th scope="col"><abbr title="Pontos">P</abbr></th><th scope="col"><abbr title="Jogos">J</abbr></th><th scope="col"><abbr title="Vitórias">V</abbr></th><th scope="col"><abbr title="Vitórias sem W.O.">V sem WO</abbr></th><th scope="col"><abbr title="Saldo de games">SG</abbr></th></tr></thead><tbody>' +
+      t.map((r, k) => '<tr><td class="pos"><span>' + (k+1) + '</span></td><td class="l who"><b>' + (k < 3 ? ['🥇','🥈','🥉'][k] + ' ' : '') + esc(r[0]) + '</b></td><td class="pts">' + r[1] + '</td><td>' + r[2] + '</td><td>' + vitTot(r) + '</td><td>' + r[3] + '</td><td class="sg">' + sg(r[4]) + '</td></tr>').join('') + '</tbody></table></div>';
     h += '<h3 class="hh">Destaques</h3><div class="hl-grid">' + L.destaques.map(d => '<div class="hl"><div class="k">' + d[0] + '</div><div class="v">' + d[1] + '</div><div class="w">' + esc(d[2]) + '</div></div>').join('') + '</div>';
   } else {
     const F = HIST.finals;
@@ -980,7 +992,7 @@ let pLiga = 'A';
 function dados2026(n){
   if (!n) return null;
   const o = {};
-  ['A','B'].forEach(L => HIST.league[L].tabela.forEach((r, k) => { if (r[0] === n) o.lg = { liga:L, pos:k+1, pts:r[1], v:r[3], sg:r[4] }; }));
+  ['A','B'].forEach(L => HIST.league[L].tabela.forEach((r, k) => { if (r[0] === n) o.lg = { liga:L, pos:k+1, pts:r[1], v:vitTot(r), sg:r[4] }; }));
   FAN.ranking.forEach(r => { if (r[1] === n || (n === 'Edu Gomez' && r[1] === 'Du Gomez')) o.fan = { pos:r[0], ac:r[2], pct:r[3] }; });
   return o;
 }
