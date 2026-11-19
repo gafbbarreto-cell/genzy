@@ -212,7 +212,7 @@ table.htab{min-width:0}
 .mt{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .mt li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
 .mt li:last-child{border-bottom:0}
-.mt .tg{flex:none;font-family:var(--f-display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;width:86px}
+.mt .tg{flex:none;font-family:var(--f-display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;width:112px}
 .mt .vs{flex:1}
 .mt small{display:block;color:var(--muted);font-size:12px}
 .gtabs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -269,7 +269,7 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
   .groups{grid-template-columns:1fr}
   table.htab col.c-n{width:46px}
   .gtabs{grid-template-columns:1fr}
-  .mt .tg{width:64px}
+  .mt .tg{width:88px}
   .soon .bar b{font-size:32px}
   .prof-grid{grid-template-columns:1fr}
   .pstats{grid-template-columns:1fr}
@@ -884,6 +884,8 @@ const HIST = {
       ['Quero-quero',2,[['Nick',3,3,0,18,5],['Nilo',3,2,1,16,13],['Bibi',3,1,2,11,16],['Malu',3,0,3,7,18]]]]
   }
 };
+const TACA_EMO = { Titanium:'💎', Ouro:'🥇', Prata:'🥈', Marley:'🥉' };
+const comTaca = t => String(t).replace(/\b(Titanium|Ouro|Prata|Marley)\b(?!\s+(?:Almeida|Giugni))/g, (m, n) => TACA_EMO[n] + ' ' + n);
 let hComp = 'league', hLiga = 'A';
 const sg = n => (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n);
 function renderHistorico(){
@@ -902,13 +904,12 @@ function renderHistorico(){
   } else {
     const F = HIST.finals;
     h += '<div class="facts"><span class="fact">16 classificados</span><span class="fact">2 divisões</span><span class="fact">4 taças</span></div>';
-    h += '<h3 class="hh">Campeões</h3><div class="cups">' + F.tacas.map(c => '<div class="cup' + (c[5] ? ' main' : '') + '"><header>' + c[0] + '</header><div class="c">' +
-      (c[2] ? '<b>' + esc(c[2]) + '</b><small>Divisão ' + c[1] + '</small><div class="vice">Final: ' + esc(c[4]) + '<br>contra ' + esc(c[3]) + '</div>'
-            : '<b class="tbd">' + (c[6] ? 'Final em ' + c[6] : 'Final a jogar') + '</b><small>Divisão ' + c[1] + '</small><div class="vice">' + esc(c[4]) + '</div>') + '</div></div>').join('') + '</div>';
-    h += '<h3 class="hh">Semifinais</h3><ul class="mt">' + F.semis.map(m => '<li><span class="tg">' + m[0] + '</span><span class="vs"><b>' + esc(m[1]) + '</b><span class="x">×</span><span class="lost">' + esc(m[2]) + '</span>' + (m[4] ? '<small>' + m[4] + '</small>' : '') + '</span><span class="score">' + m[3] + '</span></li>').join('') + '</ul>';
-    h += '<h3 class="hh">Fase de grupos</h3><div class="gtabs">' + F.grupos.map(g => '<div class="gt"><header><b>Grupo ' + g[0] + '</b><span class="pill soft">Divisão ' + g[1] + '</span></header><table><thead><tr><th>#</th><th class="l">Atleta</th><th>P</th><th>V</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr></thead><tbody>' +
+    h += '<h3 class="hh">Campeões</h3><div class="cups">' + F.tacas.map(c => '<div class="cup' + (c[5] ? ' main' : '') + '"><header>' + TACA_EMO[c[0]] + ' ' + c[0] + '</header><div class="c">' +
+      (c[2] ? '<b>' + esc(c[2]) + '</b><div class="vice">Final: ' + esc(c[4]) + '<br>contra ' + esc(c[3]) + '</div>'
+            : '<b class="tbd">' + (c[6] ? 'Final em ' + c[6] : 'Final a jogar') + '</b><div class="vice">' + esc(c[4]) + '</div>') + '</div></div>').join('') + '</div>';
+    h += '<h3 class="hh">Semifinais</h3><ul class="mt">' + F.semis.map(m => '<li><span class="tg">' + TACA_EMO[m[0]] + ' ' + m[0] + '</span><span class="vs"><b>' + esc(m[1]) + '</b><span class="x">×</span><span class="lost">' + esc(m[2]) + '</span>' + (m[4] ? '<small>' + m[4] + '</small>' : '') + '</span><span class="score">' + m[3] + '</span></li>').join('') + '</ul>';
+    h += '<h3 class="hh">Fase de grupos</h3><div class="gtabs">' + F.grupos.map(g => '<div class="gt"><header><b>Grupo ' + g[0] + '</b></header><table><thead><tr><th>#</th><th class="l">Atleta</th><th>P</th><th>V</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr></thead><tbody>' +
       g[2].map((r, k) => '<tr' + (k < 2 ? ' class="q"' : '') + '><td>' + (k+1) + 'º</td><td class="l">' + esc(r[0]) + '</td><td><b>' + (3 * r[2]) + '</b></td><td>' + r[2] + '</td><td>' + r[3] + '</td><td>' + r[4] + '</td><td>' + r[5] + '</td><td class="sg">' + sg(r[4]-r[5]) + '</td></tr>').join('') + '</tbody></table></div>').join('') + '</div>';
-    h += '<p class="legend2">Grupos no sábado (1 set no-ad), semifinais no domingo e finais na segunda (2 sets + super tie-break). Em destaque, os classificados para as semifinais de Titanium e Prata; 3º e 4º foram para Ouro e Marley. P: pontos (vitória = 3) · GP/GC: games pró e contra · SG: saldo.</p>';
   }
   $('hBody').innerHTML = h;
 }
@@ -998,11 +999,11 @@ function renderAtletas(){
     const tr = bd.filter(b => /^Campe/.test(b[0])).length;
     const cards = [];
     cards.push(d.lg ? '<div><div class="k">League 2026</div><div class="v">' + d.lg.pos + 'º · Liga ' + d.lg.liga + '</div><div class="w">' + d.lg.pts + ' pts · ' + d.lg.v + ' vitórias · saldo ' + sg(d.lg.sg) + '</div></div>' : '<div><div class="k">League 2026</div><div class="v">Estreia</div><div class="w">Primeira temporada em 2027</div></div>');
-    cards.push('<div><div class="k">Finals 2026</div><div class="v">' + (P[3] || '—') + '</div><div class="w">' + (P[3] ? 'GEN ZY Finals' : 'Não disputou') + '</div></div>');
+    cards.push('<div><div class="k">Finals 2026</div><div class="v">' + (P[3] ? comTaca(P[3]) : '—') + '</div><div class="w">' + (P[3] ? 'GEN ZY Finals' : 'Não disputou') + '</div></div>');
     cards.push('<div><div class="k">Fantasy 2026</div><div class="v">' + (d.fan ? d.fan.pos + 'º' : '—') + '</div><div class="w">' + (d.fan ? d.fan.ac + ' acertos · ' + d.fan.pct + '%' : 'Não participou') + '</div></div>');
     return '<details class="prof' + (pLiga === 'B' ? ' b' : '') + '"><summary>' + (P[5] ? '<img class="ph" src="fotos/' + P[5] + '.jpg" alt="" loading="lazy" width="240" height="300">' : '<span class="ini">' + esc(p[0].charAt(0)) + '</span>') + '<span class="nm"><b>' + esc(p[0]) + '</b><small>' + esc(p[1]) + '</small></span>' + (tr ? '<span class="cups2" title="Títulos em 2026">🏆 ' + tr + '</span>' : '') + '<span class="chev" aria-hidden="true">+</span></summary><div class="in">' +
       (P[1] ? '<p class="bio">' + esc(P[1]) + '</p>' : '<p class="bio tbd">Perfil em construção.</p>') +
-      ((bd.length || P[2]) ? '<div class="badges">' + bd.map(b => '<span class="badge' + b[1] + '">' + esc(b[0]) + '</span>').join('') + (P[2] ? '<span class="badge soft">Melhor do grupo em ' + esc(P[2]) + '</span>' : '') + '</div>' : '') +
+      ((bd.length || P[2]) ? '<div class="badges">' + bd.map(b => '<span class="badge' + b[1] + '">' + comTaca(esc(b[0])) + '</span>').join('') + (P[2] ? '<span class="badge soft">Melhor do grupo em ' + esc(P[2]) + '</span>' : '') + '</div>' : '') +
       '<div class="pstats">' + cards.join('') + '</div></div></details>';
   }).join('');
 }
