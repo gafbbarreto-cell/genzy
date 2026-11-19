@@ -268,8 +268,9 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
 .prof .bio{font-size:17px;margin:14px 0;padding-left:12px;border-left:4px solid var(--yellow)}
 .prof .bio.tbd{color:var(--muted);font-size:15px}
 .badges{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
-.badge{display:inline-flex;gap:6px;align-items:center;background:var(--ink);color:var(--yellow);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
-.badge.soft{background:var(--yellow);color:var(--ink)}
+/* Selos de texto: títulos em amarelo, demais com borda; destaque do Data Score em cinza-claro */
+.badge{display:inline-flex;gap:6px;align-items:center;background:var(--yellow);color:var(--ink);border:2px solid var(--yellow-deep);border-radius:999px;padding:3px 10px;font-size:13px;font-weight:700}
+.badge.soft{background:var(--mist);border-color:var(--line)}
 .badge.mid{background:var(--paper);color:var(--ink);border:2px solid var(--ink);padding:3px 10px}
 .prof .ph{flex:none;width:46px;height:56px;border-radius:8px;object-fit:cover;object-position:50% 20%;background:var(--mist);filter:grayscale(1)}
 .prof[open] .ph{width:96px;height:120px}
