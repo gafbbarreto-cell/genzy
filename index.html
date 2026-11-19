@@ -930,21 +930,18 @@ const FAN = {
   // [nome, votos que viraram ponto, votos nele, palpites nos jogos dele]
   cavalinhos:[['JP Maciel',66,80,210],['Nick Gaal',17,25,141],['B Lopes',49,74,210]],
   // [jogo, favorito da galera, quem venceu]
-  enganaram:[['JP Almeida × Lufe Almeida','17 de 17 no Lufe','JP Almeida'],['JP Almeida × Steven Carter','16 de 16 no JP','Steven Carter'],['Rafa Almeida × Sami Orra','16 de 16 no Rafa','Sami Orra']],
-  // [rodada, palpites, vencedor(es) da rodada]
-  rodadas:[[1,240,'Marquinhos Leite'],[2,238,'Empate entre 3'],[3,160,'Malu Giugni e JP Almeida'],[4,238,'Empate entre 4'],[5,154,'Raffa Marley'],[6,221,'Du Gomez e JP Almeida'],[7,208,'Marco Cappanari'],[8,112,'Empate entre 6'],[9,48,'Empate entre 5']]
+  enganaram:[['JP Almeida × Lufe Almeida','17 de 17 no Lufe','JP Almeida'],['JP Almeida × Steven Carter','16 de 16 no JP','Steven Carter'],['Rafa Almeida × Sami Orra','16 de 16 no Rafa','Sami Orra']]
 };
 function renderFantasy(){
   const R = FAN.ranking, pod = [R[0], R[1], R[2]];
   let h = '<h3 class="hh">Fantasy 2026</h3><div class="hl-grid">' + FAN.numeros.map(n => '<div class="hl"><div class="v">' + n[0] + '</div><div class="w">' + n[1] + '</div></div>').join('') + '</div>';
   h += '<h3 class="hh">Pódio</h3><div class="podium fan-podium">' + pod.map(r => '<div class="pod p' + (r[0] === 1 ? 1 : 2) + '"><span class="pos">' + r[0] + 'º</span><b>' + esc(r[1]) + '</b><span>' + r[2] + ' acertos</span><small>' + r[3] + '% de aproveitamento' + (r[0] === 2 ? ' · empate' : '') + '</small></div>').join('') + '</div>';
   h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Participante</th><th scope="col">Acertos</th><th scope="col">%</th></tr></thead><tbody>' +
-    R.map(r => '<tr><td class="pos"><span>' + r[0] + '</span></td><td class="l who"><b>' + esc(r[1]) + '</b></td><td class="pts">' + r[2] + '</td><td>' + r[3] + '%</td></tr>').join('') + '</tbody></table></div>';
+    R.map(r => '<tr><td class="pos"><span>' + r[0] + '</span></td><td class="l who"><b>' + (r[0] <= 3 ? ['🥇','🥈','🥉'][r[0]-1] + ' ' : '') + esc(r[1]) + '</b></td><td class="pts">' + r[2] + '</td><td>' + r[3] + '%</td></tr>').join('') + '</tbody></table></div>';
   h += '<h3 class="hh">Os palpites que marcaram</h3><div class="hl-grid"><div class="hl"><div class="k">Torcedora mais fiel</div><div class="v">1 de 16</div><div class="w">Malu Giugni foi a única a apostar no JP Maciel contra o Rafa Almeida, e acertou</div></div><div class="hl"><div class="k">Zebra da temporada</div><div class="v">94%</div><div class="w">apostaram no Rafa Almeida (15 de 16), mas deu JP Maciel</div></div><div class="hl"><div class="k">Erraram todos</div><div class="v">3 jogos</div><div class="w">em que 100% dos palpites foram no perdedor</div></div></div>';
   h += '<h3 class="hh">Os jogos que enganaram a galera</h3><ul class="mt">' + FAN.enganaram.map(e => '<li><span class="vs"><b>' + esc(e[0]) + '</b><small>' + esc(e[1]) + '</small></span><span class="score">Venceu ' + esc(e[2]) + '</span></li>').join('') + '</ul>';
   h += '<h3 class="hh">Os cavalos preferidos</h3><div class="hl-grid">' + FAN.cavalos.map((c, k) => '<div class="hl"><div class="k">' + (k+1) + 'º · mais votado</div><div class="v">' + c[1] + ' votos</div><div class="w">' + esc(c[0]) + '</div><small class="dia" style="margin:0">' + Math.round(100 * c[1] / c[2]) + '% dos palpites nos jogos dele · ' + c[3] + '% viraram ponto</small></div>').join('') + '</div>';
   h += '<h3 class="hh">Os cavalinhos estratégicos</h3><div class="hl-grid">' + FAN.cavalinhos.map((c, k) => '<div class="hl"><div class="k">' + (k+1) + 'º · aposta certeira</div><div class="v">' + Math.round(100 * c[1] / c[2]) + '%</div><div class="w">' + esc(c[0]) + '</div><small class="dia" style="margin:0">dos votos nele viraram ponto (' + c[1] + ' de ' + c[2] + ') · só ' + Math.round(100 * c[2] / c[3]) + '% apostaram nele</small></div>').join('') + '</div>';
-  h += '<h3 class="hh">Vencedores de cada rodada</h3><ul class="mt">' + FAN.rodadas.map(r => '<li><span class="tg">Rodada ' + r[0] + '</span><span class="vs"><b>' + esc(r[2]) + '</b><small>' + r[1] + ' palpites</small></span></li>').join('') + '</ul>';
   $('fBody').innerHTML = h;
 }
 renderFantasy();
