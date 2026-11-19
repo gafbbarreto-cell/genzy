@@ -501,12 +501,6 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
       <div class="eyebrow">Elenco 2027</div>
       <h2 id="t-atl">Atletas</h2>
       <p class="sub">Os perfis dos atletas da temporada 2027, com o que cada um fez em 2026.</p>
-      <div class="controls">
-        <div class="hsw" role="group" aria-label="Liga" id="pLiga">
-          <button type="button" data-l="A" aria-pressed="true">Liga A</button>
-          <button type="button" data-l="B" aria-pressed="false">Liga B</button>
-        </div>
-      </div>
       <div class="prof-grid" id="pBody"></div>
     </section>
 
@@ -1001,7 +995,6 @@ const PERFIL = {
   'Barretini':['Fe Barreto',null,null,null,[]]
 };
 const ATLETAS_F = ['Jasmine Paulinha','Bibiga','Malu','Sabaliuka','Ribakinha'];
-let pLiga = 'A';
 function dados2026(n){
   if (!n) return null;
   const o = {};
@@ -1010,8 +1003,7 @@ function dados2026(n){
   return o;
 }
 function renderAtletas(){
-  document.querySelectorAll('#pLiga button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === pLiga ? 'true' : 'false'));
-  const ps = TEMPORADA[pLiga].players.slice().sort((x, y) => x[0].localeCompare(y[0], 'pt-BR'));
+  const ps = ['A','B'].flatMap(L => TEMPORADA[L].players.map(p => [p[0], p[1], L])).sort((x, y) => x[0].localeCompare(y[0], 'pt-BR'));
   $('pBody').innerHTML = ps.map(p => {
     const P = PERFIL[p[0]] || [null,null,null,null,[]], d = dados2026(P[0]) || {}, fem = ATLETAS_F.indexOf(p[0]) >= 0;
     const bd = [];
@@ -1023,13 +1015,12 @@ function renderAtletas(){
     cards.push(d.lg ? '<div><div class="k">League 2026</div><div class="v">' + d.lg.pos + 'º · Liga ' + d.lg.liga + '</div><div class="w">' + d.lg.pts + ' pts · ' + d.lg.v + ' vitórias · saldo ' + sg(d.lg.sg) + '</div></div>' : '<div><div class="k">League 2026</div><div class="v">Estreia</div><div class="w">Primeira temporada em 2027</div></div>');
     cards.push('<div><div class="k">Finals 2026</div><div class="v">' + (P[3] ? comTaca(P[3]) : '—') + '</div><div class="w">' + (P[3] ? 'GEN ZY Finals' : 'Não disputou') + '</div></div>');
     cards.push('<div><div class="k">Fantasy 2026</div><div class="v">' + (d.fan ? d.fan.pos + 'º' : '—') + '</div><div class="w">' + (d.fan ? d.fan.ac + ' acertos · ' + d.fan.pct + '%' : 'Não participou') + '</div></div>');
-    return '<details class="prof' + (pLiga === 'B' ? ' b' : '') + '"><summary>' + (P[5] ? '<img class="ph" src="fotos/' + P[5] + '.jpg" alt="" loading="lazy" width="240" height="300">' : '<span class="ini">' + esc(p[0].charAt(0)) + '</span>') + '<span class="nm"><b>' + esc(p[0]) + '</b><small>' + esc(p[1]) + '</small></span>' + (tr ? '<span class="cups2" title="Títulos em 2026">🏆 ' + tr + '</span>' : '') + '<span class="chev" aria-hidden="true">+</span></summary><div class="in">' +
+    return '<details class="prof' + (p[2] === 'B' ? ' b' : '') + '"><summary>' + (P[5] ? '<img class="ph" src="fotos/' + P[5] + '.jpg" alt="" loading="lazy" width="240" height="300">' : '<span class="ini">' + esc(p[0].charAt(0)) + '</span>') + '<span class="nm"><b>' + esc(p[0]) + '</b><small>' + esc(p[1]) + ' · Liga ' + p[2] + '</small></span>' + (tr ? '<span class="cups2" title="Títulos em 2026">🏆 ' + tr + '</span>' : '') + '<span class="chev" aria-hidden="true">+</span></summary><div class="in">' +
       (P[1] ? '<p class="bio">' + esc(P[1]) + '</p>' : '<p class="bio tbd">Perfil em construção.</p>') +
       ((bd.length || P[2]) ? '<div class="badges">' + bd.map(b => '<span class="badge' + b[1] + '">' + comTaca(esc(b[0])) + '</span>').join('') + (P[2] ? '<span class="badge soft">Melhor do grupo em ' + esc(P[2]) + '</span>' : '') + '</div>' : '') +
       '<div class="pstats">' + cards.join('') + '</div></div></details>';
   }).join('');
 }
-document.querySelectorAll('#pLiga button').forEach(b => b.addEventListener('click', () => { pLiga = b.dataset.l; renderAtletas(); }));
 renderAtletas();
 
 // ---------- Navegação ----------
