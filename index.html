@@ -981,7 +981,7 @@ renderFantasy();
 // Destaques de Liga (1º, 2º, 3º) e Finals (campeão, vice, finalista) são gerados automaticamente. Sem frase = perfil em construção.
 const PERFIL = {
   'Fogninhos':['Marquinhos Leite','Campeão da Liga A com 48 pontos e dono do melhor jogo de fundo do grupo. No Finals, fechou a dobradinha com a Titanium sem perder um set.','Jogo de Fundo · 4,8','Campeão Titanium',['Campeão Fantasy 2026'],'fogninhos'],
-  'Gawrinka':['Ga Barreto','Mais vitórias da Liga A (15), mais games ganhos e o melhor atleticismo do grupo. Vice na Liga e na Titanium: em 2026, só o Marquinhos ficou à frente.','Atleticismo · 4,8','Vice Titanium',[],'gawrinka'],
+  'Gawrinka':['Ga Barreto','Mais vitórias em quadra da Liga A (15), mais games ganhos e o melhor atleticismo do grupo. Vice na Liga e na Titanium: em 2026, só o Marquinhos ficou à frente.','Atleticismo · 4,8','Vice Titanium',[],'gawrinka'],
   'Marco Cobolli':['Marco Cappanari','Primeiro na rede, com o voleio e smash mais bem avaliados. Pódio na Liga A e campeão da Ouro, fechando a final no super tie-break.','Voleio e Smash · 4,9','Campeão Ouro',['2º Fantasy 2026'],'marco-cobolli'],
   'Lufederer':['Lufe Almeida','Jogo pesado de fundo, 4º na Liga A e 2º do Grupo Saguí. Caiu na semifinal da Titanium contra o Ga, no super tie-break por 13-11.',null,'Semifinal Titanium',[],'lufederer'],
   'JP7':['JP Maciel','Golfista e voleador nato. Protagonizou a maior zebra do Fantasy ao vencer o Rafa na Liga e chegou à semifinal da Ouro.',null,'Semifinal Ouro',[],'jp7'],
@@ -1025,6 +1025,9 @@ function renderAtletas(){
     const MED = ['🏆','🥈','🥉'], selos = []; // Campeão da Liga = troféu; 🥇 fica para a taça Ouro
     if (d.lg && d.lg.pos <= 3){ selos.push([MED[d.lg.pos-1], bd[0][0]]); bd[0][0] = MED[d.lg.pos-1] + ' ' + bd[0][0]; }
     if (P[3] && /^(Campe|Vice|Finalista)/.test(P[3])){ const tc = P[3].split(' ').pop(); selos.push([TACA_EMO[tc], P[3] + ' 2026']); }
+    // Cavalos preferidos e cavalinhos estratégicos do Fantasy 2026
+    FAN.cavalos.forEach((c, k) => { if (c[0] === P[0]){ selos.push(['🐴', (k+1) + 'º cavalo preferido do Fantasy 2026']); bd.push(['🐴 ' + (k+1) + 'º cavalo preferido 2026', ' mid']); } });
+    FAN.cavalinhos.forEach((c, k) => { if (c[0] === P[0]){ selos.push(['🐴', (k+1) + 'º cavalinho estratégico do Fantasy 2026']); bd.push(['🐴 ' + (k+1) + 'º cavalinho estratégico 2026', ' mid']); } });
     if (d.fan && d.fan.pos <= 3){ selos.push(['{G' + Math.min(d.fan.pos, 2) + '}', (d.fan.pos === 1 ? 'Campeão' : d.fan.pos + 'º') + ' Fantasy 2026']); bd.forEach(b => { if (/Fantasy/.test(b[0])) b[0] = '{G' + Math.min(d.fan.pos, 2) + '} ' + b[0]; }); }
     const cards = [];
     cards.push(d.lg ? '<div><div class="k">League 2026</div><div class="v">' + d.lg.pos + 'º · Liga ' + d.lg.liga + '</div><div class="w">' + d.lg.pts + ' pts · ' + d.lg.v + ' vitórias · saldo ' + sg(d.lg.sg) + '</div></div>' : '<div><div class="k">League 2026</div><div class="v">Estreia</div><div class="w">Primeira temporada em 2027</div></div>');
