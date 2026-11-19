@@ -1006,6 +1006,8 @@ const PERFIL = {
   'Sabaliuka':['Liu Barreto','Campeã da Liga B: assumiu a liderança na rodada 2 e não largou mais. Terminou com o melhor saldo da liga e sem nenhum W.O.',null,null,[],'sabaliuka'],
   'Barretini':['Fe Barreto','Vice da Liga B, sem nenhum W.O. e com mais jogos em quadra da liga (9 de 10). Garantiu o 2º lugar ao vencer a Paulinha no super tie-break, por 10-1.',null,null,[]]
 };
+// Quem ficou noivo: ganha selo 💍, botão e menção no texto do perfil
+const NOIVOS = ['Fogninhos','Bob Shelton','Bibiga','Pablito Alcaraz','Jasmine Paulinha'];
 const ATLETAS_F = ['Jasmine Paulinha','Bibiga','Malu','Sabaliuka','Ribakinha'];
 function dados2026(n){
   if (!n) return null;
@@ -1027,13 +1029,10 @@ function renderAtletas(){
     if (d.lg && d.lg.pos <= 3){ selos.push([MED[d.lg.pos-1], bd[0][0]]); bd[0][0] = MED[d.lg.pos-1] + ' ' + bd[0][0]; }
     if (P[3] && /^(Campe|Vice|Finalista)/.test(P[3])){ const tc = P[3].split(' ').pop(); selos.push([TACA_EMO[tc], P[3] + ' 2026']); }
     // Selos especiais por atleta
-    const ESPECIAIS = {
-      'Ribakinha':[['🤰', 'Teve o Ricardinho durante a temporada 2026']],
-      'Bob Shelton':[['💍', 'Ficou noivo']],
-      'Bibiga':[['💍', 'Ficou noiva']],
-      'Pablito Alcaraz':[['💍', 'Ficou noivo']]
-    };
+    const ESPECIAIS = { 'Ribakinha':[['🤰', 'Teve o Ricardinho durante a temporada 2026']] };
     (ESPECIAIS[p[0]] || []).forEach(x => selos.push(x));
+    const noivo = NOIVOS.indexOf(p[0]) >= 0;
+    if (noivo){ selos.push(['💍', fem ? 'Ficou noiva' : 'Ficou noivo']); bd.push(['💍 ' + (fem ? 'Noiva' : 'Noivo'), ' mid']); }
     // Cavalos preferidos e cavalinhos estratégicos do Fantasy 2026
     FAN.cavalos.forEach((c, k) => { if (c[0] === P[0]){ selos.push(['🐴', (k+1) + 'º cavalo preferido do Fantasy 2026']); bd.push(['🐴 ' + (k+1) + 'º cavalo preferido 2026', ' mid']); } });
     FAN.cavalinhos.forEach((c, k) => { if (c[0] === P[0]){ selos.push(['🐴', (k+1) + 'º cavalinho estratégico do Fantasy 2026']); bd.push(['🐴 ' + (k+1) + 'º cavalinho estratégico 2026', ' mid']); } });
@@ -1043,7 +1042,7 @@ function renderAtletas(){
     cards.push('<div><div class="k">Finals 2026</div><div class="v">' + (P[3] ? comTaca(P[3]) : '—') + '</div><div class="w">' + (P[3] ? 'GEN ZY Finals' : 'Não disputou') + '</div></div>');
     cards.push('<div><div class="k">Fantasy 2026</div><div class="v">' + (d.fan ? d.fan.pos + 'º' : '—') + '</div><div class="w">' + (d.fan ? d.fan.ac + ' acertos · ' + d.fan.pct + '%' : 'Não participou') + '</div></div>');
     return '<details class="prof' + (p[2] === 'B' ? ' b' : '') + '"><summary>' + (P[5] ? '<img class="ph" src="fotos/' + P[5] + '.jpg" alt="" loading="lazy" width="240" height="300">' : '<span class="ini">' + esc(p[0].charAt(0)) + '</span>') + '<span class="nm"><b>' + esc(p[0]) + '</b><small>' + esc(p[1]) + ' · Liga ' + p[2] + '</small></span>' + (selos.length ? '<span class="cups2">' + selos.map(x => '<span class="selo' + (x[2] ? ' ' + x[2] : '') + '" role="img" title="' + esc(x[1]) + '" aria-label="' + esc(x[1]) + '">' + fantasmaTok(x[0], 20) + '</span>').join('') + '</span>' : '') + '<span class="chev" aria-hidden="true">+</span></summary><div class="in">' +
-      (P[1] ? '<p class="bio">' + esc(P[1]) + '</p>' : '<p class="bio tbd">Perfil em construção.</p>') +
+      (P[1] ? '<p class="bio">' + esc(P[1]) + (noivo ? ' Fora das quadras, ficou ' + (fem ? 'noiva' : 'noivo') + '. 💍' : '') + '</p>' : '<p class="bio tbd">Perfil em construção.</p>') +
       ((bd.length || P[2]) ? '<div class="badges">' + bd.map(b => '<span class="badge' + b[1] + '">' + fantasmaTok(comTaca(esc(b[0])), 14) + '</span>').join('') + (P[2] ? '<span class="badge soft">Melhor do grupo em ' + esc(P[2]) + '</span>' : '') + '</div>' : '') +
       '<div class="pstats">' + cards.join('') + '</div></div></details>';
   }).join('');
