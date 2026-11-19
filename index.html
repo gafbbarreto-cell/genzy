@@ -218,6 +218,8 @@ tr.podrow td{background:#FFF8DC}
 .podium.graded .pod.p3{height:144px}
 .podium.graded .pod b{font-size:28px}
 .podium.graded .pod .med{font-size:34px}
+.fgh{display:inline-block;vertical-align:-0.2em}
+.pod .med .fgh{vertical-align:middle}
 .pod .med{display:block;font-size:30px;line-height:1;margin-bottom:8px}
 .pod.p1 .med{font-size:38px}
 .fan-podium .pod .med{font-size:30px}
@@ -938,6 +940,21 @@ document.querySelectorAll('#hComp button').forEach(b => b.addEventListener('clic
 document.querySelectorAll('#hLiga button').forEach(b => b.addEventListener('click', () => { hLiga = b.dataset.l; renderHistorico(); }));
 renderHistorico();
 
+// Fantasminha do Fantasy em estilo emoji: dourado (campeão) e prateado (2º)
+const GHOST_COR = { ouro:['#FFF1A8','#F5C518','#C98A00','#9A6A00'], prata:['#FFFFFF','#DDE1E6','#A7AEB8','#7A828D'] };
+function fantasma(cor, px, rotulo){
+  const c = GHOST_COR[cor], id = 'gh-' + cor + '-' + (++fantasma.n); // id único: a mesma página repete o ícone em blocos ocultos
+  return '<svg class="fgh" width="' + px + '" height="' + px + '" viewBox="0 0 64 64" role="img" aria-label="' + (rotulo || 'Fantasminha ' + (cor === 'ouro' ? 'dourado' : 'prateado')) + '">' +
+    '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0" stop-color="' + c[0] + '"/><stop offset=".55" stop-color="' + c[1] + '"/><stop offset="1" stop-color="' + c[2] + '"/></linearGradient></defs>' +
+    '<path d="M32 5C18 5 9 16 9 30v27l7.7-5.5L24 57l8-5.5 8 5.5 7.3-5.5L55 57V30C55 16 46 5 32 5Z" fill="url(#' + id + ')" stroke="' + c[3] + '" stroke-width="2.4" stroke-linejoin="round"/>' +
+    '<ellipse cx="21" cy="17" rx="6" ry="3.5" fill="#fff" opacity=".55" transform="rotate(-25 21 17)"/>' +
+    '<ellipse cx="24" cy="29" rx="4.2" ry="6" fill="#1b1b1b"/><ellipse cx="40" cy="29" rx="4.2" ry="6" fill="#1b1b1b"/>' +
+    '<ellipse cx="32" cy="43" rx="4.5" ry="5.5" fill="#1b1b1b"/></svg>';
+}
+fantasma.n = 0;
+const fantasmaTok = (t, px) => String(t).replace('{G1}', fantasma('ouro', px)).replace('{G2}', fantasma('prata', px));
+const fantasmaDaPos = (pos, px) => fantasma(pos === 1 ? 'ouro' : 'prata', px, pos + 'º lugar no Fantasy');
+
 // ---------- Fantasy ----------
 // Fonte: cerimônia de encerramento 2026. [posição, nome, acertos, % de acerto]
 const FAN = {
@@ -956,9 +973,9 @@ const FAN = {
 function renderFantasy(){
   const R = FAN.ranking, pod = [R[0], R[1], R[2]];
   let h = '<h3 class="hh">Fantasy 2026</h3><div class="hl-grid">' + FAN.numeros.map(n => '<div class="hl"><div class="v">' + n[0] + '</div><div class="w">' + n[1] + '</div></div>').join('') + '</div>';
-  h += '<h3 class="hh">Pódio</h3><div class="podium fan-podium">' + pod.map(r => '<div class="pod p' + (r[0] === 1 ? 1 : 2) + '"><span class="med" role="img" aria-label="' + r[0] + 'º lugar">' + ['🥇','🥈','🥉'][r[0]-1] + '</span><b>' + esc(r[1]) + '</b><span>' + r[2] + ' acertos</span><small>' + r[3] + '% de aproveitamento' + (r[0] === 2 ? ' · empate' : '') + '</small></div>').join('') + '</div>';
+  h += '<h3 class="hh">Pódio</h3><div class="podium fan-podium">' + pod.map(r => '<div class="pod p' + (r[0] === 1 ? 1 : 2) + '"><span class="med">' + fantasmaDaPos(r[0], r[0] === 1 ? 44 : 36) + '</span><b>' + esc(r[1]) + '</b><span>' + r[2] + ' acertos</span><small>' + r[3] + '% de aproveitamento' + (r[0] === 2 ? ' · empate' : '') + '</small></div>').join('') + '</div>';
   h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Participante</th><th scope="col">Acertos</th><th scope="col">%</th></tr></thead><tbody>' +
-    R.map(r => '<tr' + (r[0] <= 3 ? ' class="podrow"' : '') + '><td class="pos"><span' + (r[0] <= 3 ? ' class="top"' : '') + '>' + r[0] + '</span></td><td class="l who"><b>' + esc(r[1]) + (r[0] <= 3 ? ' ' + ['🥇','🥈','🥉'][r[0]-1] : '') + '</b></td><td class="pts">' + r[2] + '</td><td>' + r[3] + '%</td></tr>').join('') + '</tbody></table></div>';
+    R.map(r => '<tr' + (r[0] <= 3 ? ' class="podrow"' : '') + '><td class="pos"><span' + (r[0] <= 3 ? ' class="top"' : '') + '>' + r[0] + '</span></td><td class="l who"><b>' + esc(r[1]) + (r[0] <= 3 ? ' ' + fantasmaDaPos(r[0], 18) : '') + '</b></td><td class="pts">' + r[2] + '</td><td>' + r[3] + '%</td></tr>').join('') + '</tbody></table></div>';
   h += '<h3 class="hh">Os palpites que marcaram</h3><div class="hl-grid"><div class="hl"><div class="k">Torcedora mais fiel</div><div class="v">1 de 16</div><div class="w">Malu Giugni, única a cravar o JP Maciel contra o Rafa</div></div><div class="hl"><div class="k">Zebra da temporada</div><div class="v">94%</div><div class="w">apostaram no Rafa Almeida (15 de 16), mas deu JP Maciel</div></div><div class="hl"><div class="k">Erraram todos</div><div class="v">3 jogos</div><div class="w">em que 100% dos palpites foram no perdedor</div></div></div>';
   h += '<h3 class="hh">Os jogos que enganaram a galera</h3><ul class="mt">' + FAN.enganaram.map(e => '<li><span class="vs"><b>' + esc(e[0]) + '</b><small>' + esc(e[1]) + '</small></span><span class="score">Venceu ' + esc(e[2]) + '</span></li>').join('') + '</ul>';
   h += '<h3 class="hh">🐴 Os cavalos preferidos</h3><div class="hl-grid">' + FAN.cavalos.map((c, k) => '<div class="hl"><div class="k">' + (k+1) + 'º · mais votado</div><div class="v">' + c[1] + ' votos</div><div class="w">' + esc(c[0]) + '</div><small class="dia" style="margin:0">' + Math.round(100 * c[1] / c[2]) + '% dos palpites nos jogos dele · ' + c[3] + '% viraram ponto</small></div>').join('') + '</div>';
@@ -1016,14 +1033,14 @@ function renderAtletas(){
     const MED = ['🏆','🥈','🥉'], selos = []; // Campeão da Liga = troféu; 🥇 fica para a taça Ouro
     if (d.lg && d.lg.pos <= 3){ selos.push([MED[d.lg.pos-1], bd[0][0]]); bd[0][0] = MED[d.lg.pos-1] + ' ' + bd[0][0]; }
     if (P[3] && /^(Campe|Vice|Finalista)/.test(P[3])){ const tc = P[3].split(' ').pop(); selos.push([TACA_EMO[tc], P[3] + ' 2026']); }
-    if (d.fan && d.fan.pos <= 3){ selos.push(['👻', (d.fan.pos === 1 ? 'Campeão' : d.fan.pos + 'º') + ' Fantasy 2026']); bd.forEach(b => { if (/Fantasy/.test(b[0])) b[0] = '👻 ' + b[0]; }); }
+    if (d.fan && d.fan.pos <= 3){ selos.push(['{G' + Math.min(d.fan.pos, 2) + '}', (d.fan.pos === 1 ? 'Campeão' : d.fan.pos + 'º') + ' Fantasy 2026']); bd.forEach(b => { if (/Fantasy/.test(b[0])) b[0] = '{G' + Math.min(d.fan.pos, 2) + '} ' + b[0]; }); }
     const cards = [];
     cards.push(d.lg ? '<div><div class="k">League 2026</div><div class="v">' + d.lg.pos + 'º · Liga ' + d.lg.liga + '</div><div class="w">' + d.lg.pts + ' pts · ' + d.lg.v + ' vitórias · saldo ' + sg(d.lg.sg) + '</div></div>' : '<div><div class="k">League 2026</div><div class="v">Estreia</div><div class="w">Primeira temporada em 2027</div></div>');
     cards.push('<div><div class="k">Finals 2026</div><div class="v">' + (P[3] ? comTaca(P[3]) : '—') + '</div><div class="w">' + (P[3] ? 'GEN ZY Finals' : 'Não disputou') + '</div></div>');
     cards.push('<div><div class="k">Fantasy 2026</div><div class="v">' + (d.fan ? d.fan.pos + 'º' : '—') + '</div><div class="w">' + (d.fan ? d.fan.ac + ' acertos · ' + d.fan.pct + '%' : 'Não participou') + '</div></div>');
-    return '<details class="prof' + (p[2] === 'B' ? ' b' : '') + '"><summary>' + (P[5] ? '<img class="ph" src="fotos/' + P[5] + '.jpg" alt="" loading="lazy" width="240" height="300">' : '<span class="ini">' + esc(p[0].charAt(0)) + '</span>') + '<span class="nm"><b>' + esc(p[0]) + '</b><small>' + esc(p[1]) + ' · Liga ' + p[2] + '</small></span>' + (selos.length ? '<span class="cups2">' + selos.map(x => '<span class="selo' + (x[2] ? ' ' + x[2] : '') + '" role="img" title="' + esc(x[1]) + '" aria-label="' + esc(x[1]) + '">' + x[0] + '</span>').join('') + '</span>' : '') + '<span class="chev" aria-hidden="true">+</span></summary><div class="in">' +
+    return '<details class="prof' + (p[2] === 'B' ? ' b' : '') + '"><summary>' + (P[5] ? '<img class="ph" src="fotos/' + P[5] + '.jpg" alt="" loading="lazy" width="240" height="300">' : '<span class="ini">' + esc(p[0].charAt(0)) + '</span>') + '<span class="nm"><b>' + esc(p[0]) + '</b><small>' + esc(p[1]) + ' · Liga ' + p[2] + '</small></span>' + (selos.length ? '<span class="cups2">' + selos.map(x => '<span class="selo' + (x[2] ? ' ' + x[2] : '') + '" role="img" title="' + esc(x[1]) + '" aria-label="' + esc(x[1]) + '">' + fantasmaTok(x[0], 20) + '</span>').join('') + '</span>' : '') + '<span class="chev" aria-hidden="true">+</span></summary><div class="in">' +
       (P[1] ? '<p class="bio">' + esc(P[1]) + '</p>' : '<p class="bio tbd">Perfil em construção.</p>') +
-      ((bd.length || P[2]) ? '<div class="badges">' + bd.map(b => '<span class="badge' + b[1] + '">' + comTaca(esc(b[0])) + '</span>').join('') + (P[2] ? '<span class="badge soft">Melhor do grupo em ' + esc(P[2]) + '</span>' : '') + '</div>' : '') +
+      ((bd.length || P[2]) ? '<div class="badges">' + bd.map(b => '<span class="badge' + b[1] + '">' + fantasmaTok(comTaca(esc(b[0])), 14) + '</span>').join('') + (P[2] ? '<span class="badge soft">Melhor do grupo em ' + esc(P[2]) + '</span>' : '') + '</div>' : '') +
       '<div class="pstats">' + cards.join('') + '</div></div></details>';
   }).join('');
 }
