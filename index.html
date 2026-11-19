@@ -940,18 +940,10 @@ document.querySelectorAll('#hComp button').forEach(b => b.addEventListener('clic
 document.querySelectorAll('#hLiga button').forEach(b => b.addEventListener('click', () => { hLiga = b.dataset.l; renderHistorico(); }));
 renderHistorico();
 
-// Fantasminha do Fantasy em estilo emoji: dourado (campeão) e prateado (2º)
-const GHOST_COR = { ouro:['#FFF1A8','#F5C518','#C98A00','#9A6A00'], prata:['#FFFFFF','#DDE1E6','#A7AEB8','#7A828D'] };
+// Fantasminha do GEN ZY Fantasy (logo da apresentação 2026): dourado (campeão) e prateado (2º)
 function fantasma(cor, px, rotulo){
-  const c = GHOST_COR[cor], id = 'gh-' + cor + '-' + (++fantasma.n); // id único: a mesma página repete o ícone em blocos ocultos
-  return '<svg class="fgh" width="' + px + '" height="' + px + '" viewBox="0 0 64 64" role="img" aria-label="' + (rotulo || 'Fantasminha ' + (cor === 'ouro' ? 'dourado' : 'prateado')) + '">' +
-    '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0" stop-color="' + c[0] + '"/><stop offset=".55" stop-color="' + c[1] + '"/><stop offset="1" stop-color="' + c[2] + '"/></linearGradient></defs>' +
-    '<path d="M32 5C18 5 9 16 9 30v27l7.7-5.5L24 57l8-5.5 8 5.5 7.3-5.5L55 57V30C55 16 46 5 32 5Z" fill="url(#' + id + ')" stroke="' + c[3] + '" stroke-width="2.4" stroke-linejoin="round"/>' +
-    '<ellipse cx="21" cy="17" rx="6" ry="3.5" fill="#fff" opacity=".55" transform="rotate(-25 21 17)"/>' +
-    '<ellipse cx="24" cy="29" rx="4.2" ry="6" fill="#1b1b1b"/><ellipse cx="40" cy="29" rx="4.2" ry="6" fill="#1b1b1b"/>' +
-    '<ellipse cx="32" cy="43" rx="4.5" ry="5.5" fill="#1b1b1b"/></svg>';
+  return '<img class="fgh" src="icones/fantasma-' + cor + '.png" width="' + px + '" height="' + px + '" alt="' + (rotulo || 'Fantasminha ' + (cor === 'ouro' ? 'dourado' : 'prateado')) + '">';
 }
-fantasma.n = 0;
 const fantasmaTok = (t, px) => String(t).replace('{G1}', fantasma('ouro', px)).replace('{G2}', fantasma('prata', px));
 const fantasmaDaPos = (pos, px) => fantasma(pos === 1 ? 'ouro' : 'prata', px, pos + 'º lugar no Fantasy');
 
