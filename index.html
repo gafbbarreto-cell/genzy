@@ -997,7 +997,7 @@ const PERFIL = {
   'Casper Du':['Edu Gomez','Abriu a Liga A na liderança e brilhou mesmo nos palpites: vice-campeão do Fantasy, com 86 acertos, e um dos vencedores da rodada 6.',null,null,['2º Fantasy 2026']],
   'Coach Carter':['Steven Carter','Presença perfeita: não deu nenhum W.O. em 2026. Aprontou uma das zebras da temporada ao vencer o JP Almeida num jogo em que todos os palpites estavam contra ele.',null,null,[]],
   'Be Minaur':['B Lopes','Especialista em jogo longo: disputou 4 super tie-breaks na Liga A, incluindo o 10-7 sobre o Sami que decidiu o 10º lugar. No Fantasy, foi um dos cavalinhos estratégicos.',null,null,[]],
-  'Ribakinha':['Quinha Kleinert','Encarou a Liga A em 2026 e mostrou faro nos palpites: 81% de acerto no Fantasy, um dos melhores aproveitamentos do grupo.',null,null,[]],
+  'Ribakinha':['Quinha Kleinert','Encarou a Liga A em 2026 grávida e teve o Ricardinho durante a temporada. Nos palpites, mostrou faro: 81% de acerto no Fantasy, um dos melhores aproveitamentos do grupo.',null,null,[]],
   'Fedal':[null,'Estreante: chega em 2027 para a primeira temporada na Liga A.',null,null,[]],
   'Jasmine Paulinha':['Paulinha Pimentel','Pódio na Liga B e uma das atletas mais focadas do grupo. Abriu a Liga B na liderança e chegou à semifinal da Marley.',null,'Semifinal Marley',[],'jasmine-paulinha'],
   'Bibiga':['Bibi Almeida','Foco e cabeça fria do começo ao fim: campeã da Marley, com 6-3 / 7-6 na final.',null,'Campeã Marley',[],'bibiga'],
@@ -1027,7 +1027,7 @@ function renderAtletas(){
     if (d.lg && d.lg.pos <= 3){ selos.push([MED[d.lg.pos-1], bd[0][0]]); bd[0][0] = MED[d.lg.pos-1] + ' ' + bd[0][0]; }
     if (P[3] && /^(Campe|Vice|Finalista)/.test(P[3])){ const tc = P[3].split(' ').pop(); selos.push([TACA_EMO[tc], P[3] + ' 2026']); }
     // Selos especiais por atleta
-    const ESPECIAIS = { 'Ribakinha':[['🤰', 'Virou mãe durante a temporada 2026']] };
+    const ESPECIAIS = { 'Ribakinha':[['🤰', 'Teve o Ricardinho durante a temporada 2026']] };
     (ESPECIAIS[p[0]] || []).forEach(x => selos.push(x));
     // Cavalos preferidos e cavalinhos estratégicos do Fantasy 2026
     FAN.cavalos.forEach((c, k) => { if (c[0] === P[0]){ selos.push(['🐴', (k+1) + 'º cavalo preferido do Fantasy 2026']); bd.push(['🐴 ' + (k+1) + 'º cavalo preferido 2026', ' mid']); } });
