@@ -258,7 +258,9 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
 .prof .nm{min-width:0;flex:1}
 .prof .nm b{display:block;font-family:var(--f-display);font-weight:400;font-size:22px;line-height:1.05;text-transform:uppercase}
 .prof .nm small{display:block;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.prof .cups2{flex:none;font-size:13px;font-weight:700;white-space:nowrap}
+.prof .cups2{flex:none;display:flex;gap:4px;white-space:nowrap}
+.prof .selo{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--mist);border:1px solid var(--line);font-size:16px;line-height:1}
+.prof .selo.f{background:var(--ink);border-color:var(--ink)}
 .prof .chev{flex:none;font-family:var(--f-display);font-size:20px;transition:transform .15s}
 .prof[open] .chev{transform:rotate(45deg)}
 .prof .in{padding:0 16px 16px;border-top:1px solid var(--line)}
@@ -1010,12 +1012,16 @@ function renderAtletas(){
     if (d.lg && d.lg.pos <= 3) bd.push([d.lg.pos === 1 ? (fem ? 'Campeã' : 'Campeão') + ' Liga ' + d.lg.liga + ' 2026' : (d.lg.pos === 2 ? 'Vice Liga ' : '3º lugar Liga ') + d.lg.liga + ' 2026', d.lg.pos === 1 ? '' : ' mid']);
     if (P[3] && /^(Campe|Vice|Finalista)/.test(P[3])) bd.push([P[3] + ' 2026', /^Campe/.test(P[3]) ? '' : ' mid']);
     P[4].forEach(t => bd.push([t, /^Campe/.test(t) ? '' : ' mid']));
-    const tr = bd.filter(b => /^Campe/.test(b[0])).length;
+    // Selos: medalha do pódio da Liga, taça do Finals (campeão, vice ou finalista) e fantasminha do pódio do Fantasy
+    const MED = ['🥇','🥈','🥉'], selos = [];
+    if (d.lg && d.lg.pos <= 3){ selos.push([MED[d.lg.pos-1], bd[0][0]]); bd[0][0] = MED[d.lg.pos-1] + ' ' + bd[0][0]; }
+    if (P[3] && /^(Campe|Vice|Finalista)/.test(P[3])){ const tc = P[3].split(' ').pop(); selos.push([TACA_EMO[tc], P[3] + ' 2026', 'f']); }
+    if (d.fan && d.fan.pos <= 3){ selos.push(['👻', (d.fan.pos === 1 ? 'Campeão' : d.fan.pos + 'º') + ' Fantasy 2026']); bd.forEach(b => { if (/Fantasy/.test(b[0])) b[0] = '👻 ' + b[0]; }); }
     const cards = [];
     cards.push(d.lg ? '<div><div class="k">League 2026</div><div class="v">' + d.lg.pos + 'º · Liga ' + d.lg.liga + '</div><div class="w">' + d.lg.pts + ' pts · ' + d.lg.v + ' vitórias · saldo ' + sg(d.lg.sg) + '</div></div>' : '<div><div class="k">League 2026</div><div class="v">Estreia</div><div class="w">Primeira temporada em 2027</div></div>');
     cards.push('<div><div class="k">Finals 2026</div><div class="v">' + (P[3] ? comTaca(P[3]) : '—') + '</div><div class="w">' + (P[3] ? 'GEN ZY Finals' : 'Não disputou') + '</div></div>');
     cards.push('<div><div class="k">Fantasy 2026</div><div class="v">' + (d.fan ? d.fan.pos + 'º' : '—') + '</div><div class="w">' + (d.fan ? d.fan.ac + ' acertos · ' + d.fan.pct + '%' : 'Não participou') + '</div></div>');
-    return '<details class="prof' + (p[2] === 'B' ? ' b' : '') + '"><summary>' + (P[5] ? '<img class="ph" src="fotos/' + P[5] + '.jpg" alt="" loading="lazy" width="240" height="300">' : '<span class="ini">' + esc(p[0].charAt(0)) + '</span>') + '<span class="nm"><b>' + esc(p[0]) + '</b><small>' + esc(p[1]) + ' · Liga ' + p[2] + '</small></span>' + (tr ? '<span class="cups2" title="Títulos em 2026">🏆 ' + tr + '</span>' : '') + '<span class="chev" aria-hidden="true">+</span></summary><div class="in">' +
+    return '<details class="prof' + (p[2] === 'B' ? ' b' : '') + '"><summary>' + (P[5] ? '<img class="ph" src="fotos/' + P[5] + '.jpg" alt="" loading="lazy" width="240" height="300">' : '<span class="ini">' + esc(p[0].charAt(0)) + '</span>') + '<span class="nm"><b>' + esc(p[0]) + '</b><small>' + esc(p[1]) + ' · Liga ' + p[2] + '</small></span>' + (selos.length ? '<span class="cups2">' + selos.map(x => '<span class="selo' + (x[2] ? ' ' + x[2] : '') + '" role="img" title="' + esc(x[1]) + '" aria-label="' + esc(x[1]) + '">' + x[0] + '</span>').join('') + '</span>' : '') + '<span class="chev" aria-hidden="true">+</span></summary><div class="in">' +
       (P[1] ? '<p class="bio">' + esc(P[1]) + '</p>' : '<p class="bio tbd">Perfil em construção.</p>') +
       ((bd.length || P[2]) ? '<div class="badges">' + bd.map(b => '<span class="badge' + b[1] + '">' + comTaca(esc(b[0])) + '</span>').join('') + (P[2] ? '<span class="badge soft">Melhor do grupo em ' + esc(P[2]) + '</span>' : '') + '</div>' : '') +
       '<div class="pstats">' + cards.join('') + '</div></div></details>';
