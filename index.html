@@ -210,9 +210,15 @@ h3.hh::after{content:"";flex:1;height:2px;background:var(--line)}
 .fmt small{display:block;color:var(--muted);font-size:14px}
 table.htab{min-width:0}
 table.htab col.c-w{width:96px}
-.podium.graded .pod.p2{padding-block:20px 16px}
-.podium.graded .pod.p2 b{font-size:29px}
-.podium.graded{grid-template-columns:1.15fr 1.06fr 1fr}
+td.pos span.top{background:var(--yellow);border-radius:6px;padding:2px 9px}
+/* Pódio em degraus iguais: mesma diferença de largura e de altura (16px) entre as caixas */
+.podium.graded{grid-template-columns:1.14fr 1.07fr 1fr}
+.podium.graded .pod{display:flex;flex-direction:column;justify-content:center;padding-block:0}
+.podium.graded .pod.p1{height:176px}
+.podium.graded .pod.p2{height:160px}
+.podium.graded .pod.p3{height:144px}
+.podium.graded .pod b{font-size:28px}
+.podium.graded .pod .med{font-size:34px}
 .pod .med{display:block;font-size:30px;line-height:1;margin-bottom:8px}
 .pod.p1 .med{font-size:38px}
 .fan-podium .pod .med{font-size:30px}
@@ -911,9 +917,9 @@ function renderHistorico(){
   if (hComp === 'league'){
     const L = HIST.league[hLiga], t = L.tabela;
     h += '<div class="facts">' + L.info.map(x => '<span class="fact">' + x + '</span>').join('') + '</div>';
-    h += '<h3 class="hh">Pódio</h3><div class="podium graded">' + [0,1,2].map(k => '<div class="pod p' + (k+1) + '"><span class="med" aria-hidden="true">' + ['🥇','🥈','🥉'][k] + '</span><span class="pos">' + (k+1) + 'º</span><b>' + esc(t[k][0]) + '</b><span>' + t[k][1] + ' pts</span><small>' + vitTot(t[k]) + ' vitórias · saldo ' + sg(t[k][4]) + '</small></div>').join('') + '</div>';
+    h += '<h3 class="hh">Pódio</h3><div class="podium graded">' + [0,1,2].map(k => '<div class="pod p' + (k+1) + '"><span class="med" role="img" aria-label="' + (k+1) + 'º lugar">' + ['🥇','🥈','🥉'][k] + '</span><b>' + esc(t[k][0]) + '</b><span>' + t[k][1] + ' pts</span><small>' + vitTot(t[k]) + ' vitórias · saldo ' + sg(t[k][4]) + '</small></div>').join('') + '</div>';
     h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-w"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Atleta</th><th scope="col"><abbr title="Pontos">P</abbr></th><th scope="col"><abbr title="Jogos">J</abbr></th><th scope="col"><abbr title="Vitórias">V</abbr></th><th scope="col"><abbr title="Vitórias sem W.O.">V sem WO</abbr></th><th scope="col"><abbr title="Saldo de games">SG</abbr></th></tr></thead><tbody>' +
-      t.map((r, k) => '<tr><td class="pos"><span>' + (k+1) + '</span></td><td class="l who"><b>' + (k < 3 ? ['🥇','🥈','🥉'][k] + ' ' : '') + esc(r[0]) + '</b></td><td class="pts">' + r[1] + '</td><td>' + r[2] + '</td><td>' + vitTot(r) + '</td><td>' + r[3] + '</td><td class="sg">' + sg(r[4]) + '</td></tr>').join('') + '</tbody></table></div>';
+      t.map((r, k) => '<tr><td class="pos"><span' + (k < 3 ? ' class="top"' : '') + '>' + (k+1) + '</span></td><td class="l who"><b>' + esc(r[0]) + (k < 3 ? ' ' + ['🥇','🥈','🥉'][k] : '') + '</b></td><td class="pts">' + r[1] + '</td><td>' + r[2] + '</td><td>' + vitTot(r) + '</td><td>' + r[3] + '</td><td class="sg">' + sg(r[4]) + '</td></tr>').join('') + '</tbody></table></div>';
     h += '<h3 class="hh">Destaques</h3><div class="hl-grid">' + L.destaques.map(d => '<div class="hl"><div class="k">' + d[0] + '</div><div class="v">' + d[1] + '</div><div class="w">' + esc(d[2]) + '</div></div>').join('') + '</div>';
   } else {
     const F = HIST.finals;
