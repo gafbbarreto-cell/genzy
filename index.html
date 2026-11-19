@@ -173,7 +173,7 @@ footer .wrap{padding-block:18px 28px;font-size:13px;color:var(--muted);display:f
 .hsw button:focus-visible{outline:3px solid var(--yellow);outline-offset:-3px}
 h3.hh{font-family:var(--f-display);font-weight:400;font-size:28px;line-height:1;text-transform:uppercase;margin:34px 0 14px;display:flex;align-items:center;gap:14px}
 h3.hh::after{content:"";flex:1;height:2px;background:var(--line)}
-.podium{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:12px;align-items:end}
+.podium{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:12px;align-items:end}
 .pod{border:2px solid var(--ink);border-radius:10px;padding:16px 16px 14px;text-align:center;background:var(--paper)}
 .pod.p1{background:var(--yellow);padding-block:26px 20px}
 .pod .pos{display:inline-block;font-family:var(--f-display);font-size:18px;background:var(--ink);color:var(--yellow);border-radius:6px;padding:3px 10px 1px}
@@ -450,7 +450,7 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
     <section id="v-historico" aria-labelledby="t-his" hidden>
       <div class="eyebrow">Temporada 2026</div>
       <h2 id="t-his">Histórico</h2>
-      <p class="sub">Como foi a temporada 2026 da GEN ZY: a League de pontos corridos e o Finals de fim de ano.</p>
+      <p class="sub">Como foi a temporada 2026 da GEN ZY: a League e o Finals.</p>
       <div class="controls">
         <div class="hsw" role="group" aria-label="Competição" id="hComp">
           <button type="button" data-h="league" aria-pressed="true">League</button>
@@ -856,7 +856,7 @@ $('rVerCls').addEventListener('click', () => { $('rOk').classList.remove('on'); 
 
 // ---------- Histórico ----------
 // Fonte: cerimônia de encerramento GEN ZY 2026 (pontuação final em 21/10/2026).
-// Em 2026: vitória = 3 pontos, W.O. = 2 pontos. V = vitórias sem W.O. ◆ = posição definida por desempate.
+// Em 2026: vitória = 3 pontos, W.O. = 2 pontos. V = vitórias sem W.O.
 const HIST = {
   league:{
     A:{ info:['18 atletas','9 rodadas'], tabela:[
@@ -894,10 +894,10 @@ function renderHistorico(){
   if (hComp === 'league'){
     const L = HIST.league[hLiga], t = L.tabela;
     h += '<div class="facts">' + L.info.map(x => '<span class="fact">' + x + '</span>').join('') + '</div>';
-    h += '<h3 class="hh">Pódio</h3><div class="podium">' + [1,0,2].map(k => '<div class="pod p' + (k+1) + '"><span class="pos">' + (k+1) + 'º</span><b>' + esc(t[k][0]) + '</b><span>' + t[k][1] + ' pts</span><small>' + t[k][3] + ' vitórias · saldo ' + sg(t[k][4]) + '</small></div>').join('') + '</div>';
+    h += '<h3 class="hh">Pódio</h3><div class="podium">' + [0,1,2].map(k => '<div class="pod p' + (k+1) + '"><span class="pos">' + (k+1) + 'º</span><b>' + esc(t[k][0]) + '</b><span>' + t[k][1] + ' pts</span><small>' + t[k][3] + ' vitórias · saldo ' + sg(t[k][4]) + '</small></div>').join('') + '</div>';
     h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Atleta</th><th scope="col"><abbr title="Pontos">P</abbr></th><th scope="col"><abbr title="Jogos">J</abbr></th><th scope="col"><abbr title="Vitórias sem W.O.">V</abbr></th><th scope="col"><abbr title="Saldo de games">SG</abbr></th></tr></thead><tbody>' +
-      t.map((r, k) => '<tr><td class="pos"><span>' + (k+1) + '</span></td><td class="l who"><b>' + esc(r[0]) + (r[5] ? '<span class="dia" title="Posição definida por desempate">◆</span>' : '') + '</b></td><td class="pts">' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td><td class="sg">' + sg(r[4]) + '</td></tr>').join('') + '</tbody></table></div>';
-    h += '<p class="legend2">Pontuação final em 21/10/2026. Em 2026, vitória valia 3 pontos e W.O. 2 pontos. V: vitórias sem W.O. ◆ posição definida por desempate (confronto direto ou saldo de games).</p>';
+      t.map((r, k) => '<tr><td class="pos"><span>' + (k+1) + '</span></td><td class="l who"><b>' + esc(r[0]) + '' + '</b></td><td class="pts">' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td><td class="sg">' + sg(r[4]) + '</td></tr>').join('') + '</tbody></table></div>';
+    h += '<p class="legend2">Pontuação final em 21/10/2026. Em 2026, vitória valia 3 pontos e W.O. 2 pontos. V: vitórias sem W.O.</p>';
     h += '<h3 class="hh">Destaques</h3><div class="hl-grid">' + L.destaques.map(d => '<div class="hl"><div class="k">' + d[0] + '</div><div class="v">' + d[1] + '</div><div class="w">' + esc(d[2]) + '</div></div>').join('') + '</div>';
   } else {
     const F = HIST.finals;
@@ -934,7 +934,7 @@ const FAN = {
   rodadas:[[1,240,'Marquinhos Leite'],[2,238,'Empate entre 3'],[3,160,'Malu Giugni e JP Almeida'],[4,238,'Empate entre 4'],[5,154,'Raffa Marley'],[6,221,'Du Gomez e JP Almeida'],[7,208,'Marco Cappanari'],[8,112,'Empate entre 6'],[9,48,'Empate entre 5']]
 };
 function renderFantasy(){
-  const R = FAN.ranking, pod = [R[1], R[0], R[2]];
+  const R = FAN.ranking, pod = [R[0], R[1], R[2]];
   let h = '<h3 class="hh">Fantasy 2026</h3><div class="hl-grid">' + FAN.numeros.map(n => '<div class="hl"><div class="v">' + n[0] + '</div><div class="w">' + n[1] + '</div></div>').join('') + '</div>';
   h += '<h3 class="hh">Pódio</h3><div class="podium fan-podium">' + pod.map(r => '<div class="pod p' + (r[0] === 1 ? 1 : 2) + '"><span class="pos">' + r[0] + 'º</span><b>' + esc(r[1]) + '</b><span>' + r[2] + ' acertos</span><small>' + r[3] + '% de aproveitamento' + (r[0] === 2 ? ' · empate' : '') + '</small></div>').join('') + '</div>';
   h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Participante</th><th scope="col">Acertos</th><th scope="col">%</th></tr></thead><tbody>' +
