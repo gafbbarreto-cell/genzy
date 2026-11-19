@@ -251,6 +251,9 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
 .badges{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
 .badge{display:inline-flex;gap:6px;align-items:center;background:var(--ink);color:var(--yellow);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
 .badge.soft{background:var(--yellow);color:var(--ink)}
+.badge.mid{background:var(--paper);color:var(--ink);border:2px solid var(--ink);padding:3px 10px}
+.prof .ph{flex:none;width:46px;height:56px;border-radius:8px;object-fit:cover;object-position:50% 20%;background:var(--mist);filter:grayscale(1)}
+.prof[open] .ph{width:96px;height:120px}
 .pstats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .pstats > div{background:var(--mist);border:1px solid var(--line);border-radius:8px;padding:12px}
 .pstats .k{font-family:var(--f-display);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
@@ -473,7 +476,7 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
     <section id="v-atletas" aria-labelledby="t-atl" hidden>
       <div class="eyebrow">Elenco 2027</div>
       <h2 id="t-atl">Atletas</h2>
-      <p class="sub">Os perfis dos atletas da temporada 2027, com o que cada um fez em 2026. Toque no nome para abrir.</p>
+      <p class="sub">Os perfis dos atletas da temporada 2027, com o que cada um fez em 2026.</p>
       <div class="controls">
         <div class="hsw" role="group" aria-label="Liga" id="pLiga">
           <button type="button" data-l="A" aria-pressed="true">Liga A</button>
@@ -946,34 +949,35 @@ function renderFantasy(){
 renderFantasy();
 
 // ---------- Atletas ----------
-// Perfil por apelido 2027: [nome usado em 2026, frase do perfil (cerimônia do Finals), destaque no Data Score, resultado no Finals 2026, troféus]
-// Sem frase = perfil em construção.
+// Perfil por apelido 2027: [nome usado em 2026, frase do perfil, destaque no Data Score, resultado no Finals 2026, outros destaques, foto]
+// Destaques de Liga (1º, 2º, 3º) e Finals (campeão, vice, finalista) são gerados automaticamente. Sem frase = perfil em construção.
 const PERFIL = {
-  'Fogninhos':['Marquinhos Leite','Campeão da Liga com 14 vitórias e o melhor jogo de fundo: vem buscar a dobradinha.','Jogo de Fundo · 4,8','Campeão Titanium',['Campeão Liga A 2026','Campeão Titanium 2026','Campeão Fantasy 2026']],
-  'Gawrinka':['Ga Barreto','15 vitórias e o melhor atleticismo: beliscou o troféu da Liga, mas no Finals não deixa escapar.','Atleticismo · 4,8','Vice Titanium',['Vice Liga A 2026']],
-  'Marco Cobolli':['Marco Cappanari','Terceiro na Liga, primeiro na rede: agora vem se provar no mata-mata.','Voleio e Smash · 4,9','Campeão Ouro',['Campeão Ouro 2026','3º Liga A 2026']],
-  'Lufederer':['Lufe Almeida','Chega ao Finals para impor seu jogo pesado de fundo, o segundo melhor avaliado do grupo.',null,'Semifinal Titanium',[]],
-  'JP7':['JP Maciel','Golfista e voleador nato, entra no Finals para incomodar os grandes.',null,'Semifinal Ouro',[]],
-  'Almeidvedev':['Rafa Almeida','O clutch-master da academia, o mental que por si só poderia levar o Finals.','Foco e confiança · 4,6','Vice Ouro',[]],
-  'Filu':['Filu Orra','O saque meteórico mais bem avaliado da academia, vem decidir o Finals no primeiro golpe.','Saque · 4,9','Semifinal Titanium',[]],
-  'Sami':['Sami Orra','Fôlego e carisma de sobra, substitui o trash talk pelo kind talk, desestabilizando os adversários.',null,'Semifinal Ouro',[]],
-  'Bere':['Marcelo Bere','Maratonista experiente, jogador completo que já surpreende em sua primeira temporada.',null,'Finalista Prata',[]],
-  'Jannick':['Nick Gaal','Pratica o tennis endurance. Quem quiser vencê-lo no Finals vai ter que correr.',null,'Semifinal Prata',[]],
-  'John Wick da Guarapiranga':['Nilo Duarte','Equilibra todas as skills de um bom tenista, chega ao Finals apostando no tiro curto.',null,'Semifinal Prata',[]],
-  'Bob Shelton':['Rober Cambur','Físico e saque em alta, desembarca pronto para surpreender no Finals.',null,'Finalista Prata',[]],
+  'Fogninhos':['Marquinhos Leite','Campeão da Liga A com 48 pontos e dono do melhor jogo de fundo do grupo. No Finals, fechou a dobradinha com a Titanium sem perder um set.','Jogo de Fundo · 4,8','Campeão Titanium',['Campeão Fantasy 2026'],'fogninhos'],
+  'Gawrinka':['Ga Barreto','Mais vitórias da Liga A (15), mais games ganhos e o melhor atleticismo do grupo. Vice na Liga e na Titanium: em 2026, só o Marquinhos ficou à frente.','Atleticismo · 4,8','Vice Titanium',[],'gawrinka'],
+  'Marco Cobolli':['Marco Cappanari','Primeiro na rede, com o voleio e smash mais bem avaliados. Pódio na Liga A e campeão da Ouro, fechando a final no super tie-break.','Voleio e Smash · 4,9','Campeão Ouro',['2º Fantasy 2026'],'marco-cobolli'],
+  'Lufederer':['Lufe Almeida','Jogo pesado de fundo, 4º na Liga A e 2º do Grupo Saguí. Caiu na semifinal da Titanium contra o Ga, no super tie-break por 13-11.',null,'Semifinal Titanium',[],'lufederer'],
+  'JP7':['JP Maciel','Golfista e voleador nato. Protagonizou a maior zebra do Fantasy ao vencer o Rafa na Liga e chegou à semifinal da Ouro.',null,'Semifinal Ouro',[],'jp7'],
+  'Almeidvedev':['Rafa Almeida','O clutch-master da academia: rei do super tie-break da Liga, com 4 vencidos em 7. No Finals, foi vice da Ouro em final decidida no super tie-break.','Foco e confiança · 4,6','Vice Ouro',[],'almeidvedev'],
+  'Filu':['Filu Orra','O saque mais bem avaliado da academia. Passou em 2º no Grupo Esquilo e chegou à semifinal da Titanium.','Saque · 4,9','Semifinal Titanium',[],'filu'],
+  'Sami':['Sami Orra','Fôlego e carisma de sobra, trocou o trash talk pelo kind talk. Foi quem mais venceu por W.O. na Liga e chegou à semifinal da Ouro.',null,'Semifinal Ouro',[],'sami'],
+  'Bere':['Marcelo Bere','Maratonista experiente e jogador completo, surpreendeu na primeira temporada: virou a semifinal da Prata no super tie-break (13-11) e decide o título com o Rober.',null,'Finalista Prata',[],'bere'],
+  'Jannick':['Nick Gaal','Pratica o tennis endurance: venceu os 3 jogos do Grupo Quero-quero e só caiu na semifinal da Prata, no super tie-break por 13-11.',null,'Semifinal Prata',[],'jannick'],
+  'John Wick da Guarapiranga':['Nilo Duarte','Equilibra todas as skills de um bom tenista. 2º do Grupo Quero-quero, levou a semifinal da Prata contra o Rober para o super tie-break.',null,'Semifinal Prata',[],'john-wick'],
+  'Bob Shelton':['Rober Cambur','Físico e saque em alta: passou invicto pelo Grupo Capivara, com saldo de +15, e decide a Prata com o Bere.',null,'Finalista Prata',[],'bob-shelton'],
   'Pablito Alcaraz':['JP Almeida',null,null,null,[]],
   'Casper Du':['Edu Gomez',null,null,null,['2º Fantasy 2026']],
   'Coach Carter':['Steven Carter',null,null,null,[]],
   'Be Minaur':['B Lopes',null,null,null,[]],
   'Ribakinha':['Quinha Kleinert',null,null,null,[]],
   'Fedal':[null,null,null,null,[]],
-  'Jasmine Paulinha':['Paulinha Pimentel','Pódio na Liga B e uma das atletas mais focadas do grupo: chega às Finals para brigar por tudo.',null,'Semifinal Marley',['3º Liga B 2026']],
-  'Bibiga':['Bibi Almeida','Bibi vem pro Finals colocando em quadra seu foco e cabeça-fria.',null,'Campeã Marley',['Campeã Marley 2026']],
-  'Malu':['Malu Giugni','Malu chega às Finals com confiança e vontade de surpreender.',null,'Semifinal Marley',[]],
-  'Andy Marley':['Raffa Marley','Uma besta enjaulada, pronta para dar o bote e conquistar a taça que leva seu nome.',null,'Vice Marley',[]],
-  'Sabaliuka':['Liu B.Barreto',null,null,null,['Campeã Liga B 2026']],
-  'Barretini':['Fe Barreto',null,null,null,['Vice Liga B 2026']]
+  'Jasmine Paulinha':['Paulinha Pimentel','Pódio na Liga B e uma das atletas mais focadas do grupo. Abriu a Liga B na liderança e chegou à semifinal da Marley.',null,'Semifinal Marley',[],'jasmine-paulinha'],
+  'Bibiga':['Bibi Almeida','Foco e cabeça fria do começo ao fim: campeã da Marley, com 6-3 / 7-6 na final.',null,'Campeã Marley',[],'bibiga'],
+  'Malu':['Malu Giugni','Chegou ao Finals com confiança e parou na semifinal da Marley, no super tie-break. No Fantasy, foi a única a cravar a zebra do JP Maciel sobre o Rafa.',null,'Semifinal Marley',[],'malu'],
+  'Andy Marley':['Raffa Marley','Uma besta enjaulada que deu o bote: virou a semifinal no super tie-break e chegou à final da taça que leva seu nome.',null,'Vice Marley',[],'andy-marley'],
+  'Sabaliuka':['Liu B.Barreto',null,null,null,[]],
+  'Barretini':['Fe Barreto',null,null,null,[]]
 };
+const ATLETAS_F = ['Jasmine Paulinha','Bibiga','Malu','Sabaliuka','Ribakinha'];
 let pLiga = 'A';
 function dados2026(n){
   if (!n) return null;
@@ -986,14 +990,19 @@ function renderAtletas(){
   document.querySelectorAll('#pLiga button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === pLiga ? 'true' : 'false'));
   const ps = TEMPORADA[pLiga].players.slice().sort((x, y) => x[0].localeCompare(y[0], 'pt-BR'));
   $('pBody').innerHTML = ps.map(p => {
-    const P = PERFIL[p[0]] || [null,null,null,null,[]], d = dados2026(P[0]) || {}, tr = P[4].filter(t => /^Campe/.test(t)).length;
+    const P = PERFIL[p[0]] || [null,null,null,null,[]], d = dados2026(P[0]) || {}, fem = ATLETAS_F.indexOf(p[0]) >= 0;
+    const bd = [];
+    if (d.lg && d.lg.pos <= 3) bd.push([d.lg.pos === 1 ? (fem ? 'Campeã' : 'Campeão') + ' Liga ' + d.lg.liga + ' 2026' : (d.lg.pos === 2 ? 'Vice Liga ' : '3º lugar Liga ') + d.lg.liga + ' 2026', d.lg.pos === 1 ? '' : ' mid']);
+    if (P[3] && /^(Campe|Vice|Finalista)/.test(P[3])) bd.push([P[3] + ' 2026', /^Campe/.test(P[3]) ? '' : ' mid']);
+    P[4].forEach(t => bd.push([t, /^Campe/.test(t) ? '' : ' mid']));
+    const tr = bd.filter(b => /^Campe/.test(b[0])).length;
     const cards = [];
     cards.push(d.lg ? '<div><div class="k">League 2026</div><div class="v">' + d.lg.pos + 'º · Liga ' + d.lg.liga + '</div><div class="w">' + d.lg.pts + ' pts · ' + d.lg.v + ' vitórias · saldo ' + sg(d.lg.sg) + '</div></div>' : '<div><div class="k">League 2026</div><div class="v">Estreia</div><div class="w">Primeira temporada em 2027</div></div>');
     cards.push('<div><div class="k">Finals 2026</div><div class="v">' + (P[3] || '—') + '</div><div class="w">' + (P[3] ? 'GEN ZY Finals' : 'Não disputou') + '</div></div>');
     cards.push('<div><div class="k">Fantasy 2026</div><div class="v">' + (d.fan ? d.fan.pos + 'º' : '—') + '</div><div class="w">' + (d.fan ? d.fan.ac + ' acertos · ' + d.fan.pct + '%' : 'Não participou') + '</div></div>');
-    return '<details class="prof' + (pLiga === 'B' ? ' b' : '') + '"><summary><span class="ini">' + esc(p[0].charAt(0)) + '</span><span class="nm"><b>' + esc(p[0]) + '</b><small>' + esc(p[1]) + '</small></span>' + (tr ? '<span class="cups2" title="Títulos em 2026">🏆 ' + tr + '</span>' : '') + '<span class="chev" aria-hidden="true">+</span></summary><div class="in">' +
+    return '<details class="prof' + (pLiga === 'B' ? ' b' : '') + '"><summary>' + (P[5] ? '<img class="ph" src="fotos/' + P[5] + '.jpg" alt="" loading="lazy" width="240" height="300">' : '<span class="ini">' + esc(p[0].charAt(0)) + '</span>') + '<span class="nm"><b>' + esc(p[0]) + '</b><small>' + esc(p[1]) + '</small></span>' + (tr ? '<span class="cups2" title="Títulos em 2026">🏆 ' + tr + '</span>' : '') + '<span class="chev" aria-hidden="true">+</span></summary><div class="in">' +
       (P[1] ? '<p class="bio">' + esc(P[1]) + '</p>' : '<p class="bio tbd">Perfil em construção.</p>') +
-      ((P[4].length || P[2]) ? '<div class="badges">' + P[4].map(t => '<span class="badge">' + esc(t) + '</span>').join('') + (P[2] ? '<span class="badge soft">Melhor do grupo em ' + esc(P[2]) + '</span>' : '') + '</div>' : '') +
+      ((bd.length || P[2]) ? '<div class="badges">' + bd.map(b => '<span class="badge' + b[1] + '">' + esc(b[0]) + '</span>').join('') + (P[2] ? '<span class="badge soft">Melhor do grupo em ' + esc(P[2]) + '</span>' : '') + '</div>' : '') +
       '<div class="pstats">' + cards.join('') + '</div></div></details>';
   }).join('');
 }
