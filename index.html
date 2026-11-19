@@ -42,8 +42,8 @@ h1 em{display:inline-block;font-style:normal;color:var(--ink);background:var(--y
 
 /* Navegação */
 nav.tabs{position:sticky;top:0;z-index:5;background:var(--ink)}
-nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto}
-nav.tabs button{flex:none;background:none;border:0;color:var(--paper);font-family:var(--f-display);font-size:17px;letter-spacing:.08em;text-transform:uppercase;padding:14px 16px 12px;border-bottom:4px solid transparent;min-height:48px}
+nav.tabs .wrap{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px;overflow-x:auto}
+nav.tabs button{text-align:center;white-space:nowrap;background:none;border:0;color:var(--paper);font-family:var(--f-display);font-size:17px;letter-spacing:.08em;text-transform:uppercase;padding:14px 6px 12px;border-bottom:4px solid transparent;min-height:48px}
 nav.tabs button:hover{color:var(--yellow)}
 nav.tabs button[aria-current=page]{color:var(--yellow);border-bottom-color:var(--yellow)}
 nav.tabs button:focus-visible{outline:3px solid var(--yellow);outline-offset:-3px}
@@ -313,6 +313,7 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
   .games li:nth-child(odd){border-right:0}
   .round .meta{margin-left:0;width:100%}
   .scoregrid{grid-template-columns:minmax(0,1fr) repeat(3,58px);gap:6px}
+  nav.tabs .wrap{grid-auto-columns:136px}
   nav.tabs button{font-size:15px;padding-inline:12px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -340,7 +341,7 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
   <div class="wrap">
     <button type="button" data-view="calendario">Calendário</button>
     <button type="button" data-view="classificacao">Classificação</button>
-    <button type="button" data-view="resultado">Lançar resultado</button>
+    <button type="button" data-view="resultado">Lançar placar</button>
     <button type="button" data-view="historico">Histórico</button>
     <button type="button" data-view="fantasy">Fantasy</button>
     <button type="button" data-view="atletas">Atletas</button>
@@ -403,7 +404,7 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
     <section id="v-resultado" aria-labelledby="t-res" hidden>
       <div id="resBox">
         <div class="eyebrow">Direto da quadra</div>
-        <h2 id="t-res">Lançar resultado</h2>
+        <h2 id="t-res">Lançar placar</h2>
         <p class="sub">Qualquer atleta lança o resultado. A classificação é atualizada na hora.</p>
         <p class="warn">Resultados fraudulentos serão investigados e os responsáveis precisarão defender 5 smashes do Filu.</p>
         <form id="rf" novalidate>
