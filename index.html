@@ -107,7 +107,6 @@ tbody tr:last-child td{border-bottom:0}
 td.pos{font-family:var(--f-display);font-size:18px}
 td.pts{font-weight:700;font-size:17px}
 td.who{white-space:normal}
-tbody tr:first-child td.pos span{background:var(--yellow);border-radius:6px;padding:2px 9px}
 td.who b{display:block;font-weight:700}
 td.who small{display:block;color:var(--muted);font-size:12px}
 td.sg{font-weight:700}
@@ -210,7 +209,7 @@ h3.hh::after{content:"";flex:1;height:2px;background:var(--line)}
 .fmt small{display:block;color:var(--muted);font-size:14px}
 table.htab{min-width:0}
 table.htab col.c-w{width:96px}
-td.pos span.top{background:var(--yellow);border-radius:6px;padding:2px 9px}
+tr.podrow td{background:#FFF8DC}
 /* Pódio em degraus iguais: mesma diferença de largura e de altura (16px) entre as caixas */
 .podium.graded{grid-template-columns:1.14fr 1.07fr 1fr}
 .podium.graded .pod{display:flex;flex-direction:column;justify-content:center;padding-block:0}
@@ -761,7 +760,7 @@ function renderClassificacao(){
   $('clsNote').textContent = nota[0];
   $('clsNote').className = 'loadnote' + (nota[1] ? ' bad' : '');
   $('clsBody').innerHTML = classificacao(liga).map((t, k) =>
-    '<tr><td class="pos"><span>' + (k+1) + '</span></td><td class="l who"><b>' + esc(t.ap) + '</b><small>' + esc(t.nome) + '</small></td><td class="pts">' + t.pts + '</td><td>' + t.j + '</td><td>' + t.v + '</td><td>' + t.vwo + '</td><td>' + t.d + '</td><td class="sg">' + (t.sg > 0 ? '+' : '') + t.sg + '</td></tr>').join('');
+    '<tr' + (k < 3 && t.pts > 0 ? ' class="podrow"' : '') + '><td class="pos"><span>' + (k+1) + '</span></td><td class="l who"><b>' + esc(t.ap) + '</b><small>' + esc(t.nome) + '</small></td><td class="pts">' + t.pts + '</td><td>' + t.j + '</td><td>' + t.v + '</td><td>' + t.vwo + '</td><td>' + t.d + '</td><td class="sg">' + (t.sg > 0 ? '+' : '') + t.sg + '</td></tr>').join('');
 }
 function renderTudo(){ renderCalendario(); renderClassificacao(); atualizarJogos(); }
 
@@ -919,7 +918,7 @@ function renderHistorico(){
     h += '<div class="facts">' + L.info.map(x => '<span class="fact">' + x + '</span>').join('') + '</div>';
     h += '<h3 class="hh">Pódio</h3><div class="podium graded">' + [0,1,2].map(k => '<div class="pod p' + (k+1) + '"><span class="med" role="img" aria-label="' + (k+1) + 'º lugar">' + ['🥇','🥈','🥉'][k] + '</span><b>' + esc(t[k][0]) + '</b><span>' + t[k][1] + ' pts</span><small>' + vitTot(t[k]) + ' vitórias · saldo ' + sg(t[k][4]) + '</small></div>').join('') + '</div>';
     h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-w"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Atleta</th><th scope="col"><abbr title="Pontos">P</abbr></th><th scope="col"><abbr title="Jogos">J</abbr></th><th scope="col"><abbr title="Vitórias">V</abbr></th><th scope="col"><abbr title="Vitórias sem W.O.">V sem WO</abbr></th><th scope="col"><abbr title="Saldo de games">SG</abbr></th></tr></thead><tbody>' +
-      t.map((r, k) => '<tr><td class="pos"><span' + (k < 3 ? ' class="top"' : '') + '>' + (k+1) + '</span></td><td class="l who"><b>' + esc(r[0]) + (k < 3 ? ' ' + ['🥇','🥈','🥉'][k] : '') + '</b></td><td class="pts">' + r[1] + '</td><td>' + r[2] + '</td><td>' + vitTot(r) + '</td><td>' + r[3] + '</td><td class="sg">' + sg(r[4]) + '</td></tr>').join('') + '</tbody></table></div>';
+      t.map((r, k) => '<tr' + (k < 3 ? ' class="podrow"' : '') + '><td class="pos"><span' + (k < 3 ? ' class="top"' : '') + '>' + (k+1) + '</span></td><td class="l who"><b>' + esc(r[0]) + (k < 3 ? ' ' + ['🥇','🥈','🥉'][k] : '') + '</b></td><td class="pts">' + r[1] + '</td><td>' + r[2] + '</td><td>' + vitTot(r) + '</td><td>' + r[3] + '</td><td class="sg">' + sg(r[4]) + '</td></tr>').join('') + '</tbody></table></div>';
     h += '<h3 class="hh">Destaques</h3><div class="hl-grid">' + L.destaques.map(d => '<div class="hl"><div class="k">' + d[0] + '</div><div class="v">' + d[1] + '</div><div class="w">' + esc(d[2]) + '</div></div>').join('') + '</div>';
   } else {
     const F = HIST.finals;
@@ -957,7 +956,7 @@ function renderFantasy(){
   let h = '<h3 class="hh">Fantasy 2026</h3><div class="hl-grid">' + FAN.numeros.map(n => '<div class="hl"><div class="v">' + n[0] + '</div><div class="w">' + n[1] + '</div></div>').join('') + '</div>';
   h += '<h3 class="hh">Pódio</h3><div class="podium fan-podium">' + pod.map(r => '<div class="pod p' + (r[0] === 1 ? 1 : 2) + '"><span class="med" role="img" aria-label="' + r[0] + 'º lugar">' + ['🥇','🥈','🥉'][r[0]-1] + '</span><b>' + esc(r[1]) + '</b><span>' + r[2] + ' acertos</span><small>' + r[3] + '% de aproveitamento' + (r[0] === 2 ? ' · empate' : '') + '</small></div>').join('') + '</div>';
   h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Participante</th><th scope="col">Acertos</th><th scope="col">%</th></tr></thead><tbody>' +
-    R.map(r => '<tr><td class="pos"><span' + (r[0] <= 3 ? ' class="top"' : '') + '>' + r[0] + '</span></td><td class="l who"><b>' + esc(r[1]) + (r[0] <= 3 ? ' ' + ['🥇','🥈','🥉'][r[0]-1] : '') + '</b></td><td class="pts">' + r[2] + '</td><td>' + r[3] + '%</td></tr>').join('') + '</tbody></table></div>';
+    R.map(r => '<tr' + (r[0] <= 3 ? ' class="podrow"' : '') + '><td class="pos"><span' + (r[0] <= 3 ? ' class="top"' : '') + '>' + r[0] + '</span></td><td class="l who"><b>' + esc(r[1]) + (r[0] <= 3 ? ' ' + ['🥇','🥈','🥉'][r[0]-1] : '') + '</b></td><td class="pts">' + r[2] + '</td><td>' + r[3] + '%</td></tr>').join('') + '</tbody></table></div>';
   h += '<h3 class="hh">Os palpites que marcaram</h3><div class="hl-grid"><div class="hl"><div class="k">Torcedora mais fiel</div><div class="v">1 de 16</div><div class="w">Malu Giugni foi a única a apostar no JP Maciel contra o Rafa Almeida, e acertou</div></div><div class="hl"><div class="k">Zebra da temporada</div><div class="v">94%</div><div class="w">apostaram no Rafa Almeida (15 de 16), mas deu JP Maciel</div></div><div class="hl"><div class="k">Erraram todos</div><div class="v">3 jogos</div><div class="w">em que 100% dos palpites foram no perdedor</div></div></div>';
   h += '<h3 class="hh">Os jogos que enganaram a galera</h3><ul class="mt">' + FAN.enganaram.map(e => '<li><span class="vs"><b>' + esc(e[0]) + '</b><small>' + esc(e[1]) + '</small></span><span class="score">Venceu ' + esc(e[2]) + '</span></li>').join('') + '</ul>';
   h += '<h3 class="hh">🐴 Os cavalos preferidos</h3><div class="hl-grid">' + FAN.cavalos.map((c, k) => '<div class="hl"><div class="k">' + (k+1) + 'º · mais votado</div><div class="v">' + c[1] + ' votos</div><div class="w">' + esc(c[0]) + '</div><small class="dia" style="margin:0">' + Math.round(100 * c[1] / c[2]) + '% dos palpites nos jogos dele · ' + c[3] + '% viraram ponto</small></div>').join('') + '</div>';
