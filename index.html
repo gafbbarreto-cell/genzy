@@ -229,6 +229,10 @@ td.pos span.top{background:var(--yellow);border-radius:6px;padding:2px 9px}
 .mt .tg{flex:none;font-family:var(--f-display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;width:112px}
 .mt .vs{flex:1}
 .mt small{display:block;color:var(--muted);font-size:12px}
+.mt .sm{flex:1;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;min-width:0}
+.mt .sm b{text-align:right}
+.mt .sm .lost{color:var(--muted)}
+.mt .sm .score{justify-self:center}
 .gtabs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .gt{border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .gt header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--mist);border-bottom:1px solid var(--line)}
@@ -289,6 +293,9 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
   .podium.graded{grid-template-columns:1fr}
   .gtabs{grid-template-columns:1fr}
   .mt .tg{width:88px}
+  .mt li:has(.sm){flex-wrap:wrap;gap:6px}
+  .mt li:has(.sm) .tg{width:100%}
+  .mt .sm{gap:8px;font-size:14px}
   .soon .bar b{font-size:32px}
   .prof-grid{grid-template-columns:1fr}
   .pstats{grid-template-columns:1fr}
@@ -895,7 +902,7 @@ const HIST = {
       ['Prata',2,null,null,'Rober Cambur × Marcelo Bere',true,'28/nov'],['Marley',2,'Bibi Almeida','Raffa Marley','6-3 / 7-6']],
     // [taça, vencedor, perdedor, placar, observação]
     semis:[['Titanium','Marquinhos Leite','Filu Orra','6-4 / 6-3'],['Titanium','Ga Barreto','Lufe Almeida','6-4 / 3-6 / 13-11'],['Ouro','Rafa Almeida','JP Maciel','6-4 / 6-4'],['Ouro','Marco Cappanari','Sami Orra','6-4 / 7-5'],
-      ['Prata','Rober Cambur','Nilo Duarte','7-5 / 3-6 / 10-6'],['Prata','Marcelo Bere','Nick Gaal','1-6 / 6-2 / 13-11'],['Marley','Raffa Marley','Malu Giugni','3-5 / 4-2 / 11-9','sets de 4 games'],['Marley','Bibi Almeida','Paulinha Pimentel','W.O.']],
+      ['Prata','Rober Cambur','Nilo Duarte','7-5 / 3-6 / 10-6'],['Prata','Marcelo Bere','Nick Gaal','1-6 / 6-2 / 13-11'],['Marley','Raffa Marley','Malu Giugni','3-5 / 4-2 / 11-9'],['Marley','Bibi Almeida','Paulinha Pimentel','W.O.']],
     // grupos: [nome, divisão, [[jogador, J, V, D, GP, GC], ...]] na ordem final
     grupos:[['Saguí',1,[['Marquinhos',3,3,0,18,5],['Lufe',3,2,1,13,11],['JP',3,1,2,9,16],['Sami',3,0,3,10,18]]],
       ['Esquilo',1,[['Ga',3,2,1,14,10],['Filu',3,2,1,17,17],['Marco',3,1,2,12,17],['Rafa',3,1,2,16,15]]],
@@ -927,7 +934,7 @@ function renderHistorico(){
     h += '<h3 class="hh">Campeões</h3><div class="cups">' + F.tacas.map(c => '<div class="cup' + (c[5] ? ' main' : '') + '"><header>' + TACA_EMO[c[0]] + ' ' + c[0] + '</header><div class="c">' +
       (c[2] ? '<b>' + esc(c[2]) + '</b><div class="vice">Final: ' + esc(c[4]) + '<br>contra ' + esc(c[3]) + '</div>'
             : '<b class="tbd">' + (c[6] ? 'Final em ' + c[6] : 'Final a jogar') + '</b><div class="vice">' + esc(c[4]) + '</div>') + '</div></div>').join('') + '</div>';
-    h += '<h3 class="hh">Semifinais</h3><ul class="mt">' + F.semis.map(m => '<li><span class="tg">' + TACA_EMO[m[0]] + ' ' + m[0] + '</span><span class="vs"><b>' + esc(m[1]) + '</b><span class="x">×</span><span class="lost">' + esc(m[2]) + '</span>' + (m[4] ? '<small>' + m[4] + '</small>' : '') + '</span><span class="score">' + m[3] + '</span></li>').join('') + '</ul>';
+    h += '<h3 class="hh">Semifinais</h3><ul class="mt">' + F.semis.map(m => '<li><span class="tg">' + TACA_EMO[m[0]] + ' ' + m[0] + '</span><span class="sm"><b>' + esc(m[1]) + '</b><span class="score">' + m[3] + '</span><span class="lost">' + esc(m[2]) + '</span></span></li>').join('') + '</ul>';
     h += '<h3 class="hh">Fase de grupos</h3><div class="gtabs">' + F.grupos.map(g => '<div class="gt"><header><b>Grupo ' + g[0] + '</b></header><table><thead><tr><th>#</th><th class="l">Atleta</th><th>P</th><th>V</th><th>D</th><th>GP</th><th>GC</th><th>SG</th></tr></thead><tbody>' +
       g[2].map((r, k) => '<tr' + (k < 2 ? ' class="q"' : '') + '><td>' + (k+1) + 'º</td><td class="l">' + esc(r[0]) + '</td><td><b>' + (3 * r[2]) + '</b></td><td>' + r[2] + '</td><td>' + r[3] + '</td><td>' + r[4] + '</td><td>' + r[5] + '</td><td class="sg">' + sg(r[4]-r[5]) + '</td></tr>').join('') + '</tbody></table></div>').join('') + '</div>';
   }
