@@ -249,6 +249,11 @@ tr.podrow td{background:#FFF8DC}
 .soon .bar b{display:block;font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1.05;text-transform:uppercase;margin-top:6px}
 .soon p{margin:0;padding:14px 22px;color:var(--muted)}
 .fan-podium .pod span{font-size:14px}
+/* Foto pequena do atleta no pódio, ao lado da medalha */
+.pod .pmed{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px}
+.pod .pmed .med{margin:0}
+.pod .pav{flex:none;display:block;width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:50% 20%;filter:grayscale(1);border:2px solid var(--ink);background:var(--mist)}
+.pod.p1 .pav{width:44px;height:44px}
 .prof-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 details.prof{border:2px solid var(--line);border-radius:10px;background:var(--paper)}
 details.prof[open]{border-color:var(--ink);grid-column:1/-1}
@@ -946,7 +951,7 @@ function renderHistorico(){
   if (hComp === 'league'){
     const L = HIST.league[hLiga], t = L.tabela;
     h += '<div class="facts">' + L.info.map(x => '<span class="fact">' + x + '</span>').join('') + '</div>';
-    h += '<h3 class="hh">Pódio</h3><div class="podium graded">' + [0,1,2].map(k => '<div class="pod p' + (k+1) + '"><span class="med" role="img" aria-label="' + (k+1) + 'º lugar">' + ['🏆','🥈','🥉'][k] + '</span><b>' + esc(t[k][0]) + '</b><span>' + t[k][1] + ' pts</span><small>' + vitTot(t[k]) + ' vitórias · saldo ' + sg(t[k][4]) + '</small></div>').join('') + '</div>';
+    h += '<h3 class="hh">Pódio</h3><div class="podium graded">' + [0,1,2].map(k => '<div class="pod p' + (k+1) + '"><span class="pmed"><span class="med" role="img" aria-label="' + (k+1) + 'º lugar">' + ['🏆','🥈','🥉'][k] + '</span>' + fotoPodio(t[k][0]) + '</span><b>' + esc(t[k][0]) + '</b><span>' + t[k][1] + ' pts</span><small>' + vitTot(t[k]) + ' vitórias · saldo ' + sg(t[k][4]) + '</small></div>').join('') + '</div>';
     h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"><col class="c-n"><col class="c-w"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Atleta</th><th scope="col"><abbr title="Pontos">P</abbr></th><th scope="col"><abbr title="Jogos">J</abbr></th><th scope="col"><abbr title="Vitórias">V</abbr></th><th scope="col"><abbr title="Vitórias sem W.O.">V sem WO</abbr></th><th scope="col"><abbr title="Saldo de games">SG</abbr></th></tr></thead><tbody>' +
       t.map((r, k) => '<tr' + (k < 3 ? ' class="podrow"' : '') + '><td class="pos"><span' + (k < 3 ? ' class="top"' : '') + '>' + (k+1) + '</span></td><td class="l who"><b>' + esc(r[0]) + (k < 3 ? ' ' + ['🏆','🥈','🥉'][k] : '') + '</b></td><td class="pts">' + r[1] + '</td><td>' + r[2] + '</td><td>' + vitTot(r) + '</td><td>' + r[3] + '</td><td class="sg">' + sg(r[4]) + '</td></tr>').join('') + '</tbody></table></div>';
     h += '<h3 class="hh">Destaques</h3><div class="hl-grid">' + L.destaques.map(d => '<div class="hl"><div class="k">' + d[0] + '</div><div class="v">' + d[1] + '</div><div class="w">' + esc(d[2]) + '</div></div>').join('') + '</div>';
@@ -964,7 +969,6 @@ function renderHistorico(){
 }
 document.querySelectorAll('#hComp button').forEach(b => b.addEventListener('click', () => { hComp = b.dataset.h; renderHistorico(); }));
 document.querySelectorAll('#hLiga button').forEach(b => b.addEventListener('click', () => { hLiga = b.dataset.l; renderHistorico(); }));
-renderHistorico();
 
 // Fantasminha do GEN ZY Fantasy (logo da apresentação 2026): dourado (campeão) e prateado (2º)
 function fantasma(cor, px, rotulo){
@@ -991,7 +995,7 @@ const FAN = {
 function renderFantasy(){
   const R = FAN.ranking, pod = [R[0], R[1], R[2]];
   let h = '<h3 class="hh">Fantasy 2026</h3><div class="hl-grid">' + FAN.numeros.map(n => '<div class="hl"><div class="v">' + n[0] + '</div><div class="w">' + n[1] + '</div></div>').join('') + '</div>';
-  h += '<h3 class="hh">Pódio</h3><div class="podium fan-podium">' + pod.map(r => '<div class="pod p' + (r[0] === 1 ? 1 : 2) + '"><span class="med">' + fantasmaDaPos(r[0], r[0] === 1 ? 44 : 36) + '</span><b>' + esc(r[1]) + '</b><span>' + r[2] + ' acertos</span><small>' + r[3] + '% de aproveitamento' + (r[0] === 2 ? ' · empate' : '') + '</small></div>').join('') + '</div>';
+  h += '<h3 class="hh">Pódio</h3><div class="podium fan-podium">' + pod.map(r => '<div class="pod p' + (r[0] === 1 ? 1 : 2) + '"><span class="pmed"><span class="med">' + fantasmaDaPos(r[0], r[0] === 1 ? 44 : 36) + '</span>' + fotoPodio(r[1]) + '</span><b>' + esc(r[1]) + '</b><span>' + r[2] + ' acertos</span><small>' + r[3] + '% de aproveitamento' + (r[0] === 2 ? ' · empate' : '') + '</small></div>').join('') + '</div>';
   h += '<h3 class="hh">Classificação final</h3><div class="tablebox"><table class="htab"><colgroup><col class="c-n"><col><col class="c-n"><col class="c-n"></colgroup><thead><tr><th scope="col">#</th><th scope="col" class="l">Participante</th><th scope="col">Acertos</th><th scope="col">%</th></tr></thead><tbody>' +
     R.map(r => '<tr' + (r[0] <= 3 ? ' class="podrow"' : '') + '><td class="pos"><span' + (r[0] <= 3 ? ' class="top"' : '') + '>' + r[0] + '</span></td><td class="l who"><b>' + esc(r[1]) + (r[0] <= 3 ? ' ' + fantasmaDaPos(r[0], 18) : '') + '</b></td><td class="pts">' + r[2] + '</td><td>' + r[3] + '%</td></tr>').join('') + '</tbody></table></div>';
   h += '<h3 class="hh">Os palpites que marcaram</h3><div class="hl-grid"><div class="hl"><div class="k">Torcedora mais fiel</div><div class="v">1 de 16</div><div class="w">Malu Giugni, única a cravar o JP Maciel contra o Rafa</div></div><div class="hl"><div class="k">Zebra da temporada</div><div class="v">94%</div><div class="w">apostaram no Rafa Almeida (15 de 16), mas deu JP Maciel</div></div><div class="hl"><div class="k">Erraram todos</div><div class="v">3 jogos</div><div class="w">em que 100% dos palpites foram no perdedor</div></div></div>';
@@ -1000,7 +1004,6 @@ function renderFantasy(){
   h += '<h3 class="hh">🐴 Os cavalinhos estratégicos</h3><div class="hl-grid">' + FAN.cavalinhos.map((c, k) => '<div class="hl"><div class="k">' + (k+1) + 'º · aposta certeira</div><div class="v">' + Math.round(100 * c[1] / c[2]) + '%</div><div class="w">' + esc(c[0]) + '</div><small class="dia" style="margin:0">dos votos nele viraram ponto (' + c[1] + ' de ' + c[2] + ') · só ' + Math.round(100 * c[2] / c[3]) + '% apostaram nele</small></div>').join('') + '</div>';
   $('fBody').innerHTML = h;
 }
-renderFantasy();
 
 // ---------- Atletas ----------
 // Perfil por apelido 2027: [nome usado em 2026, frase do perfil, destaque no Data Score, resultado no Finals 2026, outros destaques, foto]
@@ -1074,6 +1077,15 @@ function renderAtletas(){
   }).join('');
 }
 renderAtletas();
+
+// Foto pequena do atleta (preto e branco) a partir do nome usado em 2026
+function fotoPodio(nome){
+  const n = nome === 'Du Gomez' ? 'Edu Gomez' : nome;
+  const P = Object.values(PERFIL).find(x => x[0] === n);
+  return P && P[5] ? '<img class="pav" src="fotos/' + P[5] + '.jpg" alt="" loading="lazy" width="44" height="44">' : '';
+}
+renderHistorico();
+renderFantasy();
 
 // ---------- Fotos ----------
 // Um álbum por evento: [título, data, crédito, link do álbum, foto de capa (opcional)]. O mais novo vai primeiro.
