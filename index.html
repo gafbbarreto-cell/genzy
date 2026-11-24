@@ -249,7 +249,8 @@ tr.podrow td{background:#FFF8DC}
 .soon .bar b{display:block;font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1.05;text-transform:uppercase;margin-top:6px}
 .soon p{margin:0;padding:14px 22px;color:var(--muted)}
 .fan-podium .pod span{font-size:14px}
-.prof-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.prof-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+details.prof{min-width:0}
 details.prof{border:2px solid var(--line);border-radius:10px;background:var(--paper)}
 details.prof[open]{border-color:var(--ink);grid-column:1/-1}
 details.prof summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;align-items:center;gap:12px}
@@ -315,7 +316,7 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
   .mt li:has(.sm) .tg{width:100%}
   .mt .sm{gap:8px;font-size:14px}
   .soon .bar b{font-size:32px}
-  .prof-grid{grid-template-columns:1fr}
+  .prof-grid{grid-template-columns:minmax(0,1fr)}
   .pstats{grid-template-columns:1fr}
   table.htab th,table.htab td{padding:9px 6px}
 }
@@ -523,6 +524,7 @@ details.prof summary:focus-visible{outline:3px solid var(--yellow);outline-offse
       <div class="eyebrow">Elenco 2027</div>
       <h2 id="t-atl">Atletas</h2>
       <p class="sub">Os perfis dos atletas da temporada 2027, com o que cada um fez em 2026.</p>
+      <div class="controls"><button type="button" class="ghost" id="pTodos" aria-controls="pBody">Expandir todos</button></div>
       <div class="prof-grid" id="pBody"></div>
     </section>
 
@@ -1074,6 +1076,11 @@ function renderAtletas(){
   }).join('');
 }
 renderAtletas();
+// Expandir/recolher todos os perfis de uma vez
+function syncTodos(){ const ds = [...document.querySelectorAll('#pBody details.prof')], todos = ds.length && ds.every(d => d.open); $('pTodos').textContent = todos ? 'Recolher todos' : 'Expandir todos'; $('pTodos').setAttribute('aria-expanded', todos ? 'true' : 'false'); }
+$('pTodos').addEventListener('click', () => { const abrir = $('pTodos').textContent === 'Expandir todos'; document.querySelectorAll('#pBody details.prof').forEach(d => { d.open = abrir; }); syncTodos(); });
+document.querySelectorAll('#pBody details.prof').forEach(d => d.addEventListener('toggle', syncTodos));
+syncTodos();
 
 // ---------- Fotos ----------
 // Um álbum por evento: [título, data, crédito, link do álbum, foto de capa (opcional)]. O mais novo vai primeiro.
